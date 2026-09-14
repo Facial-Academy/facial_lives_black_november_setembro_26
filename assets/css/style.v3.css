@@ -502,6 +502,21 @@ html.lenis,html.lenis body{height:auto}
    ANIMAÇÕES
    ========================================================================= */
 .js .anim{opacity:.001;transform:translateY(20px);will-change:transform,opacity}
+
+/* O hero entra por CSS, sem depender do JS.
+   Antes ele era revelado no evento load — que só dispara depois de todo o
+   rastreamento carregar — e isso empurrava o LCP junto (10,2s no PageSpeed).
+   Por CSS a entrada começa assim que a folha de estilo chega. */
+.hero .anim{
+  opacity:.001;
+  transform:translateY(20px);
+  animation:heroIn .7s var(--ease) forwards;
+}
+@keyframes heroIn{ to{ opacity:1; transform:none } }
+.hero .anim[data-delay="80"]{animation-delay:80ms}
+.hero .anim[data-delay="160"]{animation-delay:160ms}
+.hero .anim[data-delay="200"]{animation-delay:200ms}
+.hero .anim[data-delay="240"]{animation-delay:240ms}
 .js .anim.is-in{
   opacity:1;
   transform:none;
@@ -524,7 +539,7 @@ html.lenis,html.lenis body{height:auto}
 }
 
 @media (prefers-reduced-motion:reduce){
-  .anim,.anim-words .word,.js .anim,.js .anim-words .word{opacity:1!important;transform:none!important;filter:none!important;transition:none!important}
+  .anim,.anim-words .word,.js .anim,.js .anim-words .word,.hero .anim{opacity:1!important;transform:none!important;filter:none!important;transition:none!important;animation:none!important}
 }
 
 /* =========================================================================

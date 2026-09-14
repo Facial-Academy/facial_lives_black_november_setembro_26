@@ -80,13 +80,9 @@
   if (reduced) {
     pending.forEach(function (el) { el.classList.add('is-in'); });
   } else {
-    // o hero entra no carregamento; o resto, ao surgir na viewport
-    var hero = pending.filter(function (el) { return el.closest('#hero-section'); });
+    // O hero entra por CSS (regra .hero .anim) e sai daqui: revelá-lo no
+    // evento load fazia o LCP esperar todo o rastreamento terminar.
     pending = pending.filter(function (el) { return !el.closest('#hero-section'); });
-
-    function revealHero() { hero.forEach(reveal); }
-    if (document.readyState === 'complete') revealHero();
-    else window.addEventListener('load', revealHero);
 
     // rede de segurança: nada fica invisível mesmo sem IntersectionObserver
     function sweep() {
@@ -126,7 +122,7 @@
     }
 
     document.addEventListener('visibilitychange', function () {
-      if (document.visibilityState === 'visible') { revealHero(); sweep(); }
+      if (document.visibilityState === 'visible') sweep();
     });
     sweep();
   }
