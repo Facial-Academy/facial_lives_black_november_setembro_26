@@ -27,10 +27,11 @@
   --txt-legal:#8C82A3;
   --lilas:#C9A9F7;
   --sucesso:#45C08A;
-  --verde-1:#25D366;         /* verde do WhatsApp — início do gradiente */
-  --verde-2:#1DB45A;         /* fim do gradiente                        */
-  --verde-texto:#04240F;     /* letra escura: no verde vivo, texto branco
-                                fica em 2,7:1 e reprova em contraste     */
+  /* Mesmo matiz e saturação do verde do WhatsApp, com a luminosidade baixada
+     até o texto branco passar em contraste: 4,71:1 no início do gradiente e
+     7,71:1 no fim. No #25D366 puro o branco ficava em 1,98:1. */
+  --verde-1:#178540;         /* início do gradiente do botão */
+  --verde-2:#11602E;         /* fim do gradiente             */
   --font:'Silka',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
 }
 *{box-sizing:border-box}
@@ -73,7 +74,7 @@ h1{
 .btn{
   display:flex;align-items:center;justify-content:center;gap:10px;
   width:100%;text-decoration:none;border-radius:11px;padding:17px 20px;
-  font-size:clamp(15px,3.9vw,16.5px);font-weight:700;letter-spacing:.01em;color:var(--verde-texto);
+  font-size:clamp(15px,3.9vw,16.5px);font-weight:700;letter-spacing:.01em;color:#fff;
   background:linear-gradient(135deg,var(--verde-1) 0%,var(--verde-2) 100%);
   transition:filter .2s cubic-bezier(.2,.8,.2,1);
   /* Pulsa em escala e solta um halo. Escala e sombra não entram no layout,
