@@ -90,8 +90,16 @@ O que foi feito do lado da página:
   a renderização.
 - `intl-tel-input` no build base (40 KB), com `utils.js` sob demanda em vez do
   bundle de 309 KB no carregamento inicial.
-- Revelações por `IntersectionObserver`; a varredura por scroll, que lia
-  `getBoundingClientRect` e forçava reflow, só entra como alternativa.
+- O hero entra por animação CSS. Ele era revelado pelo JS no evento `load`,
+  que só dispara depois de todo o rastreamento carregar — e como o LCP ignora
+  elemento invisível, o LCP ficava preso a isso (10,2s numa medição).
+- As demais seções revelam por `IntersectionObserver`, com uma varredura por
+  posição como rede de segurança: o observer não avisa quando um elemento é
+  ultrapassado de uma vez (recarregar no meio da página, rolagem rápida) e o
+  bloco ficaria invisível para sempre. As posições são medidas uma vez, então
+  a checagem no scroll não lê layout nem força reflow.
+- `preconnect` para as duas origens de rastreamento que o Lighthouse aponta
+  como as que mais atrasam o LCP.
 
 O teto, porém, é o rastreamento: no relatório, GTM, Facebook Pixel, o
 `capiParamBuilder` da AWS e o loader do tracker somavam cerca de 5s de trabalho
