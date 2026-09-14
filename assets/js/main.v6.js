@@ -7,6 +7,12 @@
 
   document.body.classList.add('js');
 
+  // Marca o fim do carregamento: a pulsação do botão de envio só começa
+  // depois disso, para não competir com a renderização inicial.
+  function marcaCarregada() { document.body.classList.add('carregada'); }
+  if (document.readyState === 'complete') marcaCarregada();
+  else window.addEventListener('load', marcaCarregada);
+
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* ---------------------------------------------------------------------

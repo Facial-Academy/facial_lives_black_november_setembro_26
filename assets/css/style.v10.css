@@ -232,10 +232,14 @@ html.lenis,html.lenis body{height:auto}
   border-radius:12px;
   cursor:pointer;
   transition:filter .25s var(--ease);
-  /* Escala e sombra não entram no layout: a pulsação não desloca nada e não
-     empurra o formulário para fora da primeira dobra no celular. */
+}
+/* A pulsação só começa depois que a página termina de carregar.
+   O botão fica dentro do .hero__card, que tem backdrop-filter: blur(45px) —
+   animar ali durante o carregamento custa caro em celular fraco e foi o que
+   derrubou LCP e TBT no PageSpeed. Depois do load ela não disputa com nada e
+   a pessoa vê o efeito do mesmo jeito. */
+.carregada .fa-submit{
   animation:pulsarEnvio 2.2s ease-in-out infinite;
-  will-change:transform;
 }
 @keyframes pulsarEnvio{
   0%,100%{

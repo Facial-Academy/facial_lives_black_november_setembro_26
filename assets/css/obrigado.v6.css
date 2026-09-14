@@ -79,7 +79,8 @@ h1{
   transition:filter .2s cubic-bezier(.2,.8,.2,1);
   /* Pulsa em escala e solta um halo. Escala e sombra não entram no layout,
      então a pulsação não desloca nada na página. */
-  animation:pulsar 2.2s ease-in-out infinite;
+  /* Atraso para a pulsação não competir com a renderização inicial. */
+  animation:pulsar 2.2s ease-in-out 1.8s infinite;
   will-change:transform;
 }
 @keyframes pulsar{
