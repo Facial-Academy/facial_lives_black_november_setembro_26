@@ -63,6 +63,18 @@ grupos conforme eles enchem. Para trocar o destino, mexa no Sendflow — não
 
 Cabe em uma dobra até em telas de 668px de altura, sem rolagem.
 
+## Primeira dobra no celular
+
+No celular o hero ocupa a altura da tela (`100svh`) e o conteúdo fica
+centralizado, para o formulário inteiro — os três campos, o botão e a data —
+caber sem rolagem. A escala é menor que a do site original: logo 128px, título
+30px, campos de 44px. Há um nível extra para telas de até 680px de altura,
+onde logo e espaçamentos encolhem mais; a área de toque dos campos é
+preservada nos dois.
+
+Conferido em 360x640, 375x667, 390x844 e 412x915: o formulário inteiro aparece
+na primeira dobra nos quatro.
+
 ## Cache e nomes de arquivo
 
 O `_headers` dá cache de um ano para `assets/fonts/` e `assets/img/`, e faz

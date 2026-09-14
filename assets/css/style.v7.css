@@ -587,14 +587,39 @@ html.lenis,html.lenis body{height:auto}
    BREAKPOINT — MOBILE (≤809px)
    ========================================================================= */
 @media (max-width:809px){
-  .hero__inner{flex-direction:column;align-items:center;gap:40px;padding:48px}
-  .hero__col{align-items:center;text-align:center;width:100%;gap:20px}
-  .hero__logo img{width:197px;height:139px}
-  .hero__title{font-size:38px;text-align:center}
-  .hero__lead{font-size:14px;text-align:center}
-  .hero__card{width:100%;padding:25px}
-  .card__title{font-size:22px}
-  .card__note p{font-size:13px}
+  /* ---- HERO: tudo precisa caber na primeira dobra, sem rolagem ----
+     O hero ocupa a altura da tela e o conteúdo é centralizado: em telas
+     altas sobra respiro, em telas baixas encosta nas bordas mas cabe. */
+  .hero{min-height:100svh}
+  .hero__inner{
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:14px;
+    padding:12px 16px;
+    min-height:100svh;
+  }
+  .hero__col{
+    /* flex:1 vem do desktop e esticava a coluna, abrindo um vão até o card */
+    flex:0 0 auto;
+    align-items:center;text-align:center;width:100%;gap:10px;
+  }
+  .hero__logo img{width:128px;height:90px}
+  .hero__title{font-size:30px;text-align:center;line-height:1.1}
+  .hero__lead{font-size:13px;text-align:center;line-height:1.4;max-width:34ch}
+  .pill{padding:6px 14px}
+  .pill__label{font-size:14px}
+
+  .hero__card{width:100%;padding:16px;gap:12px;border-radius:16px}
+  .card__title{font-size:18px}
+  .card__note p{font-size:12px;line-height:1.4}
+
+  .fa-form{padding:12px;border-radius:8px}
+  .fa-field{margin-bottom:10px}
+  .fa-field label{font-size:12px;margin-bottom:5px}
+  .fa-input{height:44px;font-size:16px;padding:10px 12px 10px 40px}
+  .fa-icon{left:12px}
+  .fa-submit{padding:13px 20px;font-size:16px;margin-top:6px}
 
   .reasons{padding:60px 16px;gap:40px}
   .reasons__head{gap:16px}
@@ -621,15 +646,6 @@ html.lenis,html.lenis body{height:auto}
   .btn{height:48px}
   .btn__label p{font-size:14px}
 
-  .fa-form{
-    padding:16px;
-    background:#0e0327;
-    border-radius:8px;
-    box-shadow:0 20px 60px rgba(20,35,65,.12),0 4px 12px rgba(20,35,65,.06);
-  }
-  .fa-input{height:48px}
-  .fa-submit{padding:14px 20px;font-size:16px}
-
   .footer{padding:64px 24px 0;text-align:center}
   .footer__top{flex-direction:column;align-items:center;gap:32px}
   .footer__brand{align-items:center;width:100%}
@@ -642,4 +658,21 @@ html.lenis,html.lenis body{height:auto}
   .footer__mid{flex-direction:column;gap:48px;text-align:left}
   .footer__block{max-width:none}
   .footer__bottom{padding:40px 0 144px;text-align:left}
+}
+
+/* =========================================================================
+   TELAS BAIXAS (Android pequeno, navegador com barras) — aperta o hero
+   mais um pouco para o formulário inteiro caber sem rolagem.
+   Área de toque dos campos preservada; o que encolhe é logo e espaçamento.
+   ========================================================================= */
+@media (max-width:809px) and (max-height:680px){
+  .hero__inner{gap:12px;padding:10px 16px}
+  .hero__col{gap:8px}
+  .hero__logo img{width:104px;height:73px}
+  .hero__title{font-size:27px}
+  .hero__lead{font-size:12px}
+  .hero__card{padding:14px;gap:10px}
+  .card__title{font-size:17px}
+  .fa-field{margin-bottom:8px}
+  .card__note p{font-size:11px}
 }
