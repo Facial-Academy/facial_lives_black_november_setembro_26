@@ -1,0 +1,110 @@
+/* ============================================================================
+   BLACK VITALÍCIA — página de obrigado · Facial Academy
+   Uma dobra · objetivo único: entrar no grupo de WhatsApp
+   Design alinhado à página de captura (/black-friday-2026).
+   ============================================================================ */
+:root{
+  --bg:#06000D;
+  --roxo-1:#9F60EE;          /* início do gradiente do botão */
+  --roxo-2:#6313BF;          /* fim do gradiente do botão    */
+  --roxo-borda:rgba(159,96,238,.34);
+  --roxo-borda-forte:rgba(159,96,238,.55);
+  --card:rgba(20,6,38,.72);
+  --card-in:rgba(30,10,56,.55);
+  --txt:#FAFAFA;
+  --txt-mut:#C2BAD0;
+  --txt-legal:#8C82A3;
+  --lilas:#C9A9F7;
+  --sucesso:#45C08A;
+  --font:'Silka',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;min-height:100svh;background:var(--bg);color:var(--txt);
+  font-family:var(--font);line-height:1.5;
+  display:flex;align-items:center;justify-content:center;
+  padding:30px 20px 34px;position:relative;overflow-x:hidden;
+  font-variant-ligatures:none;font-feature-settings:"liga" 0,"frac" 0;
+}
+/* brilho roxo do topo, igual ao da captura */
+body::before{
+  content:"";position:absolute;inset:0 0 auto 0;height:72vh;pointer-events:none;
+  background:url("../img/hero-bg.webp") center top / cover no-repeat;
+  opacity:.85;
+  -webkit-mask-image:linear-gradient(#000 0%,#000 32%,transparent 92%);
+  mask-image:linear-gradient(#000 0%,#000 32%,transparent 92%);
+}
+main{position:relative;width:100%;max-width:560px;text-align:center}
+
+/* ===== LOCKUP ===== */
+.lockup{width:min(268px,62vw);height:auto;display:block;margin:0 auto 22px}
+
+h1{
+  font-size:clamp(34px,8.6vw,54px);line-height:1.08;letter-spacing:-.03em;font-weight:700;
+  margin:0 0 13px;
+}
+.sub{
+  font-size:clamp(15.5px,4.1vw,18px);line-height:1.55;color:var(--txt-mut);
+  margin:0 auto 24px;max-width:40ch;
+}
+.sub b{color:var(--txt);font-weight:700}
+
+/* ===== CARD ===== */
+.card{
+  background:var(--card);border:1px solid var(--roxo-borda);border-radius:24px;
+  padding:22px;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+  box-shadow:0 24px 60px rgba(0,0,0,.5);
+}
+.btn{
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  width:100%;text-decoration:none;border-radius:11px;padding:17px 20px;
+  font-size:clamp(15px,3.9vw,16.5px);font-weight:600;letter-spacing:.01em;color:#fff;
+  background:linear-gradient(135deg,var(--roxo-1) 0%,var(--roxo-2) 100%);
+  box-shadow:0 12px 30px rgba(99,19,191,.42);
+  transition:filter .2s cubic-bezier(.2,.8,.2,1),transform .15s cubic-bezier(.2,.8,.2,1);
+}
+.btn:hover{filter:brightness(1.1)}
+.btn:active{transform:translateY(1px)}
+.btn svg{width:20px;height:20px;flex:none}
+.sob-btn{margin:12px 0 0;font-size:13px;color:var(--txt-legal)}
+
+.motivos{
+  list-style:none;margin:20px 0 0;padding:18px 18px 18px 16px;text-align:left;
+  background:var(--card-in);border:1px solid rgba(159,96,238,.18);border-radius:16px;
+}
+.motivos li{
+  position:relative;padding-left:24px;
+  font-size:clamp(14px,3.7vw,15.5px);line-height:1.5;color:var(--txt-mut);
+}
+.motivos li + li{margin-top:12px}
+.motivos li::before{
+  content:"";position:absolute;left:0;top:7px;width:7px;height:7px;border-radius:50%;
+  background:linear-gradient(135deg,var(--roxo-1),var(--roxo-2));
+}
+.motivos b{color:var(--txt);font-weight:700}
+
+.nota{margin:19px 0 0;font-size:13.5px;color:var(--txt-legal);line-height:1.6}
+.nota b{color:var(--lilas);font-weight:700}
+.rodape{margin:18px 0 0;font-size:12px;color:rgba(140,130,163,.7)}
+
+/* telas baixas: tudo precisa caber sem rolagem */
+@media (max-height:740px){
+  body{padding:18px 18px 22px}
+  .lockup{width:min(196px,48vw);margin-bottom:14px}
+  h1{font-size:clamp(30px,7.6vw,38px);margin-bottom:10px}
+  .sub{font-size:15px;margin-bottom:18px;line-height:1.45}
+  .card{padding:16px;border-radius:20px}
+  .btn{padding:15px 18px}
+  .sob-btn{margin-top:9px;font-size:12.5px}
+  .motivos{margin-top:14px;padding:14px 14px 14px 13px;border-radius:14px}
+  .motivos li{font-size:13.5px;line-height:1.45}
+  .motivos li + li{margin-top:9px}
+  .nota{margin-top:14px;font-size:12.5px}
+  .rodape{margin-top:10px;font-size:11px}
+}
+
+@media (min-width:640px){
+  .card{padding:28px}
+  .motivos{padding:22px 22px 22px 20px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}

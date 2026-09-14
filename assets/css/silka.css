@@ -1,0 +1,9 @@
+/* ============================================================================
+   SILKA — fonte institucional do Facial Class Design System
+   Pesos: 300 / 400 / 500 / 600 / 700. Compartilhada entre a captura e o obrigado.
+   ============================================================================ */
+@font-face{font-family:'Silka';font-style:normal;font-weight:300;font-display:swap;src:url("../fonts/SilkaLight.woff2") format("woff2")}
+@font-face{font-family:'Silka';font-style:normal;font-weight:400;font-display:swap;src:url("../fonts/SilkaRegular.woff2") format("woff2")}
+@font-face{font-family:'Silka';font-style:normal;font-weight:500;font-display:swap;src:url("../fonts/SilkaMedium.woff2") format("woff2")}
+@font-face{font-family:'Silka';font-style:normal;font-weight:600;font-display:swap;src:url("../fonts/SilkaSemiBold.woff2") format("woff2")}
+@font-face{font-family:'Silka';font-style:normal;font-weight:700;font-display:swap;src:url("../fonts/SilkaBold.woff2") format("woff2")}

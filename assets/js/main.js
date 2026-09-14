@@ -1,0 +1,241 @@
+/* =========================================================================
+   Facial Academy — Black Vitalícia
+   Scroll suave (Lenis) + revelação por palavra + formulário
+   ========================================================================= */
+(function () {
+  'use strict';
+
+  document.body.classList.add('js');
+
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------------------------------------------------------------------
+     1. Scroll suave (mesmo comportamento do site publicado)
+     --------------------------------------------------------------------- */
+  if (window.Lenis && !reduced) {
+    var lenis = new window.Lenis({
+      duration: 1.2,
+      easing: function (t) { return Math.min(1, 1.001 - Math.pow(2, -10 * t)); },
+      smoothWheel: true
+    });
+    function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+    requestAnimationFrame(raf);
+
+    document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+      a.addEventListener('click', function (e) {
+        var target = document.querySelector(a.getAttribute('href'));
+        if (!target) return;
+        e.preventDefault();
+        lenis.scrollTo(target, { offset: 0 });
+      });
+    });
+  }
+
+  /* ---------------------------------------------------------------------
+     2. Quebra de texto em palavras (efeito blur-in escalonado)
+     --------------------------------------------------------------------- */
+  var STAGGER = 40; // ms entre palavras
+
+  function splitWords(el) {
+    var walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, null);
+    var nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+
+    nodes.forEach(function (node) {
+      if (!node.nodeValue.trim()) return;
+      var frag = document.createDocumentFragment();
+      node.nodeValue.split(/(\s+)/).forEach(function (chunk) {
+        if (!chunk) return;
+        if (/^\s+$/.test(chunk)) {
+          frag.appendChild(document.createTextNode(chunk));
+        } else {
+          var span = document.createElement('span');
+          span.className = 'word';
+          span.textContent = chunk;
+          frag.appendChild(span);
+        }
+      });
+      node.parentNode.replaceChild(frag, node);
+    });
+
+    el.querySelectorAll('.word').forEach(function (w, i) {
+      w.style.transitionDelay = (i * STAGGER) + 'ms';
+    });
+  }
+
+  document.querySelectorAll('.anim-words').forEach(splitWords);
+
+  /* ---------------------------------------------------------------------
+     3. Revelação ao entrar na viewport
+     --------------------------------------------------------------------- */
+  function reveal(el) {
+    if (el.classList.contains('is-in')) return;
+    var delay = parseInt(el.getAttribute('data-delay') || '0', 10);
+    if (delay) el.style.transitionDelay = delay + 'ms';
+    el.classList.add('is-in');
+  }
+
+  var pending = [].slice.call(document.querySelectorAll('.anim, .anim-words'));
+
+  if (reduced) {
+    pending.forEach(function (el) { el.classList.add('is-in'); });
+  } else {
+    // o hero entra no carregamento; o resto, ao surgir na viewport
+    var hero = pending.filter(function (el) { return el.closest('#hero-section'); });
+    pending = pending.filter(function (el) { return !el.closest('#hero-section'); });
+
+    function revealHero() { hero.forEach(reveal); }
+    if (document.readyState === 'complete') revealHero();
+    else window.addEventListener('load', revealHero);
+
+    // rede de segurança: nada fica invisível mesmo sem IntersectionObserver
+    function sweep() {
+      var h = window.innerHeight || document.documentElement.clientHeight;
+      pending = pending.filter(function (el) {
+        var r = el.getBoundingClientRect();
+        if (r.top < h * 0.92 && r.bottom > 0) { reveal(el); return false; }
+        return true;
+      });
+    }
+
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
+          reveal(entry.target);
+          pending = pending.filter(function (el) { return el !== entry.target; });
+          io.unobserve(entry.target);
+        });
+      }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
+      pending.forEach(function (el) { io.observe(el); });
+    }
+
+    var last = 0;
+    function onScroll() {
+      var now = Date.now();
+      if (now - last < 60) return;
+      last = now;
+      sweep();
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+    document.addEventListener('visibilitychange', function () {
+      if (document.visibilityState === 'visible') { revealHero(); sweep(); }
+    });
+    sweep();
+  }
+
+  window.__revealAll = function () {
+    document.querySelectorAll('.anim, .anim-words').forEach(function (el) {
+      el.classList.add('is-in');
+    });
+  };
+
+  /* ---------------------------------------------------------------------
+     4. Campo de telefone internacional (padrão Brasil +55)
+     --------------------------------------------------------------------- */
+  var phone = document.querySelector('#fa-phone');
+  var iti = null;
+
+  if (phone && window.intlTelInput) {
+    iti = window.intlTelInput(phone, {
+      initialCountry: 'br',
+      separateDialCode: true,
+      countrySearch: true,
+      nationalMode: true,
+      i18n: { searchPlaceholder: 'Buscar' }
+    });
+  }
+
+  /* ---------------------------------------------------------------------
+     5. Envio do formulário
+     --------------------------------------------------------------------- */
+  var form = document.querySelector('#fa-form');
+  if (!form) return;
+
+  var message = form.querySelector('.fa-message');
+  var button = form.querySelector('.fa-submit');
+
+  // Defina aqui o endpoint que deve receber os leads.
+  var ENDPOINT = '';
+
+  // Para onde o lead é enviado depois de se cadastrar.
+  var REDIRECT = 'obrigado.html';
+
+  function setMessage(text, isError) {
+    message.textContent = text;
+    message.classList.toggle('is-error', !!isError);
+  }
+
+  function markInvalid(input, invalid) {
+    input.classList.toggle('is-invalid', invalid);
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    var name = form.querySelector('#fa-name');
+    var email = form.querySelector('#fa-email');
+    var ok = true;
+
+    var nameOk = name.value.trim().length >= 2;
+    markInvalid(name, !nameOk);
+    ok = ok && nameOk;
+
+    var emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim());
+    markInvalid(email, !emailOk);
+    ok = ok && emailOk;
+
+    var valid = iti ? iti.isValidNumber() : null;
+    var phoneOk = (valid === null || valid === undefined)
+      ? phone.value.replace(/\D/g, '').length >= 10
+      : valid;
+    markInvalid(phone, !phoneOk);
+    ok = ok && phoneOk;
+
+    if (!ok) {
+      setMessage('Confira os campos destacados para continuar.', true);
+      return;
+    }
+
+    var payload = {
+      name: name.value.trim(),
+      email: email.value.trim(),
+      phone: iti ? iti.getNumber() : phone.value.trim()
+    };
+
+    function done() {
+      if (REDIRECT) {
+        window.location.href = REDIRECT;
+        return;
+      }
+      setMessage('Pronto! Você está na lista. Avisaremos antes da revelação.');
+      form.reset();
+      if (iti) iti.setCountry('br');
+    }
+
+    if (!ENDPOINT) {
+      done();
+      return;
+    }
+
+    button.disabled = true;
+    setMessage('Enviando…');
+
+    fetch(ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    })
+      .then(function (r) {
+        if (!r.ok) throw new Error('falha no envio');
+        done();
+      })
+      .catch(function () {
+        setMessage('Não foi possível enviar agora. Tente novamente em instantes.', true);
+      })
+      .finally(function () {
+        button.disabled = false;
+      });
+  });
+})();
