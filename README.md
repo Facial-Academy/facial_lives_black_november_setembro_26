@@ -56,11 +56,10 @@ assets/img/                 imagens de fundo, logos e bandeiras do seletor de pa
 (conferido caixa a caixa), trocando as fontes e imagens embutidas em base64 pelos
 arquivos que as duas páginas já compartilham — de 1,1 MB para ~2,5 KB de HTML.
 
-**Antes de publicar:** troque o `href` do botão pelo convite real do grupo:
-
-```html
-<a class="btn" id="link-grupo" href="#COLAR-LINK-DO-GRUPO">
-```
+O botão aponta para o link rotativo do Sendflow
+(`https://sndflw.com/i/blackfriday2026`), que distribui as pessoas entre os
+grupos conforme eles enchem. Para trocar o destino, mexa no Sendflow — não
+é preciso republicar a página.
 
 Cabe em uma dobra até em telas de 668px de altura, sem rolagem.
 
