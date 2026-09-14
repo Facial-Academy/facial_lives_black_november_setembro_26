@@ -84,47 +84,58 @@
     // evento load fazia o LCP esperar todo o rastreamento terminar.
     pending = pending.filter(function (el) { return !el.closest('#hero-section'); });
 
-    // rede de segurança: nada fica invisível mesmo sem IntersectionObserver
-    function sweep() {
-      var h = window.innerHeight || document.documentElement.clientHeight;
-      pending = pending.filter(function (el) {
-        var r = el.getBoundingClientRect();
-        if (r.top < h * 0.92 && r.bottom > 0) { reveal(el); return false; }
+    // Posições medidas uma vez. A verificação no scroll vira aritmética
+    // pura — sem getBoundingClientRect, sem forçar reflow.
+    var marcas = pending.map(function (el) {
+      return { el: el, topo: el.getBoundingClientRect().top + window.scrollY };
+    });
+
+    function varrer() {
+      if (!marcas.length) return;
+      var limite = window.scrollY + (window.innerHeight || 0) * 0.92;
+      marcas = marcas.filter(function (m) {
+        if (m.topo < limite) { reveal(m.el); return false; }
         return true;
       });
     }
 
-    var temIO = 'IntersectionObserver' in window;
+    function remedir() {
+      marcas.forEach(function (m) {
+        m.topo = m.el.getBoundingClientRect().top + window.scrollY;
+      });
+      varrer();
+    }
 
-    if (temIO) {
+    // O IntersectionObserver cobre a rolagem normal. Ele não avisa quando um
+    // elemento é ultrapassado de uma vez (recarregar no meio da página,
+    // rolagem muito rápida): nesse caso o elemento nunca chega a intersectar
+    // e ficaria invisível para sempre. Daí a varredura por posição também.
+    if ('IntersectionObserver' in window) {
       var io = new IntersectionObserver(function (entries) {
         entries.forEach(function (entry) {
           if (!entry.isIntersecting) return;
           reveal(entry.target);
-          pending = pending.filter(function (el) { return el !== entry.target; });
+          marcas = marcas.filter(function (m) { return m.el !== entry.target; });
           io.unobserve(entry.target);
         });
       }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
       pending.forEach(function (el) { io.observe(el); });
-    } else {
-      // Sem IntersectionObserver: varrer no scroll. Cada varredura lê
-      // getBoundingClientRect e força reflow, então só entra quando é a
-      // única opção.
-      var last = 0;
-      function onScroll() {
-        var now = Date.now();
-        if (now - last < 100) return;
-        last = now;
-        sweep();
-      }
-      window.addEventListener('scroll', onScroll, { passive: true });
-      window.addEventListener('resize', onScroll, { passive: true });
     }
 
+    var ultimo = 0;
+    window.addEventListener('scroll', function () {
+      var agora = Date.now();
+      if (agora - ultimo < 100) return;
+      ultimo = agora;
+      varrer();
+    }, { passive: true });
+
+    window.addEventListener('resize', remedir, { passive: true });
+    window.addEventListener('load', remedir);
     document.addEventListener('visibilitychange', function () {
-      if (document.visibilityState === 'visible') sweep();
+      if (document.visibilityState === 'visible') varrer();
     });
-    sweep();
+    varrer();
   }
 
   window.__revealAll = function () {
