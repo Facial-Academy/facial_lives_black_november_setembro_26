@@ -176,10 +176,12 @@
   var message = form.querySelector('.fa-message');
   var button = form.querySelector('.fa-submit');
 
-  // Defina aqui o endpoint que deve receber os leads.
-  var ENDPOINT = '';
+  // LeadHero — endpoint público e write-only: o UUID na URL identifica a
+  // empresa/pipeline. Sem header de autenticação por definição do contrato.
+  var ENDPOINT = 'https://ilzpqehbbxvmogorpfma.supabase.co/functions/v1/lead-capture-api/db62a1f9-2a30-47ea-a78e-a4b97f6aad2f';
 
-  // Para onde o lead é enviado depois de se cadastrar.
+  // Página de obrigado. Em produção o Cloudflare normaliza para /obrigado;
+  // com a extensão o caminho também funciona no preview local.
   var REDIRECT = 'obrigado.html';
 
   function setMessage(text, isError) {
@@ -189,6 +191,24 @@
 
   function markInvalid(input, invalid) {
     input.classList.toggle('is-invalid', invalid);
+  }
+
+  // Todos os utm_* da URL, inclusive os que não estão na lista do contrato
+  // (utm_placement vem do {{placement}} do Meta: feed, stories, reels).
+  function utmsDaUrl() {
+    var out = {};
+    try {
+      new URLSearchParams(window.location.search).forEach(function (valor, chave) {
+        if (/^utm_/i.test(chave) && valor) out[chave.toLowerCase()] = valor;
+      });
+    } catch (e) {}
+    return out;
+  }
+
+  // O CRM tem nome e sobrenome separados; o formulário pede o nome completo.
+  function separaNome(completo) {
+    var partes = completo.trim().split(/\s+/);
+    return { nome: partes.shift() || '', sobrenome: partes.join(' ') };
   }
 
   form.addEventListener('submit', function (e) {
@@ -224,25 +244,16 @@
       return;
     }
 
+    var partesDoNome = separaNome(name.value);
     var payload = {
-      name: name.value.trim(),
+      nome: partesDoNome.nome,
+      sobrenome: partesDoNome.sobrenome,
       email: email.value.trim(),
-      phone: iti ? iti.getNumber() : phone.value.trim()
+      telefone: iti ? iti.getNumber() : phone.value.trim()
     };
-
-    function done() {
-      if (REDIRECT) {
-        window.location.href = REDIRECT;
-        return;
-      }
-      setMessage('Pronto! Você está na lista. Avisaremos antes da revelação.');
-      form.reset();
-      if (iti) iti.setCountry('br');
-    }
-
-    if (!ENDPOINT) {
-      done();
-      return;
+    var utms = utmsDaUrl();
+    for (var chave in utms) {
+      if (Object.prototype.hasOwnProperty.call(utms, chave)) payload[chave] = utms[chave];
     }
 
     button.disabled = true;
@@ -254,13 +265,20 @@
       body: JSON.stringify(payload)
     })
       .then(function (r) {
-        if (!r.ok) throw new Error('falha no envio');
-        done();
+        return r.json().catch(function () { return {}; })
+          .then(function (corpo) { return { ok: r.ok, corpo: corpo }; });
       })
-      .catch(function () {
-        setMessage('Não foi possível enviar agora. Tente novamente em instantes.', true);
+      .then(function (res) {
+        // O contrato responde 200 com {"success": true}. Um 200 sem esse
+        // campo não conta como cadastro feito.
+        if (!res.ok || res.corpo.success !== true) {
+          throw new Error(res.corpo.error || 'falha no envio');
+        }
+        window.location.href = REDIRECT;
       })
-      .finally(function () {
+      .catch(function (erro) {
+        if (window.console && console.warn) console.warn('LeadHero:', erro && erro.message);
+        setMessage('Não foi possível enviar agora. Confira os dados e tente de novo.', true);
         button.disabled = false;
       });
   });
