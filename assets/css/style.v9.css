@@ -36,6 +36,12 @@
   --peach:#ffca9b;          /* ícones da seção 2      */
   --card-bg:rgba(99,19,191,.16);
 
+  /* Matiz e saturação do verde do WhatsApp, com a luminosidade baixada até o
+     texto branco passar no contraste: 4,70:1 no início do gradiente, 7,67:1
+     no fim. Os mesmos da página de obrigado. */
+  --verde-1:#178540;
+  --verde-2:#11602E;
+
   --ease:cubic-bezier(.44,0,.56,1);
 }
 
@@ -217,17 +223,35 @@ html.lenis,html.lenis body{height:auto}
   padding:16px 24px;
   font-family:inherit;
   font-size:18px;
-  font-weight:500;
+  font-weight:600;
+  letter-spacing:.04em;   /* caixa alta pede um respiro entre as letras */
   line-height:1;
   color:#fff;
-  background:linear-gradient(135deg,var(--purple) 0%,var(--purple-deep) 100%);
+  background:linear-gradient(135deg,var(--verde-1) 0%,var(--verde-2) 100%);
   border:none;
   border-radius:12px;
   cursor:pointer;
-  transition:.25s;
+  transition:filter .25s var(--ease);
+  /* Escala e sombra não entram no layout: a pulsação não desloca nada e não
+     empurra o formulário para fora da primeira dobra no celular. */
+  animation:pulsarEnvio 2.2s ease-in-out infinite;
+  will-change:transform;
 }
-.fa-submit:hover{filter:brightness(1.08)}
-.fa-submit:disabled{opacity:.6;cursor:default}
+@keyframes pulsarEnvio{
+  0%,100%{
+    transform:scale(1);
+    box-shadow:0 10px 26px rgba(18,140,70,.4), 0 0 0 0 rgba(37,211,102,.5);
+  }
+  50%{
+    transform:scale(1.025);
+    box-shadow:0 12px 30px rgba(18,140,70,.5), 0 0 0 14px rgba(37,211,102,0);
+  }
+}
+/* Ao interagir a pulsação para, e durante o envio também: o botão fica
+   desabilitado e não faz sentido continuar chamando atenção. */
+.fa-submit:hover,.fa-submit:focus-visible{filter:brightness(1.08);animation-play-state:paused}
+.fa-submit:active{filter:brightness(.94);animation-play-state:paused}
+.fa-submit:disabled{opacity:.6;cursor:default;animation:none;transform:none;box-shadow:none}
 
 .fa-message:empty{display:none}
 .fa-message{
@@ -545,6 +569,7 @@ html.lenis,html.lenis body{height:auto}
 
 @media (prefers-reduced-motion:reduce){
   .anim,.anim-words .word,.js .anim,.js .anim-words .word,.hero .anim{opacity:1!important;transform:none!important;filter:none!important;transition:none!important;animation:none!important}
+  .fa-submit{animation:none!important;transform:none!important}
 }
 
 /* =========================================================================
