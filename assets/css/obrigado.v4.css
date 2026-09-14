@@ -27,6 +27,10 @@
   --txt-legal:#8C82A3;
   --lilas:#C9A9F7;
   --sucesso:#45C08A;
+  --verde-1:#25D366;         /* verde do WhatsApp — início do gradiente */
+  --verde-2:#1DB45A;         /* fim do gradiente                        */
+  --verde-texto:#04240F;     /* letra escura: no verde vivo, texto branco
+                                fica em 2,7:1 e reprova em contraste     */
   --font:'Silka',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
 }
 *{box-sizing:border-box}
@@ -69,13 +73,28 @@ h1{
 .btn{
   display:flex;align-items:center;justify-content:center;gap:10px;
   width:100%;text-decoration:none;border-radius:11px;padding:17px 20px;
-  font-size:clamp(15px,3.9vw,16.5px);font-weight:600;letter-spacing:.01em;color:#fff;
-  background:linear-gradient(135deg,var(--roxo-1) 0%,var(--roxo-2) 100%);
-  box-shadow:0 12px 30px rgba(99,19,191,.42);
-  transition:filter .2s cubic-bezier(.2,.8,.2,1),transform .15s cubic-bezier(.2,.8,.2,1);
+  font-size:clamp(15px,3.9vw,16.5px);font-weight:700;letter-spacing:.01em;color:var(--verde-texto);
+  background:linear-gradient(135deg,var(--verde-1) 0%,var(--verde-2) 100%);
+  transition:filter .2s cubic-bezier(.2,.8,.2,1);
+  /* Pulsa em escala e solta um halo. Escala e sombra não entram no layout,
+     então a pulsação não desloca nada na página. */
+  animation:pulsar 2.2s ease-in-out infinite;
+  will-change:transform;
 }
-.btn:hover{filter:brightness(1.1)}
-.btn:active{transform:translateY(1px)}
+@keyframes pulsar{
+  0%,100%{
+    transform:scale(1);
+    box-shadow:0 12px 30px rgba(18,140,70,.45), 0 0 0 0 rgba(37,211,102,.55);
+  }
+  50%{
+    transform:scale(1.025);
+    box-shadow:0 14px 34px rgba(18,140,70,.55), 0 0 0 16px rgba(37,211,102,0);
+  }
+}
+/* Ao interagir a pulsação para: quem já achou o botão não precisa mais ser
+   chamado, e o clique não briga com a animação. */
+.btn:hover,.btn:focus-visible{filter:brightness(1.1);animation-play-state:paused}
+.btn:active{filter:brightness(.94);animation-play-state:paused}
 .btn svg{width:20px;height:20px;flex:none}
 .sob-btn{margin:12px 0 0;font-size:13px;color:var(--txt-legal)}
 
@@ -118,4 +137,4 @@ h1{
   .card{padding:28px}
   .motivos{padding:22px 22px 22px 20px}
 }
-@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}.btn{animation:none!important;transform:none!important}}
