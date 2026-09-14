@@ -507,12 +507,17 @@ html.lenis,html.lenis body{height:auto}
    Antes ele era revelado no evento load — que só dispara depois de todo o
    rastreamento carregar — e isso empurrava o LCP junto (10,2s no PageSpeed).
    Por CSS a entrada começa assim que a folha de estilo chega. */
+/* Só o deslocamento é animado — a opacidade fica em 1 desde o primeiro
+   quadro. Elemento com opacidade baixa não conta como pintado para o LCP:
+   com o fade, o parágrafo do hero (que é o elemento de LCP no celular)
+   ficava esperando a thread principal liberar para começar a animação, e o
+   PageSpeed registrava 2,4s de "atraso na renderização de elemento". */
 .hero .anim{
-  opacity:.001;
-  transform:translateY(20px);
-  animation:heroIn .7s var(--ease) forwards;
+  opacity:1;
+  transform:translateY(16px);
+  animation:heroIn .6s var(--ease) forwards;
 }
-@keyframes heroIn{ to{ opacity:1; transform:none } }
+@keyframes heroIn{ to{ transform:none } }
 .hero .anim[data-delay="80"]{animation-delay:80ms}
 .hero .anim[data-delay="160"]{animation-delay:160ms}
 .hero .anim[data-delay="200"]{animation-delay:200ms}
