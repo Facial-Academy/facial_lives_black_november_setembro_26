@@ -64,6 +64,42 @@ arquivos que as duas páginas já compartilham — de 1,1 MB para ~2,5 KB de HTM
 
 Cabe em uma dobra até em telas de 668px de altura, sem rolagem.
 
+## Cache e nomes de arquivo
+
+O `_headers` dá cache de um ano para `assets/fonts/` e `assets/img/`, e faz
+`assets/css/`, `assets/js/` e os HTML revalidarem.
+
+**Ao mudar o conteúdo de um CSS, JS ou imagem, troque o nome do arquivo**
+(`style.v2.css`, `logo-fabrica-hof-612.webp`). O Cloudflare Pages sobrescreve
+o `max-age` que pedimos e mantém 31 dias nos assets, então editar mantendo o
+mesmo nome faz visitantes recorrentes receberem a versão antiga — foi o que
+aconteceu uma vez: a página foi ao ar com o CSS anterior em cache e a lista de
+244 países do campo de telefone apareceu aberta dentro do formulário.
+
+## Desempenho
+
+Medições do PageSpeed (mobile, Moto G Power emulado) antes dos ajustes:
+desempenho 54 e 62 em duas execuções seguidas, LCP 3,8-4,5s, TBT 2.930ms e
+630ms. A variação enorme entre execuções vem do stack de rastreamento, não da
+página.
+
+O que foi feito do lado da página:
+
+- Logo do topo (elemento de LCP) em `srcset` de 394w/612w com
+  `fetchpriority="high"` — eram 143 KB de imagem 1024px para exibir a 306px.
+- Um único CSS por página: as três folhas em série somavam 790ms bloqueando
+  a renderização.
+- `intl-tel-input` no build base (40 KB), com `utils.js` sob demanda em vez do
+  bundle de 309 KB no carregamento inicial.
+- Revelações por `IntersectionObserver`; a varredura por scroll, que lia
+  `getBoundingClientRect` e forçava reflow, só entra como alternativa.
+
+O teto, porém, é o rastreamento: no relatório, GTM, Facebook Pixel, o
+`capiParamBuilder` da AWS e o loader do tracker somavam cerca de 5s de trabalho
+na thread principal e 388 KiB de JavaScript não usado. O container também
+carrega duas vezes (o evento `gtm.js` dispara duplicado), o que vale conferir
+no painel do GTM.
+
 ## Formulário
 
 Validação de nome, e-mail e WhatsApp (via intl-tel-input, Brasil +55 por padrão).
