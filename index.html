@@ -17,8 +17,6 @@
 
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/SilkaMedium.woff2" crossorigin>
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/SilkaRegular.woff2" crossorigin>
-<link rel="stylesheet" href="assets/css/silka.css">
-<link rel="stylesheet" href="assets/css/intlTelInput.min.css">
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
@@ -33,7 +31,11 @@
     <div class="hero__inner">
       <div class="hero__col">
         <div class="hero__logo anim" data-anim="up" data-delay="0">
-          <img src="assets/img/logo-fabrica-hof.webp" alt="A Fantástica Fábrica da HOF" width="306" height="216">
+          <img src="assets/img/logo-fabrica-hof-612.webp"
+               srcset="assets/img/logo-fabrica-hof-394.webp 394w, assets/img/logo-fabrica-hof-612.webp 612w"
+               sizes="(max-width:809px) 197px, (max-width:1199px) 254px, 306px"
+               alt="A Fantástica Fábrica da HOF" width="306" height="216"
+               fetchpriority="high" decoding="async">
         </div>
 
         <div class="pill anim" data-anim="up" data-delay="80">
@@ -47,7 +49,7 @@
       </div>
 
       <div class="hero__card anim" data-anim="up" data-delay="200">
-        <h3 class="card__title">Preencha com seus dados!</h3>
+        <h2 class="card__title">Preencha com seus dados!</h2>
 
         <form class="fa-form" id="fa-form" novalidate>
           <div class="fa-field">
@@ -214,8 +216,8 @@
   </div>
 </footer>
 
-<script src="assets/js/lenis.min.js"></script>
-<script src="assets/js/intlTelInputWithUtils.min.js"></script>
-<script src="assets/js/main.js"></script>
+<script defer src="assets/js/lenis.min.js"></script>
+<script defer src="assets/js/intlTelInput.min.js"></script>
+<script defer src="assets/js/main.js"></script>
 </body>
 </html>

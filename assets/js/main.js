@@ -98,7 +98,9 @@
       });
     }
 
-    if ('IntersectionObserver' in window) {
+    var temIO = 'IntersectionObserver' in window;
+
+    if (temIO) {
       var io = new IntersectionObserver(function (entries) {
         entries.forEach(function (entry) {
           if (!entry.isIntersecting) return;
@@ -108,17 +110,21 @@
         });
       }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
       pending.forEach(function (el) { io.observe(el); });
+    } else {
+      // Sem IntersectionObserver: varrer no scroll. Cada varredura lê
+      // getBoundingClientRect e força reflow, então só entra quando é a
+      // única opção.
+      var last = 0;
+      function onScroll() {
+        var now = Date.now();
+        if (now - last < 100) return;
+        last = now;
+        sweep();
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', onScroll, { passive: true });
     }
 
-    var last = 0;
-    function onScroll() {
-      var now = Date.now();
-      if (now - last < 60) return;
-      last = now;
-      sweep();
-    }
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onScroll, { passive: true });
     document.addEventListener('visibilitychange', function () {
       if (document.visibilityState === 'visible') { revealHero(); sweep(); }
     });
@@ -143,7 +149,14 @@
       separateDialCode: true,
       countrySearch: true,
       nationalMode: true,
-      i18n: { searchPlaceholder: 'Buscar' }
+      i18n: { searchPlaceholder: 'Buscar' },
+      // utils.js só é necessário para validar o número; 260 KB que não
+      // precisam entrar no carregamento inicial.
+      // Caminho resolvido a partir do documento: dentro de main.js um
+      // './assets/...' resolveria relativo a /assets/js/ e daria 404.
+      loadUtils: function () {
+        return import(new URL('assets/js/intlTelInputUtils.js', document.baseURI).href);
+      }
     });
   }
 
@@ -186,9 +199,15 @@
     markInvalid(email, !emailOk);
     ok = ok && emailOk;
 
-    var valid = iti ? iti.isValidNumber() : null;
+    // isValidNumber() só checa se o número é "possível" — aceita 00000000000.
+    // isValidNumberPrecise() confere de fato, que é o que interessa num
+    // cadastro cujo objetivo é falar com a pessoa no WhatsApp.
+    var valid = null;
+    if (iti) {
+      valid = iti.isValidNumberPrecise ? iti.isValidNumberPrecise() : iti.isValidNumber();
+    }
     var phoneOk = (valid === null || valid === undefined)
-      ? phone.value.replace(/\D/g, '').length >= 10
+      ? phone.value.replace(/\D/g, '').length >= 10   // utils ainda carregando
       : valid;
     markInvalid(phone, !phoneOk);
     ok = ok && phoneOk;
