@@ -223,8 +223,10 @@ html.lenis,html.lenis body{height:auto}
   padding:16px 24px;
   font-family:inherit;
   font-size:18px;
-  font-weight:600;
-  letter-spacing:.04em;   /* caixa alta pede um respiro entre as letras */
+  /* Peso 500 (SilkaMedium), que já é pré-carregado. O 600 exigia o
+     SilkaSemiBold — 29 KB a mais no caminho crítico por um único elemento. */
+  font-weight:500;
+  letter-spacing:.06em;   /* caixa alta pede um respiro entre as letras */
   line-height:1;
   color:#fff;
   background:linear-gradient(135deg,var(--verde-1) 0%,var(--verde-2) 100%);
