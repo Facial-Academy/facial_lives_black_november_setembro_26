@@ -124,12 +124,18 @@ no painel do GTM.
 Os leads vão direto do navegador para o LeadHero, sem intermediário:
 
 ```
-POST https://ilzpqehbbxvmogorpfma.supabase.co/functions/v1/lead-capture-api/<uuid>
+POST https://ilzpqehbbxvmogorpfma.supabase.co/functions/v1/lead-capture-rapido/<uuid>
 ```
 
 O endpoint é público e write-only — o UUID na URL identifica empresa e pipeline,
 e o CORS é liberado, então não existe backend nem chave de API no meio. A
-configuração fica em `ENDPOINT`, em `assets/js/main.v5.js`.
+configuração fica em `ENDPOINT`, em `assets/js/main.v6.js`.
+
+É o `lead-capture-rapido`, não o `lead-capture-api`: ele decide a saída do
+cadastro (anti-spam do SendFlow, quem já recebeu o link, página oficial ou
+pendente de aprovação), responde `{ pagina, redirect }` e só então cadastra,
+repassando ao `lead-capture-api` — que segue sendo o dono da captura. Regra
+completa em `docs/triagem-captura-black.md`, no repo do LeadHero.
 
 Corpo enviado: `nome`, `sobrenome`, `email`, `telefone` (E.164, ex.
 `+5545999998888`) e **todos** os parâmetros `utm_*` que estiverem na URL —
@@ -141,9 +147,18 @@ válido e WhatsApp conferido de verdade pelo intl-tel-input. O contrato só exig
 o e-mail; os outros dois são exigência da campanha, cujo funil termina no
 WhatsApp.
 
-Só conta como cadastro uma resposta 200 **com** `{"success": true}`. Qualquer
-outra coisa mantém a pessoa na página, com mensagem e o botão liberado para
-tentar de novo. Em caso de sucesso, vai para a página de obrigado.
+Resposta 4xx (e-mail inválido, integração inativa) mantém a pessoa na página,
+com mensagem e o botão liberado para tentar de novo. Em caso de sucesso, o
+destino vem da resposta: `redirect` preenchido leva para lá (hoje, a página de
+aguarde de quem está no anti-spam); sem `redirect`, vai para o obrigado.
+
+A espera pela decisão tem teto de 4s (`TETO_MS`): estourou, a pessoa vai para o
+obrigado do mesmo jeito — o cadastro continua acontecendo do lado do LeadHero.
+
+**Origem oficial:** a triagem só trata como "página oficial" o host do `Origin`
+do POST que estiver em `regra_triagem.origens_oficiais` da integração. Teste com
+e-mail NOVO fora desses hosts (preview de branch, localhost) cai em **aprovação**
+— não cadastra, e o aprovador recebe um WhatsApp.
 
 ## Observações
 

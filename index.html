@@ -26,6 +26,9 @@
 <!-- O Lighthouse aponta essas duas origens do rastreamento como as que mais
      atrasam o LCP (548ms e 368ms); a conexão é aberta antes de precisar. -->
 <link rel="preconnect" href="https://tracker.jornada.facialacademy.com.br" crossorigin>
+<!-- O formulário espera a decisão da triagem antes de redirecionar; sem o
+     preconnect, o handshake TLS acontece só no clique e entra nessa espera. -->
+<link rel="preconnect" href="https://ilzpqehbbxvmogorpfma.supabase.co" crossorigin>
 <link rel="preconnect" href="https://capi-automation.s3.us-east-2.amazonaws.com" crossorigin>
 
 <link rel="preload" as="font" type="font/woff2" href="assets/fonts/SilkaMedium.woff2" crossorigin>

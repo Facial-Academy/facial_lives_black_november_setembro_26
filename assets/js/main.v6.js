@@ -184,11 +184,22 @@
 
   // LeadHero — endpoint público e write-only: o UUID na URL identifica a
   // empresa/pipeline. Sem header de autenticação por definição do contrato.
-  var ENDPOINT = 'https://ilzpqehbbxvmogorpfma.supabase.co/functions/v1/lead-capture-api/db62a1f9-2a30-47ea-a78e-a4b97f6aad2f';
+  //
+  // `lead-capture-rapido` (e não `lead-capture-api`) porque é ele que DECIDE a
+  // saída de cada cadastro — anti-spam do SendFlow, quem já recebeu o link,
+  // página oficial ou pendente de aprovação — e responde `{ pagina, redirect }`
+  // antes de cadastrar. Regra completa: `docs/triagem-captura-black.md` no repo
+  // do LeadHero.
+  var ENDPOINT = 'https://ilzpqehbbxvmogorpfma.supabase.co/functions/v1/lead-capture-rapido/db62a1f9-2a30-47ea-a78e-a4b97f6aad2f';
 
   // Página de obrigado. Em produção o Cloudflare normaliza para /obrigado;
   // com a extensão o caminho também funciona no preview local.
   var REDIRECT = 'obrigado.html';
+
+  // Teto de espera pela decisão. A pessoa não pode ficar olhando o botão por
+  // causa de uma resposta que demora: estourou, vai pro obrigado de sempre (o
+  // cadastro segue acontecendo do lado do LeadHero).
+  var TETO_MS = 4000;
 
   function setMessage(text, isError) {
     message.textContent = text;
@@ -265,7 +276,7 @@
     button.disabled = true;
     setMessage('Enviando…');
 
-    fetch(ENDPOINT, {
+    var envio = fetch(ENDPOINT, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)
@@ -275,12 +286,24 @@
           .then(function (corpo) { return { ok: r.ok, corpo: corpo }; });
       })
       .then(function (res) {
-        // O contrato responde 200 com {"success": true}. Um 200 sem esse
-        // campo não conta como cadastro feito.
-        if (!res.ok || res.corpo.success !== true) {
-          throw new Error(res.corpo.error || 'falha no envio');
-        }
-        window.location.href = REDIRECT;
+        // Erro de validação do contrato (e-mail inválido, integração inativa)
+        // vem como 4xx com `error` — aí a pessoa fica na página e corrige.
+        if (!res.ok) throw new Error(res.corpo.error || 'falha no envio');
+        return res.corpo;
+      });
+
+    var teto = new Promise(function (resolve) {
+      setTimeout(function () { resolve(null); }, TETO_MS);
+    });
+
+    Promise.race([envio, teto])
+      .then(function (corpo) {
+        // `redirect` só vem preenchido quando a triagem manda a pessoa pra
+        // outra página (hoje, a de aguarde de quem está no anti-spam).
+        var destino = corpo && typeof corpo.redirect === 'string' && /^https?:\/\//i.test(corpo.redirect)
+          ? corpo.redirect
+          : REDIRECT;
+        window.location.href = destino;
       })
       .catch(function (erro) {
         if (window.console && console.warn) console.warn('LeadHero:', erro && erro.message);
