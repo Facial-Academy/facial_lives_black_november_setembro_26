@@ -1,4 +1,4 @@
-/* LeadHero — IP, localização, pixel e id do visitante no cadastro. v1. Não apagar.
+/* LeadHero — IP, localização, pixel e id do visitante no cadastro. v2. Não apagar.
  *
  * POR QUE EXISTE: o formulário desta página posta direto no LeadHero, sem passar pelo
  * porteiro (lh.<marca>). Sem isto o cadastro chega sem localização, sem o cookie do pixel
@@ -22,6 +22,10 @@
 
   var script = document.currentScript;
   var PORTEIRO = (script && script.getAttribute("data-porteiro")) || "";
+  // 🔴 VISITA — só em página cujo GA4 NÃO passa pelo servidor do GTM (senão a visita conta
+  // DUAS vezes, com dois ids). Ex.: data-visita="https://lh.<marca>/__lh-visita". Ausente =
+  // nada muda. O domínio precisa estar ligado em `LH_VISITA_EMPRESAS` do porteiro.
+  var VISITA = (script && script.getAttribute("data-visita")) || "";
   var visitante = {};
 
   // Leitura de cookie sem regex: escape comido vira bug mudo. Decodifica, senão o valor
@@ -86,5 +90,38 @@
     },
   };
 
-  perguntar();
+  // Sessão no mesmo sentido do GA4: 30 min sem página nova abre outra.
+  function sessao() {
+    var agora = Date.now();
+    try {
+      var p = (localStorage.getItem("lh_sid") || "").split("|");
+      var sid = p.length === 2 && agora - Number(p[1]) < 1800000 ? p[0] : String(Math.floor(agora / 1000));
+      localStorage.setItem("lh_sid", sid + "|" + agora);
+      return sid;
+    } catch (e) { return String(Math.floor(agora / 1000)); }
+  }
+
+  // A visita vai ANTES da pergunta do id: é ela que cria o `lh_vid` de quem nunca passou pelo
+  // servidor do GTM, e assim o `lh_cid` do cadastro sai com o MESMO id da visita.
+  // `text/plain` evita o pré-voo do navegador.
+  function registrarVisita(depois) {
+    if (!VISITA) { depois(); return; }
+    try {
+      fetch(VISITA, {
+        method: "POST",
+        credentials: "include",
+        keepalive: true,
+        headers: { "Content-Type": "text/plain" },
+        body: JSON.stringify({
+          page_url: location.href,
+          page_title: document.title,
+          page_referrer: document.referrer,
+          session_id: sessao(),
+          dispositivo: forma(),
+        }),
+      }).then(function () { depois(); }, function () { depois(); });
+    } catch (e) { depois(); }
+  }
+
+  registrarVisita(perguntar);
 })();
