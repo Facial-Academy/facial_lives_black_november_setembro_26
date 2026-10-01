@@ -273,6 +273,13 @@
       if (Object.prototype.hasOwnProperty.call(utms, chave)) payload[chave] = utms[chave];
     }
 
+    // IP, localização, pixel e id do visitante (script lh-rastreio.js). Sem ele o cadastro
+    // entra igual, só sem esses dados.
+    var rastreio = window.lhRastreio ? window.lhRastreio.campos() : {};
+    for (var campo in rastreio) {
+      if (Object.prototype.hasOwnProperty.call(rastreio, campo)) payload[campo] = rastreio[campo];
+    }
+
     button.disabled = true;
     setMessage('Enviando…');
 
