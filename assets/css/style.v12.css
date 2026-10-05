@@ -69,6 +69,9 @@ body{
 }
 img{display:block;max-width:100%}
 h1,h2,h3,p{margin:0}
+/* Títulos com linhas equilibradas e parágrafos sem palavra sozinha na última linha. */
+h1,h2,h3{text-wrap:balance}
+p{text-wrap:pretty}
 a{color:inherit;text-decoration:none}
 strong{font-weight:500}
 
@@ -454,65 +457,73 @@ html.lenis,html.lenis body{height:auto}
 /* =========================================================================
    SEÇÃO 4 — CTA
    ========================================================================= */
+/* Duas colunas: texto à esquerda (nada de tudo centralizado) e o bilhete
+   dourado à direita. O veludo preto da foto some no preto da página pelas
+   bordas (máscara retangular suave), então o bilhete aparece como um objeto
+   sob um foco de luz, sem caixa em volta. */
 .cta{
-  display:flex;
-  flex-direction:column;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);
   align-items:center;
-  gap:40px;
+  gap:56px;
   width:100%;
-  padding:80px 20px;
+  max-width:1200px;
+  margin:0 auto;
+  padding:120px 48px 128px;
 }
-.cta__group{display:flex;flex-direction:column;align-items:center;gap:60px;width:100%}
-.cta__headwrap{max-width:717px}
+.cta__text{display:flex;flex-direction:column;align-items:flex-start;gap:28px}
 .cta__title{
-  font-size:36px;
+  font-size:44px;
   font-weight:500;
   line-height:1.1;
   letter-spacing:-.04em;
-  text-align:center;
   color:var(--white);
 }
-.cta__copy{max-width:695px;text-align:center}
+.cta__copy{max-width:34em}
 .cta__copy p{
   font-size:18px;
   font-weight:400;
-  line-height:1.4;
-  letter-spacing:-.02em;
-  color:var(--white);
+  line-height:1.5;
+  letter-spacing:-.01em;
+  color:rgba(255,255,255,.86);
 }
-.cta__copy p + p{margin-top:20px}
-.cta__copy strong{font-weight:500}
+.cta__copy p + p{margin-top:16px}
+.cta__copy strong{font-weight:500;color:#fff}
 
-/* ---------- Botão ---------- */
+.cta__ticket{margin:0}
+.cta__ticket img{
+  width:100%;
+  height:auto;
+  -webkit-mask-image:linear-gradient(to right,transparent,#000 12%,#000 88%,transparent),linear-gradient(to bottom,transparent,#000 16%,#000 84%,transparent);
+  -webkit-mask-composite:source-in;
+  mask-image:linear-gradient(to right,transparent,#000 12%,#000 88%,transparent),linear-gradient(to bottom,transparent,#000 16%,#000 84%,transparent);
+  mask-composite:intersect;
+}
+.brk{display:none}
+
+/* ---------- Botão ----------
+   Mesmo verde do botão do formulário: as duas ações da página têm a mesma
+   cara, e o degradê fica só no que é ação. */
 .btn{
   display:inline-flex;
   align-items:center;
-  gap:4px;
-  padding:6px 15px 6px 21px;
-  border-radius:100px;
-  background:var(--white);
-  color:var(--purple-ink);
-  transition:transform .25s var(--ease),background .25s var(--ease);
-  will-change:transform;
+  justify-content:center;
+  gap:10px;
+  padding:14px 18px 14px 26px;
+  border-radius:12px;
+  background:linear-gradient(135deg,var(--verde-1) 0%,var(--verde-2) 100%);
+  color:#fff;
+  transition:filter .25s var(--ease),transform .25s var(--ease);
 }
-.btn:hover{transform:scale(1.03);background:#fff}
-.btn__label{display:flex;align-items:center;padding-left:4px}
+.btn:hover{filter:brightness(1.08)}
+.btn:active{filter:brightness(.94);transform:translateY(1px)}
 .btn__label p{
-  font-size:16px;
+  font-size:18px;
   font-weight:500;
   line-height:1;
-  color:var(--purple-ink);
+  color:#fff;
 }
-.btn__icon{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  width:48px;
-  height:48px;
-  border-radius:100px;
-  color:#000;
-  transition:transform .3s var(--ease);
-}
+.btn__icon{display:flex;width:24px;height:24px;color:#fff;transition:transform .3s var(--ease)}
 .btn:hover .btn__icon{transform:translateX(3px)}
 
 /* =========================================================================
@@ -656,10 +667,9 @@ html.lenis,html.lenis body{height:auto}
   .vital__copy{max-width:388px}
   .vital__copy p{font-size:14px}
 
-  .cta{padding:80px 32px}
-  .cta__title{font-size:32px}
-  .cta__copy{max-width:567px}
-  .cta__copy p{font-size:16px}
+  .cta{padding:96px 32px;gap:40px}
+  .cta__title{font-size:36px}
+  .cta__copy p{font-size:17px}
 
   .footer{padding:80px 32px 0}
   .footer__top{flex-direction:column;align-items:flex-start;gap:32px}
@@ -733,15 +743,13 @@ html.lenis,html.lenis body{height:auto}
   .vital__end{align-items:flex-start}
   .vital__copy{max-width:none}
 
-  .cta{padding:80px 16px}
-  .cta__headwrap{max-width:none}
-  .cta__title{font-size:24px;line-height:1.2}
-  .cta__copy{max-width:none}
-  .cta__copy p{font-size:14px}
-  .brk{display:none}
-
-  .btn{height:48px}
-  .btn__label p{font-size:14px}
+  /* Bilhete primeiro (é o gancho visual), texto e botão depois. */
+  .cta{grid-template-columns:1fr;gap:20px;padding:56px 16px 88px}
+  .cta__ticket{order:-1;margin:0 -16px}
+  .cta__text{gap:22px}
+  .cta__title{font-size:30px;line-height:1.12}
+  .cta__copy p{font-size:16px}
+  .btn{width:100%;padding:16px 20px}
 
   .footer{padding:64px 24px 0;text-align:center}
   .footer__top{flex-direction:column;align-items:center;gap:32px}
