@@ -1,17 +1,14 @@
-# Black Vitalícia — réplica da landing `/black-friday-2026`
+# Black Vitalícia · captura e obrigado
 
-Reprodução fiel, em HTML/CSS/JS puro, da página publicada em
-`https://www.facialacademy.com.br/black-friday-2026` (originalmente feita no Framer).
+Landing de captura da Black Vitalícia da Facial Academy (revelação ao vivo em
+19/10/2026, 19h) e a página de obrigado, em HTML/CSS/JS puro, publicadas no
+Cloudflare Pages.
 
-Layout, tipografia, cores, imagens, ícones e efeitos foram medidos diretamente na
-página publicada e reconstruídos aqui. A altura e a posição de todas as seções
-coincidem com o original nos três breakpoints:
-
-| Largura | Original | Réplica |
-|---|---|---|
-| 1440px (desktop) | 3329px | 3328px |
-| 900px (tablet)   | 3372px | 3372px |
-| 375px (mobile)   | 4023px | 4023px |
+Começou como réplica fiel da página `/black-friday-2026` feita no Framer (altura
+e posição das seções batiam com o original nos três breakpoints). Em 05/10/2026
+ganhou layout próprio no tema da campanha, **A Fantástica Fábrica da HOF**: roxo e
+dourado do Wonka, a Dra. Camila Dias e o Dr. Wagner Baseggio de cartola no hero e
+o bilhete dourado no fechamento. Ver "Layout" abaixo.
 
 ## Como rodar
 
@@ -19,67 +16,102 @@ coincidem com o original nos três breakpoints:
 python3 -m http.server 4173
 ```
 
-Depois abra `http://localhost:4173`. (Precisa de servidor HTTP por causa das fontes
-`.woff2` — abrir o `index.html` direto pelo `file://` não carrega a Silka.)
+Depois abra `http://localhost:4173`. Precisa de servidor HTTP por causa das fontes
+`.woff2`: abrindo o `index.html` direto pelo `file://` a Silka não carrega.
+
+**Não envie o formulário na prévia local**: ele posta no LeadHero de verdade, e
+um e-mail novo vindo de um host fora das origens oficiais cai na fila de
+aprovação e dispara WhatsApp para o aprovador (ver "Formulário").
 
 ## Estrutura
 
 ```
-index.html                       captura: marcação completa (hero, 3 seções e rodapé)
-obrigado.html                    página de obrigado (entrada no grupo de WhatsApp)
-_headers                         política de cache (ver "Cache e nomes de arquivo")
-assets/css/style.v12.css         estilos da captura, @font-face da Silka, intl-tel-input
-                                 e breakpoints (≥1200 / 810-1199 / ≤809), as mesmas
-                                 quebras do site original
-assets/css/obrigado.v7.css       estilos da página de obrigado
-assets/js/main.v6.js             scroll suave, revelações e formulário
-assets/js/lh-rastreio.v2.js      IP, localização, pixel e id do visitante no cadastro
-assets/js/lh-interacoes.v2-1.js  formulário começado/enviado/abandonado e cliques
-assets/js/lenis.min.js           scroll suave (mesma lib usada no site original)
-assets/js/intlTelInput.min.js    campo de telefone internacional (build base)
-assets/js/intlTelInputUtils.js   validação do número, carregada sob demanda
-assets/fonts/Silka*.woff2        família Silka (5 pesos)
-assets/img/fa-bfriday26-*.webp   marca do topo das duas páginas (320/480/740w)
-assets/img/                      imagens de fundo, logos e bandeiras do seletor de país
+index.html                         captura: hero, 3 seções e rodapé
+obrigado.html                      página de obrigado (entrada no grupo de WhatsApp)
+_headers                           política de cache (ver "Cache e nomes de arquivo")
+assets/css/style.v12.css           estilos da captura, @font-face (Silka e Poppins),
+                                   intl-tel-input e breakpoints (≥1200 / 810-1199 / ≤809)
+assets/css/obrigado.v7.css         estilos da página de obrigado
+assets/js/main.v7.js               scroll suave, revelação de fallback e formulário
+assets/js/lh-rastreio.v2.js        IP, localização, pixel e id do visitante no cadastro
+assets/js/lh-interacoes.v2-1.js    formulário começado/enviado/abandonado e cliques
+assets/js/lenis.min.js             scroll suave
+assets/js/intlTelInput.min.js      campo de telefone internacional (build base)
+assets/js/intlTelInputUtils.js     validação do número, carregada sob demanda
+assets/fonts/Silka*.woff2          família Silka (5 pesos)
+assets/fonts/Poppins*.woff2        reserva da Silka (5 pesos, latin)
+assets/img/fa-bfriday26-*.webp     marca do topo das duas páginas (320/480/740w)
+assets/img/professores-*.webp      recorte da Dra. Camila e do Dr. Wagner (399/664w)
+assets/img/bilhete-dourado-*.webp  bilhete dourado do fechamento (560/1000w)
+assets/img/                        fundos, logo do rodapé e bandeiras do seletor de país
 ```
 
-## Efeitos reproduzidos
+## Layout
 
-- **Scroll suave** com Lenis, igual ao site publicado.
-- **Revelação palavra a palavra**: cada palavra entra com `opacity .001 → 1`,
-  `blur(10px) → 0` e `translateY(10px) → 0`, escalonada em 40ms — os mesmos valores
-  medidos no original. Aplicada em qualquer elemento com a classe `anim-words`.
-- **Fade-up** em blocos (`anim` + `data-delay` opcional) ao entrar na viewport.
-- Hero anima no carregamento; o restante, conforme a rolagem.
-- `prefers-reduced-motion` desliga todas as animações.
+- **Hero.** Marca, linha da data em dourado ("Revelação ao vivo · 19 de outubro,
+  às 19h"), título, texto e formulário. A data fica junto do título porque é o
+  motivo do cadastro. Os professores (recorte com fundo transparente):
+  - desktop a partir de 1360px: entre o texto e o card, com a largura calculada
+    pelo vão para os dois rostos ficarem inteiros (o card cobre só o ombro do
+    Dr. Wagner);
+  - celular: logo abaixo do formulário, com as cartolas no fim da primeira dobra;
+  - de 810 a 1359px: ficam de fora, porque não cabem sem cortar rosto.
+- **Black Friday acontece uma vez por ano.** Lista editorial: "12 meses" grande
+  em dourado e a frase ao lado, com fio fino entre os itens (era um trio de cards
+  com ícone, o padrão mais reconhecível de página gerada).
+- **Vitalícia não é força de expressão.** Tipografia em escada no desktop; no
+  celular, um bloco só com a mesma entrelinha.
+- **Fechamento.** Texto à esquerda e bilhete dourado à direita (no celular, o
+  bilhete vem primeiro). Sem imagem de fundo: o veludo da foto some no preto da
+  página pelas bordas. Botão no mesmo verde do formulário.
+- **Passagem entre seções.** Nenhum corte reto: as imagens de fundo do hero e da
+  faixa da lista se dissolvem no preto da página (`mask-image`, 140 a 160px), e o
+  rodapé entra por degradê. Um preto só em todas as seções (`--black`).
+- **Cores.** Base quase preta, roxo do tema na luz do hero, dourado do selo da
+  marca (`--gold: #ecc485`) para data, números e rótulos, e verde só nas ações.
+  Contraste AA medido em pixel nas duas páginas em 05/10/2026 (20 textos, pior
+  trecho de fundo de cada um).
+- **Fontes.** Silka, com Poppins de reserva e depois `system-ui`, igual ao design
+  system do Workshops Facial. A Poppins é local e só baixa se a Silka falhar
+  (testado com a Silka carregando e com ela ausente).
+
+## Movimento
+
+- **Scroll suave** com Lenis.
+- **Hero** entra no carregamento, por CSS (só deslocamento: a opacidade fica em 1
+  para não atrasar o LCP).
+- **Demais blocos** revelam pela rolagem com `animation-timeline: view()`,
+  terminando no centro da tela (`animation-range: entry 0% cover 50%`). Curva
+  linear de propósito: ali ela mapeia a posição da rolagem, e com ease-out o bloco
+  ficava 98% visível ainda no terço de baixo.
+- Navegador sem suporte (Firefox): entrada por bloco disparada pelo JS
+  (`IntersectionObserver` com varredura por posição de reserva).
+- Saiu a revelação palavra a palavra com desfoque: cada palavra virava uma camada
+  com `filter` e um parágrafo longo levava mais de 2 s para terminar.
+- `prefers-reduced-motion` desliga tudo, inclusive a pulsação do botão.
 - Sem JS, nada fica invisível (o estado inicial depende da classe `.js` no `body`).
 
 ## Página de obrigado
 
-`obrigado.html` reproduz o arquivo `Pagina-Obrigado-ENVIAR.html` com o mesmo layout
-(conferido caixa a caixa), trocando as fontes e imagens embutidas em base64 pelos
-arquivos que as duas páginas já compartilham — de 1,1 MB para ~2,5 KB de HTML.
+`obrigado.html` partiu do arquivo `Pagina-Obrigado-ENVIAR.html`, trocando fontes e
+imagens embutidas em base64 pelos arquivos que as duas páginas compartilham (de
+1,1 MB para ~2,5 KB de HTML).
 
 O botão aponta para o link rotativo do Sendflow
 (`https://sndflw.com/i/blackfriday2026`), que distribui as pessoas entre os
-grupos conforme eles enchem. Para trocar o destino, mexa no Sendflow — não
-é preciso republicar a página.
+grupos conforme eles enchem. Para trocar o destino, mexa no Sendflow, sem
+republicar a página.
 
-Cabe em uma dobra até em telas de 668px de altura, sem rolagem.
+Cabe em uma dobra sem rolagem (conferido em 360x640, 375x667, 390x844 e 1440x900).
 
 ## Primeira dobra no celular
 
-No celular o hero ocupa a altura da tela (`100svh`) e o conteúdo fica
-centralizado, para o formulário inteiro — os três campos, o botão e a data —
-caber sem rolagem. A escala é menor que a do site original: logo com 90px de
-altura, título 30px, campos de 44px. Há um nível extra para telas de até 680px de altura,
-onde logo e espaçamentos encolhem mais; a área de toque dos campos é
-preservada nos dois.
+No celular o hero ocupa ao menos a altura da tela (`100svh`) e o formulário
+inteiro (data, três campos e botão) cabe sem rolagem. Marca com 110px de altura
+(88px em telas de até 680px de altura), título 30px, campos de 44px.
 
-Conferido em 360x640, 375x667, 390x844 e 412x915: o formulário inteiro aparece
-na primeira dobra nos quatro. Conferido de novo em 05/10/2026 com a marca
-`fa-bfriday26`: o formulário termina na mesma posição de antes (em 390x844,
-724px de 844).
+Conferido em 05/10/2026: o botão termina em 544px em 360x640 e 375x667, 594px em
+390x844 e 595px em 412x915. Abaixo dele aparecem as cartolas dos professores.
 
 ## Cache e nomes de arquivo
 
