@@ -28,11 +28,14 @@ aprovação e dispara WhatsApp para o aprovador (ver "Formulário").
 ```
 index.html                         captura: hero, 3 seções e rodapé
 obrigado.html                      página de obrigado (entrada no grupo de WhatsApp)
+captura-google.html                cópia da captura para o Google Ads (/captura-google)
+obrigado-google.html               cópia do obrigado para o Google Ads (/obrigado-google)
 _headers                           política de cache (ver "Cache e nomes de arquivo")
 assets/css/style.v12.css           estilos da captura, @font-face (Silka e Poppins),
                                    intl-tel-input e breakpoints (≥1200 / 810-1199 / ≤809)
 assets/css/obrigado.v7.css         estilos da página de obrigado
 assets/js/main.v7.js               scroll suave, revelação de fallback e formulário
+assets/js/main-google.v7.js        main.v7.js da captura-google: manda para /obrigado-google
 assets/js/lh-rastreio.v2.js        IP, localização, pixel e id do visitante no cadastro
 assets/js/lh-interacoes.v2-1.js    formulário começado/enviado/abandonado e cliques
 assets/js/lenis.min.js             scroll suave
@@ -197,7 +200,8 @@ POST https://ilzpqehbbxvmogorpfma.supabase.co/functions/v1/lead-capture-rapido/<
 
 O endpoint é público e write-only — o UUID na URL identifica empresa e pipeline,
 e o CORS é liberado, então não existe backend nem chave de API no meio. A
-configuração fica em `ENDPOINT`, em `assets/js/main.v6.js`.
+configuração fica em `ENDPOINT`, em `assets/js/main.v7.js` e na cópia
+`main-google.v7.js`.
 
 É o `lead-capture-rapido`, não o `lead-capture-api`: ele decide a saída do
 cadastro (anti-spam do SendFlow, quem já recebeu o link, página oficial ou
@@ -227,6 +231,27 @@ obrigado do mesmo jeito — o cadastro continua acontecendo do lado do LeadHero.
 do POST que estiver em `regra_triagem.origens_oficiais` da integração. Teste com
 e-mail NOVO fora desses hosts (preview de branch, localhost) cai em **aprovação**
 — não cadastra, e o aprovador recebe um WhatsApp.
+
+## Páginas do Google Ads
+
+`/captura-google` e `/obrigado-google` são cópias integrais da captura e do
+obrigado para o tráfego do Google Ads (05/10/2026). Diferenças:
+
+- `captura-google.html` carrega `main-google.v7.js`, que só muda o destino depois
+  do cadastro: `/obrigado-google`.
+- `obrigado-google.html` leva ao Sendflow `https://sndflw.com/i/ads-blackfridayfacial`.
+
+Qualquer mudança na captura ou no obrigado precisa ser repetida nas cópias.
+
+**GTM:** na captura `/`, quem envia o formulário é a tag 268 do container
+GTM-TBM4NXBQ (HTML personalizado com `fa_black26_accepted_v1` no código). Ela
+intercepta o envio, posta no LeadHero, empurra `fa_black_lead` (que vira
+`generate_lead` no GA4 e `Lead` no Pixel) e manda para `/obrigado`. O
+`main.v7.js` só envia quando o GTM não carrega. No obrigado, a mesma tag empurra
+`fa_black_complete_registration` no clique do link `blackfriday2026`. Ela só roda
+em `/` e `/obrigado`: nas páginas do Google esses dois eventos não saem até a tag
+aceitar `/captura-google`, `/obrigado-google` e o link `ads-blackfridayfacial`, e
+mandar `/captura-google` para `/obrigado-google`.
 
 ## Observações
 
