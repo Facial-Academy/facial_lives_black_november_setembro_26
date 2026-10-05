@@ -39,7 +39,7 @@ assets/js/lenis.min.js           scroll suave (mesma lib usada no site original)
 assets/js/intlTelInput.min.js    campo de telefone internacional (build base)
 assets/js/intlTelInputUtils.js   validação do número, carregada sob demanda
 assets/fonts/Silka*.woff2        família Silka (5 pesos)
-assets/img/fa-bfriday26.svg      marca do topo das duas páginas
+assets/img/fa-bfriday26-*.webp   marca do topo das duas páginas (320/480/740w)
 assets/img/                      imagens de fundo, logos e bandeiras do seletor de país
 ```
 
@@ -78,7 +78,7 @@ preservada nos dois.
 
 Conferido em 360x640, 375x667, 390x844 e 412x915: o formulário inteiro aparece
 na primeira dobra nos quatro. Conferido de novo em 05/10/2026 com a marca
-`fa-bfriday26.svg`: o formulário termina na mesma posição de antes (em 390x844,
+`fa-bfriday26`: o formulário termina na mesma posição de antes (em 390x844,
 724px de 844).
 
 ## Cache e nomes de arquivo
@@ -111,11 +111,11 @@ página.
 O que foi feito do lado da página:
 
 - Logo do topo (elemento de LCP) com preload e `fetchpriority="high"`. Desde
-  05/10/2026 é o `fa-bfriday26.svg`, otimizado com svgo de 675 KB para 47 KB
-  (15 KB comprimido): o arquivo do Illustrator trazia metadados e milhares de
-  segmentos de tamanho zero. A versão otimizada foi comparada pixel a pixel
-  com a original, com diferença só na suavização das bordas. Antes era um webp
-  em `srcset` de 394w/612w (eram 143 KB de imagem 1024px para exibir a 306px).
+  05/10/2026 é a marca `fa-bfriday26`, gerada do PNG de 857px em WebP de 256
+  cores sem perda, em `srcset` de 320w/480w/740w (16, 27 e 46 KB). Ficou mais
+  leve e mais fiel que WebP com perda na qualidade 90 (32, 55 e 92 KB), que
+  borrava as bordas finas da marca. Antes era um webp em `srcset` de 394w/612w
+  (eram 143 KB de imagem 1024px para exibir a 306px).
 - Um único CSS por página: as três folhas em série somavam 790ms bloqueando
   a renderização.
 - `intl-tel-input` no build base (40 KB), com `utils.js` sob demanda em vez do

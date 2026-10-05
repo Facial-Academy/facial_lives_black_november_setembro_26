@@ -53,7 +53,7 @@ body::before{
 main{position:relative;width:100%;max-width:560px;text-align:center}
 
 /* ===== LOCKUP ===== */
-/* Marca fa-bfriday26.svg, mais larga que a anterior: a largura cresce 1,206x
+/* Marca fa-bfriday26, mais larga que a anterior: a largura cresce 1,206x
    para manter a mesma altura, e a página continua cabendo numa dobra. */
 .lockup{width:min(323px,74.8vw);height:auto;display:block;margin:0 auto 22px}
 

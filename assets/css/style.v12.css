@@ -106,7 +106,7 @@ html.lenis,html.lenis body{height:auto}
   flex:1 1 0;
   min-width:0;
 }
-/* Marca fa-bfriday26.svg (proporção 1,709). A altura de cada breakpoint é a
+/* Marca fa-bfriday26 (proporção 1,707). A altura de cada breakpoint é a
    da marca anterior: muda só a largura, e o formulário continua cabendo na
    primeira dobra do celular. */
 .hero__logo img{width:369px;height:216px;object-fit:contain}
