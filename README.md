@@ -70,15 +70,19 @@ não é força de expressão", "A sessão", "Seu bilhete dourado" e rodapé.
   logo depois do formulário.
 - **Uma vez por ano.** Título à esquerda; à direita "12 meses" uma vez só,
   grande em dourado, e as três frases em branco com fio fino entre elas.
-- **Vitalícia não é força de expressão.** Desktop: a frase desce em escada e a
-  foto da Dra. Camila com os bilhetes ocupa o vão abaixo de "Vitalícia não é".
-  Tablet e celular: frase, foto, texto. O texto termina com "O que você aprende,
-  não." em destaque e o que "vitalícia" quer dizer.
+- **Vitalícia não é força de expressão.** Em camadas: a foto da Dra. Camila com
+  os bilhetes (cantos arredondados) fica atrás, entre as duas metades da frase,
+  que passam por cima dela. A foto escurece onde a frase cruza; fundo real sob
+  as letras com contraste mediano de 15 a 18:1 e pior pixel acima de 3,2:1, de
+  360 a 1440px. O texto termina com "O que você aprende, não." em destaque e o
+  que "vitalícia" quer dizer.
 - **A sessão.** Foto no cinema sem moldura e o passo a passo: lista, grupo do
   WhatsApp (silencioso, só avisos), live de segunda-feira, 19/10, às 19h em
   ponto, no YouTube.
-- **Seu bilhete dourado.** O bilhete recortado, com sombra, sob a luz dourada;
-  no celular vem primeiro. Botão no mesmo verde do formulário (`#cadastro`).
+- **Seu bilhete dourado está aqui.** O bilhete recortado, com sombra, sob a luz
+  dourada; no celular vem primeiro. Convite para entrar na lista e acessar o
+  grupo (o bilhete não é enviado pelo WhatsApp). Botão no mesmo verde do
+  formulário (`#cadastro`).
 - **Cores.** Roxo e ameixa nas luzes, dourado do selo da marca (`--gold:
   #ecc485`) em data, número e rótulos, verde só nas ações. Contraste AA medido
   em pixel (celular e desktop), placeholder em 6,9:1.
