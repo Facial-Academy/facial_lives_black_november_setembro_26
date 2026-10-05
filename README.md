@@ -71,11 +71,12 @@ não é força de expressão", "A sessão", "Seu bilhete dourado" e rodapé.
 - **Uma vez por ano.** Título à esquerda; à direita "12 meses" uma vez só,
   grande em dourado, e as três frases em branco com fio fino entre elas.
 - **Vitalícia não é força de expressão.** Em camadas: a foto da Dra. Camila com
-  os bilhetes (cantos arredondados) fica atrás, entre as duas metades da frase,
-  que passam por cima dela. A foto escurece onde a frase cruza; fundo real sob
-  as letras com contraste mediano de 15 a 18:1 e pior pixel acima de 3,2:1, de
-  360 a 1440px. O texto termina com "O que você aprende, não." em destaque e o
-  que "vitalícia" quer dizer.
+  os bilhetes fica atrás, entre as duas metades da frase, sem caixa (bordas em
+  fade) e sem escurecer. A frase cruza só as bordas já esmaecidas ("força de
+  expressão." começa na coluna 8; em uma coluna, o fade de baixo começa em 60%),
+  então os bilhetes ficam inteiros e a leitura não depende de véu: fundo real
+  sob as letras com os 2% piores acima de 6:1 de 360 a 1440px. O texto termina
+  com "O que você aprende, não." em destaque e o que "vitalícia" quer dizer.
 - **A sessão.** Foto no cinema sem moldura e o passo a passo: lista, grupo do
   WhatsApp (silencioso, só avisos), live de segunda-feira, 19/10, às 19h em
   ponto, no YouTube.
