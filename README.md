@@ -25,18 +25,22 @@ Depois abra `http://localhost:4173`. (Precisa de servidor HTTP por causa das fon
 ## Estrutura
 
 ```
-index.html                  captura — marcação completa (hero, 3 seções e rodapé)
-obrigado.html               página de obrigado (entrada no grupo de WhatsApp)
-assets/css/silka.css        @font-face da Silka, compartilhado pelas duas páginas
-assets/css/style.css        estilos da captura + breakpoints (≥1200 / 810–1199 / ≤809)
-                            — as mesmas quebras usadas no site original
-assets/css/obrigado.css     estilos da página de obrigado
-assets/js/main.js           scroll suave, revelações e formulário
-assets/js/lenis.min.js      scroll suave (mesma lib usada no site original)
-assets/js/intlTelInputWithUtils.min.js   campo de telefone internacional
-assets/css/intlTelInput.min.css
-assets/fonts/Silka*.woff2   família Silka (5 pesos)
-assets/img/                 imagens de fundo, logos e bandeiras do seletor de país
+index.html                       captura: marcação completa (hero, 3 seções e rodapé)
+obrigado.html                    página de obrigado (entrada no grupo de WhatsApp)
+_headers                         política de cache (ver "Cache e nomes de arquivo")
+assets/css/style.v12.css         estilos da captura, @font-face da Silka, intl-tel-input
+                                 e breakpoints (≥1200 / 810-1199 / ≤809), as mesmas
+                                 quebras do site original
+assets/css/obrigado.v6.css       estilos da página de obrigado
+assets/js/main.v6.js             scroll suave, revelações e formulário
+assets/js/lh-rastreio.v2.js      IP, localização, pixel e id do visitante no cadastro
+assets/js/lh-interacoes.v2-1.js  formulário começado/enviado/abandonado e cliques
+assets/js/lenis.min.js           scroll suave (mesma lib usada no site original)
+assets/js/intlTelInput.min.js    campo de telefone internacional (build base)
+assets/js/intlTelInputUtils.js   validação do número, carregada sob demanda
+assets/fonts/Silka*.woff2        família Silka (5 pesos)
+assets/img/fa-bfriday26.svg      marca do topo da captura
+assets/img/                      imagens de fundo, logos e bandeiras do seletor de país
 ```
 
 ## Efeitos reproduzidos
@@ -67,25 +71,35 @@ Cabe em uma dobra até em telas de 668px de altura, sem rolagem.
 
 No celular o hero ocupa a altura da tela (`100svh`) e o conteúdo fica
 centralizado, para o formulário inteiro — os três campos, o botão e a data —
-caber sem rolagem. A escala é menor que a do site original: logo 128px, título
-30px, campos de 44px. Há um nível extra para telas de até 680px de altura,
+caber sem rolagem. A escala é menor que a do site original: logo com 90px de
+altura, título 30px, campos de 44px. Há um nível extra para telas de até 680px de altura,
 onde logo e espaçamentos encolhem mais; a área de toque dos campos é
 preservada nos dois.
 
 Conferido em 360x640, 375x667, 390x844 e 412x915: o formulário inteiro aparece
-na primeira dobra nos quatro.
+na primeira dobra nos quatro. Conferido de novo em 05/10/2026 com a marca
+`fa-bfriday26.svg`: o formulário termina na mesma posição de antes (em 390x844,
+724px de 844).
 
 ## Cache e nomes de arquivo
 
-O `_headers` dá cache de um ano para `assets/fonts/` e `assets/img/`, e faz
-`assets/css/`, `assets/js/` e os HTML revalidarem.
+O `_headers` pede cache de um ano para `assets/fonts/` e `assets/img/`, e
+revalidação para `assets/css/`, `assets/js/` e os HTML.
+
+Na prática, CSS e JS saem com `max-age=2678400` (31 dias, medido em
+05/10/2026); só os HTML respeitam o `max-age=0`. 31 dias é exatamente a opção
+"1 mês" do Browser Cache TTL, que é configuração da zona facialacademy.com.br
+inteira. Essa é a causa provável, e não o Pages. Mudar a zona afeta todos os
+subdomínios, então a regra continua sendo:
 
 **Ao mudar o conteúdo de um CSS, JS ou imagem, troque o nome do arquivo**
-(`style.v2.css`, `logo-fabrica-hof-612.webp`). O Cloudflare Pages sobrescreve
-o `max-age` que pedimos e mantém 31 dias nos assets, então editar mantendo o
-mesmo nome faz visitantes recorrentes receberem a versão antiga — foi o que
+(`style.v12.css`, `lh-rastreio.v2.js`). Editar mantendo o mesmo nome faz
+visitantes recorrentes receberem a versão antiga por até 31 dias. Foi o que
 aconteceu uma vez: a página foi ao ar com o CSS anterior em cache e a lista de
 244 países do campo de telefone apareceu aberta dentro do formulário.
+
+Os scripts `lh-rastreio` e `lh-interacoes` vêm do repo lead-vision-buddy. Ao
+atualizar, entre com a versão nova no nome em vez de sobrescrever o arquivo.
 
 ## Desempenho
 
@@ -96,8 +110,12 @@ página.
 
 O que foi feito do lado da página:
 
-- Logo do topo (elemento de LCP) em `srcset` de 394w/612w com
-  `fetchpriority="high"` — eram 143 KB de imagem 1024px para exibir a 306px.
+- Logo do topo (elemento de LCP) com preload e `fetchpriority="high"`. Desde
+  05/10/2026 é o `fa-bfriday26.svg`, otimizado com svgo de 675 KB para 47 KB
+  (15 KB comprimido): o arquivo do Illustrator trazia metadados e milhares de
+  segmentos de tamanho zero. A versão otimizada foi comparada pixel a pixel
+  com a original, com diferença só na suavização das bordas. Antes era um webp
+  em `srcset` de 394w/612w (eram 143 KB de imagem 1024px para exibir a 306px).
 - Um único CSS por página: as três folhas em série somavam 790ms bloqueando
   a renderização.
 - `intl-tel-input` no build base (40 KB), com `utils.js` sob demanda em vez do
