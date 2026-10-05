@@ -106,6 +106,7 @@ h1{
 /* Ao interagir a pulsação para: quem já achou o botão não precisa mais ser
    chamado, e o clique não briga com a animação. */
 .btn:hover,.btn:focus-visible{filter:brightness(1.1);animation-play-state:paused}
+.btn:focus-visible{outline:2px solid #ecc485;outline-offset:4px}
 .btn:active{filter:brightness(.94);animation-play-state:paused}
 .btn svg{width:20px;height:20px;flex:none}
 .sob-btn{margin:12px 0 0;font-size:13px;color:var(--txt-legal)}
@@ -127,7 +128,8 @@ h1{
 
 .nota{margin:19px 0 0;font-size:13.5px;color:var(--txt-legal);line-height:1.6}
 .nota b{color:var(--lilas);font-weight:700}
-.rodape{margin:18px 0 0;font-size:12px;color:rgba(140,130,163,.7)}
+/* Mesma cor da .nota: com 70% de opacidade ficava em 3,3:1 e reprovava. */
+.rodape{margin:18px 0 0;font-size:12px;color:var(--txt-legal)}
 
 /* telas baixas: tudo precisa caber sem rolagem */
 @media (max-height:740px){

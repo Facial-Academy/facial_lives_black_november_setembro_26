@@ -261,7 +261,7 @@ html.lenis,html.lenis body{height:auto}
   border:1.5px solid var(--purple-deep);
   border-radius:12px;
   outline:none;
-  transition:.2s;
+  transition:border-color .2s var(--ease);
 }
 .fa-input::placeholder{color:rgba(255,255,255,.45)}
 .fa-input:focus{border-color:var(--purple)}
@@ -306,6 +306,8 @@ html.lenis,html.lenis body{height:auto}
 /* Ao interagir a pulsação para, e durante o envio também: o botão fica
    desabilitado e não faz sentido continuar chamando atenção. */
 .fa-submit:hover,.fa-submit:focus-visible{filter:brightness(1.08);animation-play-state:paused}
+/* Anel de foco visível para quem navega pelo teclado (dourado da marca). */
+.fa-submit:focus-visible,.btn:focus-visible,.footer a:focus-visible{outline:2px solid var(--gold);outline-offset:4px}
 .fa-submit:active{filter:brightness(.94);animation-play-state:paused}
 .fa-submit:disabled{opacity:.6;cursor:default;animation:none;transform:none;box-shadow:none}
 
