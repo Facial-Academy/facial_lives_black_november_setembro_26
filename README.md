@@ -42,7 +42,8 @@ assets/fonts/Silka*.woff2          família Silka (5 pesos)
 assets/fonts/Poppins*.woff2        reserva da Silka (5 pesos, latin)
 assets/img/fa-bfriday26-*.webp     marca do topo das duas páginas (320/480/740w)
 assets/img/professores-*.webp      recorte da Dra. Camila e do Dr. Wagner (399/664w)
-assets/img/bilhete-dourado-*.webp  bilhete dourado do fechamento (560/1000w)
+assets/img/bilhete-recorte-*.webp  bilhete dourado recortado (sem o veludo), fechamento (480/860w)
+assets/img/camila-bilhetes-*.webp  Dra. Camila com os bilhetes, seção da frase (640/1100w)
 assets/img/cinema-*.webp           professores no cinema, seção "A sessão" (720/1200w)
 assets/img/                        luz do hero, logo do rodapé e bandeiras do seletor de país
 ```
@@ -50,36 +51,37 @@ assets/img/                        luz do hero, logo do rodapé e bandeiras do s
 ## Layout
 
 Ordem: hero com formulário, "Black Friday acontece uma vez por ano", "Vitalícia
-não é força de expressão", "A sessão" e "Pra sempre com você", rodapé.
+não é força de expressão", "A sessão", "Seu bilhete dourado" e rodapé.
 
 - **Fundo contínuo.** Não há faixas nem imagens de fundo por seção. A página
-  tem um preto só (`--black`) e cada seção acende uma luz radial maior do que
-  ela (`::before`, `z-index: -1` no contexto do `<main>`, então nenhuma luz passa
-  por cima de texto). As luzes se sobrepõem na passagem de uma seção para outra:
-  não existe borda que vire corte. Só o hero tem imagem (`hero-bg.webp`), que se
-  dissolve no fundo ao longo de 60% da altura dele. `main` tem `overflow-x:
-  clip` para as luzes não abrirem rolagem lateral. Degradê conferido sem faixas
-  (banding), por isso não há textura de ruído.
-- **Hero.** Marca, data em dourado, título, texto e formulário ("Entre na
-  lista"), com uma linha abaixo do botão dizendo o que acontece depois do
-  cadastro. Os professores (recorte com fundo transparente, com legenda):
-  - a partir de 1360px: entre o texto e o card, com a largura calculada pelo vão
-    para os dois rostos ficarem inteiros;
-  - de 810 a 1359px (inclui monitor vertical de 1080px) e no celular: logo
-    abaixo do formulário, centralizados.
-- **Uma vez por ano.** Título à esquerda e lista editorial à direita: "12 meses"
-  grande em dourado, frase ao lado, fio fino entre os itens.
-- **Vitalícia não é força de expressão.** Tipografia em escada no desktop; no
-  celular, um bloco só com a mesma entrelinha.
-- **A sessão.** Foto dos professores no cinema, sem moldura (some no fundo pelas
-  bordas), e o passo a passo: lista, grupo do WhatsApp, live de segunda-feira,
-  19/10, às 19h em ponto, no YouTube (dados do bilhete e da página de obrigado).
-- **Pra sempre com você.** Texto à esquerda e bilhete dourado à direita; no
-  celular, o bilhete vem primeiro. Botão no mesmo verde do formulário, levando
-  ao formulário (`#cadastro`).
+  tem um preto só (`--black`) e cada seção acende uma luz radial (`::before`,
+  `z-index: -1` no contexto do `<main>`, então nenhuma luz passa por cima de
+  texto). A luz ocupa sempre a largura inteira da tela (`width: 100vw`): presa
+  à caixa da seção (máx. 1440px), a borda aparecia como corte vertical em tela
+  larga. Só o hero tem imagem (`hero-bg.webp`), que se dissolve ao longo de 70%
+  da altura dele, com uma ponte de luz roxa (platô longo) cobrindo a passagem
+  para a lista. `main` tem `overflow-x: clip`. Conferido por medição (sem
+  costuras verticais e sem vales de luminosidade) em 2560, 1920, 1440, 1080 e
+  390px.
+- **Hero.** Marca, linha dourada "A Fantástica Fábrica da HOF · 19 de outubro,
+  às 19h", título, lead com o que a live revela, formulário "Entre na lista" e
+  uma linha sobre o que acontece depois do cadastro. Os professores (recorte com
+  fundo transparente): a partir de 1360px entre o texto e o card; abaixo disso,
+  logo depois do formulário.
+- **Uma vez por ano.** Título à esquerda; à direita "12 meses" uma vez só,
+  grande em dourado, e as três frases em branco com fio fino entre elas.
+- **Vitalícia não é força de expressão.** Desktop: a frase desce em escada e a
+  foto da Dra. Camila com os bilhetes ocupa o vão abaixo de "Vitalícia não é".
+  Tablet e celular: frase, foto, texto. O texto termina com "O que você aprende,
+  não." em destaque e o que "vitalícia" quer dizer.
+- **A sessão.** Foto no cinema sem moldura e o passo a passo: lista, grupo do
+  WhatsApp (silencioso, só avisos), live de segunda-feira, 19/10, às 19h em
+  ponto, no YouTube.
+- **Seu bilhete dourado.** O bilhete recortado, com sombra, sob a luz dourada;
+  no celular vem primeiro. Botão no mesmo verde do formulário (`#cadastro`).
 - **Cores.** Roxo e ameixa nas luzes, dourado do selo da marca (`--gold:
-  #ecc485`) para data, números e rótulos, verde só nas ações. Contraste AA
-  medido em pixel em 05/10/2026: 36 medições no celular e no desktop.
+  #ecc485`) em data, número e rótulos, verde só nas ações. Contraste AA medido
+  em pixel (celular e desktop), placeholder em 6,9:1.
 - **Fontes.** Silka, com Poppins de reserva e depois `system-ui`, igual ao design
   system do Workshops Facial. A Poppins é local e só baixa se a Silka falhar.
 
@@ -118,10 +120,10 @@ Cabe em uma dobra sem rolagem (conferido em 360x640, 375x667, 390x844 e 1440x900
 
 No celular o hero ocupa ao menos a altura da tela (`100svh`) e o formulário
 inteiro (data, três campos e botão) cabe sem rolagem. Marca com 94px de altura
-(75px em telas de até 680px de altura), título 30px, campos de 44px.
+(75px em telas de até 680px de altura), título 36px, campos de 44px.
 
-Conferido em 05/10/2026 (página reformulada, marca menor): o botão termina em
-531px em 360x640, 579px em 390x844 e 524px em 1440x900. Abaixo dele, no celular, aparecem
+Conferido em 05/10/2026 (página reformulada): o botão termina em 548px em
+360x640, 604px em 390x844 e 513px em 1440x900. Abaixo dele, no celular, aparecem
 os professores.
 
 ## Cache e nomes de arquivo
