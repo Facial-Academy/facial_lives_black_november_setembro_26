@@ -35,7 +35,8 @@ assets/css/style.v12.css           estilos da captura, @font-face (Silka e Poppi
                                    intl-tel-input e breakpoints (≥1200 / 810-1199 / ≤809)
 assets/css/obrigado.v7.css         estilos da página de obrigado
 assets/js/main.v7.js               scroll suave, revelação de fallback e formulário
-assets/js/main-google.v7.js        main.v7.js da captura-google: manda para /obrigado-google
+assets/js/main-google.v7-1.js      main.v7.js da captura-google: manda para /obrigado-google
+assets/js/conversao-google.v1.js   Lead e CompleteRegistration nas páginas do Google (ver abaixo)
 assets/js/lh-rastreio.v2.js        IP, localização, pixel e id do visitante no cadastro
 assets/js/lh-interacoes.v2-1.js    formulário começado/enviado/abandonado e cliques
 assets/js/lenis.min.js             scroll suave
@@ -201,7 +202,7 @@ POST https://ilzpqehbbxvmogorpfma.supabase.co/functions/v1/lead-capture-rapido/<
 O endpoint é público e write-only — o UUID na URL identifica empresa e pipeline,
 e o CORS é liberado, então não existe backend nem chave de API no meio. A
 configuração fica em `ENDPOINT`, em `assets/js/main.v7.js` e na cópia
-`main-google.v7.js`.
+`main-google.v7-1.js`.
 
 É o `lead-capture-rapido`, não o `lead-capture-api`: ele decide a saída do
 cadastro (anti-spam do SendFlow, quem já recebeu o link, página oficial ou
@@ -237,8 +238,8 @@ e-mail NOVO fora desses hosts (preview de branch, localhost) cai em **aprovaçã
 `/captura-google` e `/obrigado-google` são cópias integrais da captura e do
 obrigado para o tráfego do Google Ads (05/10/2026). Diferenças:
 
-- `captura-google.html` carrega `main-google.v7.js`, que só muda o destino depois
-  do cadastro: `/obrigado-google`.
+- `captura-google.html` carrega `main-google.v7-1.js`, que muda o destino depois
+  do cadastro para `/obrigado-google` e conta a conversão (abaixo).
 - `obrigado-google.html` leva ao Sendflow `https://sndflw.com/i/ads-blackfridayfacial`.
 
 Qualquer mudança na captura ou no obrigado precisa ser repetida nas cópias.
@@ -249,9 +250,13 @@ intercepta o envio, posta no LeadHero, empurra `fa_black_lead` (que vira
 `generate_lead` no GA4 e `Lead` no Pixel) e manda para `/obrigado`. O
 `main.v7.js` só envia quando o GTM não carrega. No obrigado, a mesma tag empurra
 `fa_black_complete_registration` no clique do link `blackfriday2026`. Ela só roda
-em `/` e `/obrigado`: nas páginas do Google esses dois eventos não saem até a tag
-aceitar `/captura-google`, `/obrigado-google` e o link `ads-blackfridayfacial`, e
-mandar `/captura-google` para `/obrigado-google`.
+em `/` e `/obrigado`, e a conta do Eddie não tem acesso ao container. Por isso as
+páginas do Google empurram os mesmos dois eventos, no mesmo formato, pelo
+`conversao-google.v1.js`: as tags de GA4 e Pixel que respondem a eles só olham o
+domínio e o `black26.event_id`, não o caminho. O registro da sessão é o mesmo da
+tag (`fa_black26_accepted_v1`): se um dia ela também rodar nessas páginas, na
+captura ela intercepta o envio antes do `main-google`, e no obrigado o primeiro a
+tratar o clique marca o evento como enviado e o outro não repete.
 
 ## Observações
 

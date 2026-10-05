@@ -1,7 +1,8 @@
 /* =========================================================================
    Facial Academy — Black Vitalícia
    Scroll suave (Lenis) + revelação por bloco + formulário
-   Cópia do main.v7.js para a captura-google.html: muda só o REDIRECT.
+   Cópia do main.v7.js para a captura-google.html: muda o REDIRECT e conta a
+   conversão pelo conversao-google.v1.js (a tag 268 do GTM não roda aqui).
    ========================================================================= */
 (function () {
   'use strict';
@@ -281,7 +282,20 @@
         var destino = corpo && typeof corpo.redirect === 'string' && /^https?:\/\//i.test(corpo.redirect)
           ? corpo.redirect
           : REDIRECT;
-        window.location.href = destino;
+        function vai() { window.location.href = destino; }
+        // Cadastro aceito pela triagem: conta a conversão antes de sair. Sem
+        // resposta dentro do teto, sai sem contar: a conversão só vale para
+        // cadastro confirmado, como na tag 268.
+        var aceito = corpo && !corpo.error && corpo.success !== false &&
+          typeof corpo.pagina === 'string' && corpo.pagina.trim();
+        if (aceito && window.faConversaoGoogle) {
+          window.faConversaoGoogle.lead({
+            email: payload.email, telefone: payload.telefone,
+            nome: payload.nome, sobrenome: payload.sobrenome
+          }, vai);
+        } else {
+          vai();
+        }
       })
       .catch(function (erro) {
         if (window.console && console.warn) console.warn('LeadHero:', erro && erro.message);
