@@ -336,7 +336,7 @@ main{position:relative;isolation:isolate;overflow-x:clip}
   align-items:center;
   width:100%;
   max-width:1200px;
-  padding:96px 48px 136px;
+  padding:96px 48px 104px;
 }
 .vital__stack{
   display:flex;
@@ -380,7 +380,7 @@ main{position:relative;isolation:isolate;overflow-x:clip}
   width:100%;
   max-width:1440px;
   margin:0 auto;
-  padding:152px 48px;
+  padding:112px 48px 120px;
 }
 .session__photo img{
   width:100%;
@@ -432,7 +432,7 @@ main{position:relative;isolation:isolate;overflow-x:clip}
   width:100%;
   max-width:1200px;
   margin:0 auto;
-  padding:152px 48px 176px;
+  padding:112px 48px 144px;
 }
 .closing__text{display:flex;flex-direction:column;align-items:flex-start;gap:28px}
 .closing__title{
@@ -780,11 +780,11 @@ main{position:relative;isolation:isolate;overflow-x:clip}
   .vital__copy{max-width:388px}
   .vital__copy p{font-size:16px}
 
-  .session{grid-template-columns:1fr;gap:28px;padding:128px 40px}
+  .session{grid-template-columns:1fr;gap:28px;padding:104px 40px}
   .session__photo{max-width:760px}
   .session__title{font-size:38px}
 
-  .closing{padding:128px 40px 152px;gap:40px}
+  .closing{padding:104px 40px 128px;gap:40px}
   .closing__title{font-size:36px}
   .closing__copy p{font-size:17px}
 
