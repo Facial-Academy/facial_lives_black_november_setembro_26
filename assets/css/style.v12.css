@@ -160,6 +160,15 @@ main{position:relative;isolation:isolate;overflow-x:clip}
   mask-image:linear-gradient(to bottom,#000 30%,transparent);
 }
 .hero__bg img{width:100%;height:100%;object-fit:cover}
+/* A imagem de luz tem uma mancha cinza, sem cor, no canto superior direito
+   (aparece acima do formulário no desktop e destoa do roxo do tema). Este
+   gradiente escurece só aquele canto. */
+.hero__bg::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:radial-gradient(42% 62% at 88% 0%,rgba(6,0,13,.78),rgba(6,0,13,0) 72%);
+}
 
 .hero__inner{
   position:relative;
