@@ -43,37 +43,45 @@ assets/fonts/Poppins*.woff2        reserva da Silka (5 pesos, latin)
 assets/img/fa-bfriday26-*.webp     marca do topo das duas páginas (320/480/740w)
 assets/img/professores-*.webp      recorte da Dra. Camila e do Dr. Wagner (399/664w)
 assets/img/bilhete-dourado-*.webp  bilhete dourado do fechamento (560/1000w)
-assets/img/                        fundos, logo do rodapé e bandeiras do seletor de país
+assets/img/cinema-*.webp           professores no cinema, seção "A sessão" (720/1200w)
+assets/img/                        luz do hero, logo do rodapé e bandeiras do seletor de país
 ```
 
 ## Layout
 
-- **Hero.** Marca, linha da data em dourado ("Revelação ao vivo · 19 de outubro,
-  às 19h"), título, texto e formulário. A data fica junto do título porque é o
-  motivo do cadastro. Os professores (recorte com fundo transparente):
-  - desktop a partir de 1360px: entre o texto e o card, com a largura calculada
-    pelo vão para os dois rostos ficarem inteiros (o card cobre só o ombro do
-    Dr. Wagner);
-  - celular: logo abaixo do formulário, com as cartolas no fim da primeira dobra;
-  - de 810 a 1359px: ficam de fora, porque não cabem sem cortar rosto.
-- **Black Friday acontece uma vez por ano.** Lista editorial: "12 meses" grande
-  em dourado e a frase ao lado, com fio fino entre os itens (era um trio de cards
-  com ícone, o padrão mais reconhecível de página gerada).
+Ordem: hero com formulário, "Black Friday acontece uma vez por ano", "Vitalícia
+não é força de expressão", "A sessão" e "Pra sempre com você", rodapé.
+
+- **Fundo contínuo.** Não há faixas nem imagens de fundo por seção. A página
+  tem um preto só (`--black`) e cada seção acende uma luz radial maior do que
+  ela (`::before`, `z-index: -1` no contexto do `<main>`, então nenhuma luz passa
+  por cima de texto). As luzes se sobrepõem na passagem de uma seção para outra:
+  não existe borda que vire corte. Só o hero tem imagem (`hero-bg.webp`), que se
+  dissolve no fundo ao longo de 60% da altura dele. `main` tem `overflow-x:
+  clip` para as luzes não abrirem rolagem lateral. Degradê conferido sem faixas
+  (banding), por isso não há textura de ruído.
+- **Hero.** Marca, data em dourado, título, texto e formulário ("Entre na
+  lista"), com uma linha abaixo do botão dizendo o que acontece depois do
+  cadastro. Os professores (recorte com fundo transparente, com legenda):
+  - a partir de 1360px: entre o texto e o card, com a largura calculada pelo vão
+    para os dois rostos ficarem inteiros;
+  - de 810 a 1359px (inclui monitor vertical de 1080px) e no celular: logo
+    abaixo do formulário, centralizados.
+- **Uma vez por ano.** Título à esquerda e lista editorial à direita: "12 meses"
+  grande em dourado, frase ao lado, fio fino entre os itens.
 - **Vitalícia não é força de expressão.** Tipografia em escada no desktop; no
   celular, um bloco só com a mesma entrelinha.
-- **Fechamento.** Texto à esquerda e bilhete dourado à direita (no celular, o
-  bilhete vem primeiro). Sem imagem de fundo: o veludo da foto some no preto da
-  página pelas bordas. Botão no mesmo verde do formulário.
-- **Passagem entre seções.** Nenhum corte reto: as imagens de fundo do hero e da
-  faixa da lista se dissolvem no preto da página (`mask-image`, 140 a 160px), e o
-  rodapé entra por degradê. Um preto só em todas as seções (`--black`).
-- **Cores.** Base quase preta, roxo do tema na luz do hero, dourado do selo da
-  marca (`--gold: #ecc485`) para data, números e rótulos, e verde só nas ações.
-  Contraste AA medido em pixel nas duas páginas em 05/10/2026 (20 textos, pior
-  trecho de fundo de cada um).
+- **A sessão.** Foto dos professores no cinema, sem moldura (some no fundo pelas
+  bordas), e o passo a passo: lista, grupo do WhatsApp, live de segunda-feira,
+  19/10, às 19h em ponto, no YouTube (dados do bilhete e da página de obrigado).
+- **Pra sempre com você.** Texto à esquerda e bilhete dourado à direita; no
+  celular, o bilhete vem primeiro. Botão no mesmo verde do formulário, levando
+  ao formulário (`#cadastro`).
+- **Cores.** Roxo e ameixa nas luzes, dourado do selo da marca (`--gold:
+  #ecc485`) para data, números e rótulos, verde só nas ações. Contraste AA
+  medido em pixel em 05/10/2026: 36 medições no celular e no desktop.
 - **Fontes.** Silka, com Poppins de reserva e depois `system-ui`, igual ao design
-  system do Workshops Facial. A Poppins é local e só baixa se a Silka falhar
-  (testado com a Silka carregando e com ela ausente).
+  system do Workshops Facial. A Poppins é local e só baixa se a Silka falhar.
 
 ## Movimento
 
@@ -88,6 +96,8 @@ assets/img/                        fundos, logo do rodapé e bandeiras do seleto
   (`IntersectionObserver` com varredura por posição de reserva).
 - Saiu a revelação palavra a palavra com desfoque: cada palavra virava uma camada
   com `filter` e um parágrafo longo levava mais de 2 s para terminar.
+- O bilhete dourado entra girando de leve e fica reto quando chega ao centro
+  da tela (mesma linha do tempo da rolagem).
 - `prefers-reduced-motion` desliga tudo, inclusive a pulsação do botão.
 - Sem JS, nada fica invisível (o estado inicial depende da classe `.js` no `body`).
 
@@ -110,8 +120,9 @@ No celular o hero ocupa ao menos a altura da tela (`100svh`) e o formulário
 inteiro (data, três campos e botão) cabe sem rolagem. Marca com 110px de altura
 (88px em telas de até 680px de altura), título 30px, campos de 44px.
 
-Conferido em 05/10/2026: o botão termina em 544px em 360x640 e 375x667, 594px em
-390x844 e 595px em 412x915. Abaixo dele aparecem as cartolas dos professores.
+Conferido em 05/10/2026 (página reformulada): o botão termina em 544px em
+360x640, 595px em 390x844 e 524px em 1440x900. Abaixo dele, no celular, aparecem
+os professores.
 
 ## Cache e nomes de arquivo
 
