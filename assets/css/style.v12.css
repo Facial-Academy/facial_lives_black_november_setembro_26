@@ -107,6 +107,14 @@ main{position:relative;isolation:isolate;overflow-x:clip}
   z-index:-1;
   pointer-events:none;
 }
+/* As seções do meio têm largura máxima (1440px): se a luz ficasse presa à
+   caixa da seção, a borda dela apareceria como corte vertical em tela larga
+   (visto em 2340 e 2560px). A luz ocupa sempre a largura inteira da tela. */
+.reasons::before,.vital::before,.session::before,.closing::before{
+  left:50%;
+  width:100vw;
+  transform:translateX(-50%);
+}
 /* Ponte entre o hero e a lista: a imagem de luz do hero acaba no pé dele e
    a luz da lista começava mais abaixo, o que deixava um vale escuro de ~100px
    (luminância caindo de 22 para 2 na lateral). Esta faixa roxa, sem borda,
@@ -121,24 +129,24 @@ main{position:relative;isolation:isolate;overflow-x:clip}
   background:radial-gradient(55% 45% at 50% 38%,var(--luz-roxa),transparent 72%);
 }
 .reasons::before{
-  inset:-25% -10%;
+  top:-25%;bottom:-25%;
   background:
     radial-gradient(50% 48% at 80% 42%,var(--luz-ameixa),transparent 72%),
     radial-gradient(40% 38% at 12% 35%,rgba(112,38,206,.20),transparent 72%);
 }
 /* A frase fica quase no escuro: é a respiração da página. */
 .vital::before{
-  inset:-20% -10%;
+  top:-20%;bottom:-20%;
   background:
     radial-gradient(38% 36% at 72% 62%,rgba(236,196,133,.06),transparent 72%),
     radial-gradient(34% 30% at 18% 28%,rgba(112,38,206,.10),transparent 72%);
 }
 .session::before{
-  inset:-30% -10%;
+  top:-30%;bottom:-30%;
   background:radial-gradient(48% 42% at 26% 50%,var(--luz-roxa),transparent 72%);
 }
 .closing::before{
-  inset:-25% -10% -45%;
+  top:-25%;bottom:-45%;
   background:
     radial-gradient(38% 38% at 74% 48%,var(--luz-dourada),transparent 72%),
     radial-gradient(46% 44% at 22% 58%,rgba(112,38,206,.12),transparent 72%);
