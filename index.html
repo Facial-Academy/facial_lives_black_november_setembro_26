@@ -6,7 +6,7 @@
 <title>Black Vitalícia | Facial Academy</title>
 <!-- Preço e condições só são revelados na live: nada disso entra aqui, que é o
      texto da prévia no Google e no WhatsApp. -->
-<meta name="description" content="A Black Vitalícia da Facial Academy vai ser revelada ao vivo em 19 de outubro, às 19h. Cadastre-se para saber todos os detalhes.">
+<meta name="description" content="A Black Vitalícia da Facial Academy vai ser revelada ao vivo no dia 19 de outubro, às 19h. Entre na lista e receba o link da transmissão pelo WhatsApp.">
 <!-- A logo é o elemento de LCP no celular. O preload vem antes do GTM para
      que o download comece sem disputar com os scripts de rastreamento.
      WebP de 256 cores sem perda em 3 larguras (16, 27 e 46 KB). -->
@@ -24,7 +24,7 @@
 
 <meta property="og:type" content="website">
 <meta property="og:title" content="Black Vitalícia | Facial Academy">
-<meta property="og:description" content="A Black Vitalícia da Facial Academy vai ser revelada ao vivo em 19 de outubro, às 19h. Cadastre-se para saber todos os detalhes.">
+<meta property="og:description" content="A Black Vitalícia da Facial Academy vai ser revelada ao vivo no dia 19 de outubro, às 19h. Entre na lista e receba o link da transmissão pelo WhatsApp.">
 
 <!-- O Lighthouse aponta essas duas origens do rastreamento como as que mais
      atrasam o LCP (548ms e 368ms); a conexão é aberta antes de precisar. -->
@@ -57,16 +57,15 @@
                fetchpriority="high" decoding="async">
         </div>
 
-
         <p class="hero__date anim" data-anim="up" data-delay="80">Revelação ao vivo · <strong>19 de outubro, às 19h</strong></p>
 
-        <h1 class="hero__title anim" data-anim="up" data-delay="160">Uma vez por ano!</h1>
+        <h1 class="hero__title anim" data-anim="up" data-delay="160">Uma vez por ano.</h1>
 
-        <p class="hero__lead anim" data-anim="up" data-delay="240">A <strong>Black Vitalícia da Facial Academy</strong> vai ser revelada. Cadastre-se para saber todos os detalhes.</p>
+        <p class="hero__lead anim" data-anim="up" data-delay="240">A <strong>Black Vitalícia da Facial Academy</strong> vai ser revelada ao vivo. Entre na lista e receba o link da transmissão pelo WhatsApp.</p>
       </div>
 
-      <div class="hero__card anim" data-anim="up" data-delay="200">
-        <h2 class="card__title">Preencha com seus dados!</h2>
+      <div class="hero__card anim" id="cadastro" data-anim="up" data-delay="200">
+        <h2 class="card__title">Entre na lista</h2>
 
         <form class="fa-form" id="fa-form" novalidate>
           <div class="fa-field">
@@ -78,71 +77,55 @@
           </div>
 
           <div class="fa-field">
-            <label for="fa-email">Email<span>*</span></label>
+            <label for="fa-email">E-mail<span>*</span></label>
             <div class="fa-control">
               <span class="fa-icon"><svg viewBox="0 0 256 256" width="18" height="18" fill="var(--purple)"><path d="M224,48H32a8,8,0,0,0-8,8V192a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A8,8,0,0,0,224,48Zm-96,85.15L52.57,64H203.43ZM98.71,128,40,181.81V74.19Zm11.84,10.85,12,11.05a8,8,0,0,0,10.82,0l12-11.05,58,53.15H52.57ZM157.29,128,216,74.18V181.82Z"/></svg></span>
-              <input type="email" id="fa-email" name="email" class="fa-input" placeholder="Digite seu email" autocomplete="email">
+              <input type="email" id="fa-email" name="email" class="fa-input" placeholder="Digite seu e-mail" autocomplete="email">
             </div>
           </div>
 
           <div class="fa-field">
-            <label for="fa-phone">Seu WhatsApp<span>*</span></label>
+            <label for="fa-phone">WhatsApp<span>*</span></label>
             <div class="fa-control">
-              <input type="tel" id="fa-phone" name="phone" class="fa-input" placeholder="Digite seu telefone" autocomplete="tel">
+              <input type="tel" id="fa-phone" name="phone" class="fa-input" placeholder="Digite seu WhatsApp" autocomplete="tel">
             </div>
           </div>
 
-          <button type="submit" class="fa-submit">CADASTRAR AGORA</button>
+          <button type="submit" class="fa-submit">Quero entrar na lista</button>
           <p class="fa-message" role="status" aria-live="polite"></p>
         </form>
+
+        <p class="card__next">Depois do cadastro, você entra no grupo do WhatsApp onde o link da live é enviado.</p>
       </div>
 
-      <!-- Os professores no tema da Fantástica Fábrica da HOF. No desktop ficam
-           entre o texto e o formulário, passando atrás do vidro do card; no
-           celular vêm logo abaixo do formulário, com as cartolas no fim da dobra. -->
-      <img class="hero__people"
-           src="assets/img/professores-798.webp"
-           srcset="assets/img/professores-480.webp 399w, assets/img/professores-798.webp 664w"
-           sizes="(max-width:809px) 92vw, 520px"
-           alt="Dra. Camila Dias e Dr. Wagner Baseggio de cartola, no tema da Fantástica Fábrica da HOF"
-           width="664" height="798" decoding="async">
+      <!-- Professores no tema da Fantástica Fábrica da HOF (recorte com fundo
+           transparente). A posição muda por largura de tela, no CSS. -->
+      <figure class="hero__people anim" data-anim="up" data-delay="240">
+        <img src="assets/img/professores-798.webp"
+             srcset="assets/img/professores-480.webp 399w, assets/img/professores-798.webp 664w"
+             sizes="(max-width:809px) 92vw, (max-width:1359px) 440px, 540px"
+             alt="Dra. Camila Dias e Dr. Wagner Baseggio de cartola, no tema da Fantástica Fábrica da HOF"
+             width="664" height="798" decoding="async">
+        <figcaption>Dra. Camila Dias e Dr. Wagner Baseggio</figcaption>
+      </figure>
     </div>
   </section>
 
-  <!-- ============ SEÇÃO 2 — BLACK FRIDAY ============ -->
-  <div class="band band--reasons">
-    <div class="band__bg"><img src="assets/img/section2-bg.webp" alt="" aria-hidden="true"></div>
+  <!-- ============ UMA VEZ POR ANO ============ -->
+  <section class="reasons" id="uma-vez-por-ano">
+    <div class="reasons__head">
+      <h2 class="reasons__title anim-words">Black Friday acontece uma vez por ano.</h2>
+      <p class="reasons__sub anim" data-anim="up">E esperar o próximo ano significa:</p>
+    </div>
 
-    <section class="reasons">
-      <div class="reasons__head">
-        <h2 class="reasons__title anim-words">Black Friday acontece<br>uma vez por ano.</h2>
-        <p class="reasons__sub anim" data-anim="up">E esperar o próximo ano significa:</p>
-      </div>
+    <ul class="reasons__list" role="list">
+      <li class="reason anim" data-anim="up"><strong class="reason__num">12 meses</strong><p>atendendo do mesmo jeito.</p></li>
+      <li class="reason anim" data-anim="up"><strong class="reason__num">12 meses</strong><p>adiando o procedimento que você ainda não faz com segurança.</p></li>
+      <li class="reason anim" data-anim="up"><strong class="reason__num">12 meses</strong><p>de orçamento que não fecha.</p></li>
+    </ul>
+  </section>
 
-      <div class="reasons__row">
-        <div class="reason anim" data-anim="up" data-delay="0">
-          <div class="reason__inner">
-            <h3>12 meses</h3>
-            <p>atendendo do mesmo jeito.</p>
-          </div>
-        </div>
-        <div class="reason anim" data-anim="up" data-delay="120">
-          <div class="reason__inner">
-            <h3>12 meses</h3>
-            <p>adiando o procedimento que você ainda não faz com segurança.</p>
-          </div>
-        </div>
-        <div class="reason anim" data-anim="up" data-delay="240">
-          <div class="reason__inner">
-            <h3>12 meses</h3>
-            <p>de orçamento que não fecha.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-  </div>
-
-  <!-- ============ SEÇÃO 3 — VITALÍCIA ============ -->
+  <!-- ============ VITALÍCIA NÃO É FORÇA DE EXPRESSÃO ============ -->
   <section id="metodo" class="vital">
     <div class="vital__inner">
       <div class="vital__stack">
@@ -162,40 +145,57 @@
     </div>
   </section>
 
-  <!-- ============ SEÇÃO 4 — CTA ============ -->
-  <!-- Sem a imagem de mancha roxa: o fundo é o preto da página e a luz vem do
-       bilhete dourado, que é o símbolo da Fantástica Fábrica. -->
-  <div class="band band--cta">
-    <section class="cta">
-      <div class="cta__text">
-        <div class="pill anim" data-anim="up">
-          <svg class="ico ico--infinity" width="24" height="24" style="--ico-op:0;--ico-color:var(--gold);--ico-sw:1.5" display="block" role="presentation" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M 7.682 7.682 C 6.395 8.969 4.46 9.354 2.778 8.658 C 1.096 7.961 0 6.32 0 4.5 C 0 2.68 1.096 1.039 2.778 0.343 C 4.46 -0.354 6.395 0.031 7.682 1.318 L 13.318 7.682 C 14.605 8.969 16.541 9.354 18.222 8.658 C 19.904 7.961 21 6.32 21 4.5 C 21 2.68 19.904 1.039 18.222 0.343 C 16.541 -0.354 14.605 0.031 13.318 1.318 Z" fill-opacity="var(--ico-op, 0)" fill="var(--ico-color, rgb(0, 0, 0))" height="9.000263135988675px" id="EWhdcxZRG" transform="translate(1.5 7.5)" width="21.00042205436025px"/><path d="M 8.497 6.762 L 7.682 7.682 C 6.395 8.969 4.46 9.354 2.778 8.658 C 1.096 7.961 0 6.32 0 4.5 C 0 2.68 1.096 1.039 2.778 0.343 C 4.46 -0.354 6.395 0.031 7.682 1.318 L 13.318 7.682 C 14.605 8.969 16.541 9.354 18.222 8.658 C 19.904 7.961 21 6.32 21 4.5 C 21 2.68 19.904 1.039 18.222 0.343 C 16.541 -0.354 14.605 0.031 13.318 1.318 L 12.504 2.238" fill="transparent" height="9.000263135988675px" id="XM7weionG" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--ico-sw, 1.5)" stroke="var(--ico-color, rgb(0, 0, 0))" transform="translate(1.5 7.5)" width="21.00042205436025px"/></svg>
-          <p class="pill__label">Pra sempre com você</p>
-        </div>
+  <!-- ============ A SESSÃO ============ -->
+  <section class="session" id="como-funciona">
+    <figure class="session__photo anim" data-anim="up">
+      <img src="assets/img/cinema-1200.webp"
+           srcset="assets/img/cinema-720.webp 720w, assets/img/cinema-1200.webp 1200w"
+           sizes="(max-width:809px) 100vw, (max-width:1199px) 760px, 640px"
+           alt="Dra. Camila Dias e Dr. Wagner Baseggio com pipoca numa sala de cinema"
+           width="1200" height="774" loading="lazy" decoding="async">
+    </figure>
 
-        <h2 class="cta__title anim-words">Vitalícia quer dizer que a Facial Academy continua ali.</h2>
+    <div class="session__text">
+      <p class="eyebrow anim" data-anim="up">A sessão</p>
+      <h2 class="session__title anim-words">Segunda, 19 de outubro, às 19h em ponto, ao vivo no YouTube.</h2>
 
-        <div class="cta__copy">
-          <p class="anim-words">Na véspera do atendimento, quando você precisa revisar. Daqui a dois anos, quando o mercado tiver mudado de novo. Daqui a dez, quando você já for a referência que outras procuram.</p>
-          <p class="anim-words">O que entra, quanto custa e como funciona: <strong>tudo é revelado no dia 19 de outubro, às 19h, ao vivo.</strong></p>
-          <p class="anim-words">Quem está na lista fica sabendo antes. Quem não está, descobre quando alguém contar.</p>
-        </div>
+      <ol class="steps" role="list">
+        <li class="step anim" data-anim="up"><span class="step__when">Agora</span><p>Você entra na lista pelo formulário desta página.</p></li>
+        <li class="step anim" data-anim="up"><span class="step__when">Em seguida</span><p>Entra no grupo do WhatsApp. É por lá que o link da transmissão chega.</p></li>
+        <li class="step anim" data-anim="up"><span class="step__when">19/10, 19h</span><p>A Black Vitalícia é revelada: o que entra, quanto custa e como funciona.</p></li>
+      </ol>
+    </div>
+  </section>
 
-        <a class="btn anim" data-anim="up" href="#hero-section">
-          <div class="btn__label"><p>Quero Saber Primeiro</p></div>
-          <div class="btn__icon"><svg class="ico ico--arrow" width="24" height="24" style="--ico-op:0;--ico-color:currentColor;--ico-sw:1.5" display="block" role="presentation" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M 0 9 C 0 4.029 4.029 0 9 0 C 13.971 0 18 4.029 18 9 C 18 13.971 13.971 18 9 18 C 4.029 18 0 13.971 0 9 Z" fill-opacity="var(--ico-op, 0)" fill="var(--ico-color, rgb(0, 0, 0))" height="18px" id="uu_1WsBKD" transform="translate(3 3)" width="18px"/><path d="M 0 9 C 0 4.029 4.029 0 9 0 C 13.971 0 18 4.029 18 9 C 18 13.971 13.971 18 9 18 C 4.029 18 0 13.971 0 9 Z" fill="transparent" height="18px" id="RTBQYONr5" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--ico-sw, 1.5)" stroke="var(--ico-color, rgb(0, 0, 0))" transform="translate(3 3)" width="18px"/><path d="M 0 0 L 7.5 0" fill="transparent" height="1px" id="NNVWdHWHP" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--ico-sw, 1.5)" stroke="var(--ico-color, rgb(0, 0, 0))" transform="translate(8.25 12)" width="7.5px"/><path d="M 0 0 L 3 3 L 0 6" fill="transparent" height="6px" id="mMIXDa1F_" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--ico-sw, 1.5)" stroke="var(--ico-color, rgb(0, 0, 0))" transform="translate(12.75 9)" width="3px"/></svg></div>
-        </a>
+  <!-- ============ PRA SEMPRE COM VOCÊ ============ -->
+  <section class="closing" id="pra-sempre">
+    <div class="closing__text">
+      <p class="eyebrow anim" data-anim="up">
+        <svg class="ico ico--infinity" width="24" height="24" style="--ico-op:0;--ico-color:var(--gold);--ico-sw:1.5" display="block" role="presentation" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M 7.682 7.682 C 6.395 8.969 4.46 9.354 2.778 8.658 C 1.096 7.961 0 6.32 0 4.5 C 0 2.68 1.096 1.039 2.778 0.343 C 4.46 -0.354 6.395 0.031 7.682 1.318 L 13.318 7.682 C 14.605 8.969 16.541 9.354 18.222 8.658 C 19.904 7.961 21 6.32 21 4.5 C 21 2.68 19.904 1.039 18.222 0.343 C 16.541 -0.354 14.605 0.031 13.318 1.318 Z" fill-opacity="var(--ico-op, 0)" fill="var(--ico-color, rgb(0, 0, 0))" height="9.000263135988675px" id="EWhdcxZRG" transform="translate(1.5 7.5)" width="21.00042205436025px"/><path d="M 8.497 6.762 L 7.682 7.682 C 6.395 8.969 4.46 9.354 2.778 8.658 C 1.096 7.961 0 6.32 0 4.5 C 0 2.68 1.096 1.039 2.778 0.343 C 4.46 -0.354 6.395 0.031 7.682 1.318 L 13.318 7.682 C 14.605 8.969 16.541 9.354 18.222 8.658 C 19.904 7.961 21 6.32 21 4.5 C 21 2.68 19.904 1.039 18.222 0.343 C 16.541 -0.354 14.605 0.031 13.318 1.318 L 12.504 2.238" fill="transparent" height="9.000263135988675px" id="XM7weionG" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--ico-sw, 1.5)" stroke="var(--ico-color, rgb(0, 0, 0))" transform="translate(1.5 7.5)" width="21.00042205436025px"/></svg>
+        Pra sempre com você
+      </p>
+
+      <h2 class="closing__title anim-words">Vitalícia quer dizer que a Facial Academy continua ali.</h2>
+
+      <div class="closing__copy">
+        <p class="anim-words">Na véspera do atendimento, quando você precisa revisar. Daqui a dois anos, quando o mercado tiver mudado de novo. Daqui a dez, quando você já for a referência que outras procuram.</p>
+        <p class="anim-words">Quem está na lista fica sabendo antes. Quem não está, descobre quando alguém contar.</p>
       </div>
 
-      <figure class="cta__ticket anim" data-anim="up">
-        <img src="assets/img/bilhete-dourado-1000.webp"
-             srcset="assets/img/bilhete-dourado-560.webp 560w, assets/img/bilhete-dourado-1000.webp 1000w"
-             sizes="(max-width:809px) 100vw, 560px"
-             alt="Bilhete dourado da Fantástica Fábrica da HOF: Black Vitalícia Facial Academy, 19/10/26, 19h em ponto, no YouTube"
-             width="1000" height="747" loading="lazy" decoding="async">
-      </figure>
-    </section>
-  </div>
+      <a class="btn anim" data-anim="up" href="#cadastro">
+        <span class="btn__label">Quero entrar na lista</span>
+        <span class="btn__icon"><svg class="ico ico--arrow" width="24" height="24" style="--ico-op:0;--ico-color:currentColor;--ico-sw:1.5" display="block" role="presentation" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M 0 9 C 0 4.029 4.029 0 9 0 C 13.971 0 18 4.029 18 9 C 18 13.971 13.971 18 9 18 C 4.029 18 0 13.971 0 9 Z" fill-opacity="var(--ico-op, 0)" fill="var(--ico-color, rgb(0, 0, 0))" height="18px" id="uu_1WsBKD" transform="translate(3 3)" width="18px"/><path d="M 0 9 C 0 4.029 4.029 0 9 0 C 13.971 0 18 4.029 18 9 C 18 13.971 13.971 18 9 18 C 4.029 18 0 13.971 0 9 Z" fill="transparent" height="18px" id="RTBQYONr5" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--ico-sw, 1.5)" stroke="var(--ico-color, rgb(0, 0, 0))" transform="translate(3 3)" width="18px"/><path d="M 0 0 L 7.5 0" fill="transparent" height="1px" id="NNVWdHWHP" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--ico-sw, 1.5)" stroke="var(--ico-color, rgb(0, 0, 0))" transform="translate(8.25 12)" width="7.5px"/><path d="M 0 0 L 3 3 L 0 6" fill="transparent" height="6px" id="mMIXDa1F_" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--ico-sw, 1.5)" stroke="var(--ico-color, rgb(0, 0, 0))" transform="translate(12.75 9)" width="3px"/></svg></span>
+      </a>
+    </div>
+
+    <figure class="closing__ticket">
+      <img src="assets/img/bilhete-dourado-1000.webp"
+           srcset="assets/img/bilhete-dourado-560.webp 560w, assets/img/bilhete-dourado-1000.webp 1000w"
+           sizes="(max-width:809px) 100vw, 560px"
+           alt="Bilhete dourado da Fantástica Fábrica da HOF: Black Vitalícia Facial Academy, 19/10/26, 19h em ponto, no YouTube"
+           width="1000" height="747" loading="lazy" decoding="async">
+    </figure>
+  </section>
 
 </main>
 
