@@ -126,6 +126,36 @@ html.lenis,html.lenis body{height:auto}
    primeira dobra do celular. */
 .hero__logo img{width:369px;height:216px;object-fit:contain}
 
+/* ---------- Professores (recorte com fundo transparente) ----------
+   Desktop largo: três zonas (texto, professores, formulário). A largura do
+   recorte vem do vão entre o texto (470px) e o card (450px): os dois rostos
+   ficam inteiros e o card cobre só o ombro do Dr. Wagner (o rosto dele está
+   a 90% da largura da imagem, daí o /0.9). Ancorado no pé do hero e
+   esmaecido nos últimos 22%, sem corte reto. */
+.hero__people{
+  position:absolute;
+  bottom:0;
+  left:calc(48px + 470px + 10px);
+  width:calc((100% - 96px - 470px - 450px - 20px) / .9);
+  max-width:540px;
+  height:auto;
+  pointer-events:none;
+  -webkit-mask-image:linear-gradient(to bottom,#000 78%,transparent);
+  mask-image:linear-gradient(to bottom,#000 78%,transparent);
+}
+.hero__col,.hero__card{position:relative;z-index:1}
+@media (min-width:1360px){
+  .hero__inner{min-height:720px;justify-content:space-between}
+  .hero__col{flex:0 0 470px}
+  .hero__title{white-space:nowrap}
+  .hero__lead{max-width:30ch}
+}
+/* Entre 810 e 1359px o vão entre texto e card não comporta os dois rostos
+   inteiros (ficariam com menos de 430px de altura): o recorte fica de fora. */
+@media (min-width:810px) and (max-width:1359px){
+  .hero__people{display:none}
+}
+
 .hero__title{
   font-size:60px;
   font-weight:500;
@@ -669,6 +699,14 @@ html.lenis,html.lenis body{height:auto}
   .pill__label{font-size:14px}
 
   .hero__card{width:100%;padding:16px;gap:12px;border-radius:16px}
+  .hero__people{
+    position:static;
+    order:3;
+    width:min(92vw,420px);
+    height:auto;
+    max-height:none;
+    margin:6px auto -12px;
+  }
   .card__title{font-size:18px}
   .card__note p{font-size:12px;line-height:1.4}
 
