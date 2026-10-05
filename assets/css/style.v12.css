@@ -331,18 +331,16 @@ main{position:relative;isolation:isolate;overflow-x:clip}
 
 /* =========================================================================
    VITALÍCIA NÃO É FORÇA DE EXPRESSÃO
-   Desktop: a frase desce em escada e a foto da Dra. Camila com os bilhetes
-   ocupa o vão abaixo de "Vitalícia não é", ao lado do texto. Tablet e
-   celular: uma coluna (frase, foto, texto).
+   Camadas, como na referência do Eddie: a foto da Dra. Camila com os
+   bilhetes fica atrás, entre as duas metades da frase. "Vitalícia não é"
+   passa por cima do canto superior esquerdo dela e "força de expressão."
+   pelo lado direito; o texto corrido vem abaixo, na coluna da direita.
    ========================================================================= */
 .vital__inner{
+  --d:112px;                       /* tamanho da frase */
   display:grid;
-  grid-template-columns:minmax(0,1fr) 680px;
-  grid-template-areas:
-    "a    a"
-    "foto b"
-    "foto copy";
-  column-gap:56px;
+  grid-template-columns:repeat(12,minmax(0,1fr));
+  column-gap:24px;
   align-items:start;
   width:100%;
   max-width:1440px;
@@ -350,25 +348,39 @@ main{position:relative;isolation:isolate;overflow-x:clip}
   padding:80px 48px 96px;
 }
 .vital__display{
-  font-size:112px;
+  position:relative;
+  z-index:1;
+  font-size:var(--d);
   font-weight:500;
   line-height:1;
   letter-spacing:-.02em;
   color:var(--white);
+  /* Sombra larga e fraca: só ajuda a leitura onde a frase cruza a foto. */
+  text-shadow:0 2px 28px rgba(6,0,13,.45);
 }
-.vital__display--a{grid-area:a;max-width:3.96em}
-.vital__display--b{grid-area:b}
-.vital__photo{grid-area:foto;margin:20px 0 0}
-/* A foto some no fundo pelas bordas, sem moldura. */
-.vital__photo img{
-  width:100%;
-  height:auto;
-  -webkit-mask-image:linear-gradient(to right,transparent,#000 12%,#000 88%,transparent),linear-gradient(to bottom,transparent,#000 12%,#000 84%,transparent);
-  -webkit-mask-composite:source-in;
-  mask-image:linear-gradient(to right,transparent,#000 12%,#000 88%,transparent),linear-gradient(to bottom,transparent,#000 12%,#000 84%,transparent);
-  mask-composite:intersect;
+.vital__display--a{grid-column:1 / span 7;grid-row:1;max-width:3.96em}
+.vital__display--b{grid-column:7 / span 6;grid-row:2}
+.vital__photo{
+  grid-column:3 / span 6;
+  grid-row:1 / span 2;
+  position:relative;
+  margin:calc(var(--d) * .6) 0 0;
+  border-radius:20px;
+  overflow:hidden;
 }
-.vital__copy{grid-area:copy;max-width:540px;margin-top:32px}
+.vital__photo img{width:100%;height:auto;filter:saturate(.9) brightness(.8)}
+/* Escurece só onde a frase passa por cima (esquerda em cima e lado direito):
+   branco sobre os bilhetes amarelos não se lê. */
+.vital__photo::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(to right,rgba(6,0,13,.66),rgba(6,0,13,0) 32%,rgba(6,0,13,0) 44%,rgba(6,0,13,.66) 64%,rgba(6,0,13,.9) 100%),
+    linear-gradient(to bottom,rgba(6,0,13,.42),rgba(6,0,13,0) 30%);
+  pointer-events:none;
+}
+.vital__copy{grid-column:7 / span 5;grid-row:3;position:relative;z-index:1;max-width:540px;margin-top:40px}
 .vital__copy p{
   font-size:18px;
   font-weight:400;
@@ -784,15 +796,8 @@ main{position:relative;isolation:isolate;overflow-x:clip}
   .reasons__num{font-size:80px}
   .reason{font-size:21px}
 
-  /* Uma coluna: frase, foto, texto (a escada só funciona com largura). */
-  .vital__inner{
-    grid-template-columns:1fr;
-    grid-template-areas:"a" "b" "foto" "copy";
-    padding:72px 40px 88px;
-  }
-  .vital__display{font-size:80px}
-  .vital__display--a{max-width:none}
-  .vital__photo{max-width:640px;margin-top:32px}
+  .vital__inner{--d:80px;padding:72px 40px 88px}
+  .vital__copy{grid-column:7 / span 6}
 
   /* Duas colunas também no tablet: em uma, o texto acabava na metade da
      tela e sobravam ~480px vazios à direita (monitor vertical de 1080px). */
@@ -865,10 +870,16 @@ main{position:relative;isolation:isolate;overflow-x:clip}
   .reasons__num{font-size:64px}
   .reason{font-size:18px;padding:16px 0}
 
-  .vital__inner{padding:64px 16px 72px}
-  .vital__display{font-size:48px}
-  .vital__photo{margin:28px -16px 0;max-width:none}
-  .vital__copy{max-width:none;margin-top:24px}
+  /* Uma coluna, mantendo as camadas: "Vitalícia não é" encosta no topo da
+     foto e "força de expressão." (à direita) cruza a parte de baixo dela. */
+  .vital__inner{--d:48px;grid-template-columns:1fr;padding:64px 16px 72px}
+  .vital__display--a{grid-column:1;grid-row:1;max-width:none}
+  .vital__photo{grid-column:1;grid-row:2;margin:-12px 0 0;border-radius:16px}
+  .vital__photo::after{
+    background:linear-gradient(to bottom,rgba(6,0,13,.45),rgba(6,0,13,0) 24%,rgba(6,0,13,0) 50%,rgba(6,0,13,.78) 100%);
+  }
+  .vital__display--b{grid-column:1;grid-row:3;margin-top:calc(var(--d) * -1.15);justify-self:end;text-align:right}
+  .vital__copy{grid-column:1;grid-row:4;max-width:none;margin-top:28px}
   .vital__copy p{font-size:16px}
   .vital__copy .vital__payoff{font-size:30px}
 
