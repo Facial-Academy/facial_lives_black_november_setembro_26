@@ -101,11 +101,19 @@ html.lenis,html.lenis body{height:auto}
    deixa o transbordo vertical, que é o que mistura uma seção com a outra. */
 main{position:relative;isolation:isolate;overflow-x:clip}
 .hero,.reasons,.vital,.session,.closing{position:relative}
-.hero::after,.reasons::before,.vital::before,.session::before,.closing::before{
+.hero::before,.hero::after,.reasons::before,.vital::before,.session::before,.closing::before{
   content:"";
   position:absolute;
   z-index:-1;
   pointer-events:none;
+}
+/* Ponte entre o hero e a lista: a imagem de luz do hero acaba no pé dele e
+   a luz da lista começava mais abaixo, o que deixava um vale escuro de ~100px
+   (luminância caindo de 22 para 2 na lateral). Esta faixa roxa, sem borda,
+   cobre a passagem. */
+.hero::before{
+  left:0;right:0;top:55%;height:calc(45% + 55vh);
+  background:linear-gradient(to bottom,rgba(76,22,150,0),rgba(76,22,150,.30) 38%,rgba(76,22,150,.12) 70%,rgba(76,22,150,0));
 }
 /* O roxo do hero escorre para dentro da lista. */
 .hero::after{
@@ -115,7 +123,7 @@ main{position:relative;isolation:isolate;overflow-x:clip}
 .reasons::before{
   inset:-25% -10%;
   background:
-    radial-gradient(46% 44% at 80% 55%,var(--luz-ameixa),transparent 72%),
+    radial-gradient(50% 48% at 80% 42%,var(--luz-ameixa),transparent 72%),
     radial-gradient(40% 38% at 12% 35%,rgba(112,38,206,.20),transparent 72%);
 }
 /* A frase fica quase no escuro: é a respiração da página. */
@@ -145,11 +153,11 @@ main{position:relative;isolation:isolate;overflow-x:clip}
   justify-content:center;
   width:100%;
 }
-/* A luz roxa do hero se dissolve no fundo ao longo de 60% da altura dele. */
+/* A luz roxa do hero se dissolve no fundo ao longo de 70% da altura dele. */
 .hero__bg{
   position:absolute;inset:0;z-index:-1;pointer-events:none;
-  -webkit-mask-image:linear-gradient(to bottom,#000 40%,transparent);
-  mask-image:linear-gradient(to bottom,#000 40%,transparent);
+  -webkit-mask-image:linear-gradient(to bottom,#000 30%,transparent);
+  mask-image:linear-gradient(to bottom,#000 30%,transparent);
 }
 .hero__bg img{width:100%;height:100%;object-fit:cover}
 
@@ -274,7 +282,7 @@ main{position:relative;isolation:isolate;overflow-x:clip}
   width:100%;
   max-width:1440px;
   margin:0 auto;
-  padding:184px 48px 168px;
+  padding:184px 48px 120px;
 }
 .reasons__head{display:flex;flex-direction:column;gap:20px}
 .reasons__title{
@@ -328,7 +336,7 @@ main{position:relative;isolation:isolate;overflow-x:clip}
   align-items:center;
   width:100%;
   max-width:1200px;
-  padding:120px 48px 136px;
+  padding:96px 48px 136px;
 }
 .vital__stack{
   display:flex;
