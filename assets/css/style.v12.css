@@ -329,43 +329,47 @@ html.lenis,html.lenis body{height:auto}
 }
 .reasons__head{display:flex;flex-direction:column;gap:20px;width:100%}
 .reasons__title{
-  max-width:658px;
-  font-size:36px;
+  max-width:760px;
+  font-size:52px;
   font-weight:500;
   line-height:1.1;
   letter-spacing:-.04em;
   color:var(--white);
 }
 .reasons__sub{
-  font-size:16px;
+  font-size:18px;
   font-weight:400;
   line-height:1.5;
   color:var(--white);
 }
 
-.reasons__row{display:flex;gap:16px;width:100%}
-.reason{position:relative;flex:1 1 0;min-width:0;padding:32px 24px}
-.reason:not(:last-child)::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  border-right:1px solid rgba(255,255,255,.1);
-  pointer-events:none;
+/* Lista editorial, não trio de cards: o "12 meses" repetido é o desenho.
+   Uma linha por item, número grande em dourado à esquerda, frase à direita,
+   fio fino entre os itens. */
+.reasons__row{display:flex;flex-direction:column;width:100%;max-width:1040px}
+.reason{border-top:1px solid rgba(255,255,255,.14)}
+.reason:last-child{border-bottom:1px solid rgba(255,255,255,.14)}
+.reason__inner{
+  display:grid;
+  grid-template-columns:minmax(0,340px) minmax(0,1fr);
+  align-items:baseline;
+  gap:8px 40px;
+  padding:28px 0;
 }
-.reason__inner{display:flex;flex-direction:column;gap:8px}
-.reason__icon{width:40px;height:40px}
 .reason h3{
-  font-size:28px;
+  font-size:56px;
   font-weight:500;
-  line-height:1.2;
-  letter-spacing:-.02em;
-  color:#fff;
+  line-height:1;
+  letter-spacing:-.04em;
+  color:var(--gold);
+  white-space:nowrap;
 }
 .reason p{
-  font-size:16px;
+  max-width:34ch;
+  font-size:20px;
   font-weight:400;
   line-height:1.4;
-  color:rgba(255,255,255,.7);
+  color:rgba(255,255,255,.82);
 }
 
 /* =========================================================================
@@ -609,13 +613,10 @@ html.lenis,html.lenis body{height:auto}
   .card__title{font-size:24px}
 
   .reasons{padding:64px 32px}
-  .reasons__title{font-size:32px}
-  /* 2 colunas em grade, com as duas linhas da mesma altura (igual ao original) */
-  .reasons__row{display:grid;grid-template-columns:repeat(2,1fr);grid-auto-rows:1fr;align-items:start;gap:16px}
-  .reason{flex:none;width:auto}
-  .reason:not(:last-child)::after{border-right:0;border-bottom:1px solid rgba(255,255,255,.1)}
-  .reason h3{font-size:24px}
-  .reason p{font-size:14px}
+  .reasons__title{font-size:44px}
+  .reason__inner{grid-template-columns:minmax(0,260px) minmax(0,1fr);gap:8px 32px}
+  .reason h3{font-size:44px}
+  .reason p{font-size:18px}
 
   .vital__inner{padding:64px 48px}
   .vital__stack{height:363px}
@@ -680,10 +681,11 @@ html.lenis,html.lenis body{height:auto}
 
   .reasons{padding:60px 16px;gap:40px}
   .reasons__head{gap:16px}
-  .reasons__title{font-size:24px;line-height:1.2}
-  .reasons__row{display:flex;flex-direction:column;flex-wrap:nowrap;gap:0}
-  .reason{flex:0 0 auto;width:100%;padding:16px 24px}
-  .reason h3{font-size:22px}
+  .reasons__title{font-size:32px;line-height:1.1}
+  .reasons__sub{font-size:16px}
+  .reason__inner{grid-template-columns:1fr;gap:6px;padding:22px 0}
+  .reason h3{font-size:40px}
+  .reason p{font-size:16px}
 
   .vital__inner{padding:64px 16px}
   .vital__stack{height:313px}
