@@ -538,9 +538,15 @@ main{position:relative;isolation:isolate;overflow-x:clip}
   flex:none;
   padding:40px;
   border-radius:20px;
-  background:var(--card-bg);
-  -webkit-backdrop-filter:blur(45px);
-  backdrop-filter:blur(45px);
+  /* Vidro: com blur de 45px tudo atrás virava uma cor lisa e o card parecia
+     chapado. Com 18px as formas de trás (a luz roxa, o ombro do Dr. Wagner)
+     aparecem borradas; saturate realça a cor que passa pelo vidro, e a borda
+     clara de 1px com o brilho no topo marcam a placa. */
+  background:linear-gradient(160deg,rgba(255,255,255,.12),rgba(255,255,255,.03) 45%),var(--card-bg);
+  border:1px solid rgba(255,255,255,.16);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 24px 60px rgba(4,0,12,.45);
+  -webkit-backdrop-filter:blur(18px) saturate(150%);
+  backdrop-filter:blur(18px) saturate(150%);
 }
 .card__title{
   width:100%;
@@ -611,7 +617,7 @@ main{position:relative;isolation:isolate;overflow-x:clip}
   transition:filter .25s var(--ease);
 }
 /* A pulsação só começa depois que a página termina de carregar.
-   O botão fica dentro do .hero__card, que tem backdrop-filter: blur(45px) —
+   O botão fica dentro do .hero__card, que tem backdrop-filter (blur) —
    animar ali durante o carregamento custa caro em celular fraco e foi o que
    derrubou LCP e TBT no PageSpeed. Depois do load ela não disputa com nada e
    a pessoa vê o efeito do mesmo jeito. */
