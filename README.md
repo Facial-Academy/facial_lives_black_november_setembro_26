@@ -31,7 +31,7 @@ _headers                         política de cache (ver "Cache e nomes de arqui
 assets/css/style.v12.css         estilos da captura, @font-face da Silka, intl-tel-input
                                  e breakpoints (≥1200 / 810-1199 / ≤809), as mesmas
                                  quebras do site original
-assets/css/obrigado.v6.css       estilos da página de obrigado
+assets/css/obrigado.v7.css       estilos da página de obrigado
 assets/js/main.v6.js             scroll suave, revelações e formulário
 assets/js/lh-rastreio.v2.js      IP, localização, pixel e id do visitante no cadastro
 assets/js/lh-interacoes.v2-1.js  formulário começado/enviado/abandonado e cliques
@@ -39,7 +39,7 @@ assets/js/lenis.min.js           scroll suave (mesma lib usada no site original)
 assets/js/intlTelInput.min.js    campo de telefone internacional (build base)
 assets/js/intlTelInputUtils.js   validação do número, carregada sob demanda
 assets/fonts/Silka*.woff2        família Silka (5 pesos)
-assets/img/fa-bfriday26.svg      marca do topo da captura
+assets/img/fa-bfriday26.svg      marca do topo das duas páginas
 assets/img/                      imagens de fundo, logos e bandeiras do seletor de país
 ```
 

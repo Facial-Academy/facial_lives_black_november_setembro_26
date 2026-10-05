@@ -1,7 +1,7 @@
 # Cloudflare Pages — política de cache
 #
 # Fontes e imagens: conteúdo estável sob o mesmo nome. Quando um deles muda,
-# o arquivo entra com outro nome (ex.: logo-fabrica-hof-612.webp), então pode
+# o arquivo entra com outro nome (ex.: fa-bfriday26.svg), então pode
 # ficar em cache longo com segurança.
 /assets/fonts/*
   Cache-Control: public, max-age=31536000, immutable

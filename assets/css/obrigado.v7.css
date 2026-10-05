@@ -53,7 +53,9 @@ body::before{
 main{position:relative;width:100%;max-width:560px;text-align:center}
 
 /* ===== LOCKUP ===== */
-.lockup{width:min(268px,62vw);height:auto;display:block;margin:0 auto 22px}
+/* Marca fa-bfriday26.svg, mais larga que a anterior: a largura cresce 1,206x
+   para manter a mesma altura, e a página continua cabendo numa dobra. */
+.lockup{width:min(323px,74.8vw);height:auto;display:block;margin:0 auto 22px}
 
 h1{
   font-size:clamp(34px,8.6vw,54px);line-height:1.08;letter-spacing:-.03em;font-weight:700;
@@ -122,7 +124,7 @@ h1{
 /* telas baixas: tudo precisa caber sem rolagem */
 @media (max-height:740px){
   body{padding:18px 18px 22px}
-  .lockup{width:min(196px,48vw);margin-bottom:14px}
+  .lockup{width:min(236px,57.9vw);margin-bottom:14px}
   h1{font-size:clamp(30px,7.6vw,38px);margin-bottom:10px}
   .sub{font-size:15px;margin-bottom:18px;line-height:1.45}
   .card{padding:16px;border-radius:20px}
