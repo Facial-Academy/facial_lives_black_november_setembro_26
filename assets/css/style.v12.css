@@ -50,7 +50,7 @@
   /* Luzes do fundo: roxo do Wonka, ameixa e o dourado do bilhete. */
   --luz-roxa:rgba(112,38,206,.30);
   --luz-ameixa:rgba(160,52,146,.26);
-  --luz-dourada:rgba(236,196,133,.13);
+  --luz-dourada:rgba(236,196,133,.18);
 
   /* Matiz e saturação do verde do WhatsApp, com a luminosidade baixada até o
      texto branco passar no contraste: 4,70:1 no início do gradiente, 7,67:1
@@ -121,7 +121,9 @@ main{position:relative;isolation:isolate;overflow-x:clip}
    cobre a passagem. */
 .hero::before{
   left:0;right:0;top:55%;height:calc(45% + 55vh);
-  background:linear-gradient(to bottom,rgba(76,22,150,0),rgba(76,22,150,.30) 38%,rgba(76,22,150,.12) 70%,rgba(76,22,150,0));
+  /* Platô longo (28% a 62%): a luz do hero termina de esmaecer dentro dele,
+     sem queda de luminosidade no pé do hero em nenhuma largura. */
+  background:linear-gradient(to bottom,rgba(76,22,150,0),rgba(76,22,150,.36) 28%,rgba(76,22,150,.32) 62%,rgba(76,22,150,.14) 82%,rgba(76,22,150,0));
 }
 /* O roxo do hero escorre para dentro da lista. */
 .hero::after{
@@ -228,22 +230,13 @@ main{position:relative;isolation:isolate;overflow-x:clip}
 .hero__lead strong{color:#fff}
 
 /* ---------- Professores (recorte com fundo transparente) ----------
-   Somem no fundo pelos últimos 30% (sem corte reto no pé). A legenda fica
-   sobre essa parte já escura. */
+   Somem no fundo pelos últimos 30% (sem corte reto no pé). */
 .hero__people{position:relative;margin:0;pointer-events:none}
 .hero__people img{
   width:100%;
   height:auto;
   -webkit-mask-image:linear-gradient(to bottom,#000 70%,transparent);
   mask-image:linear-gradient(to bottom,#000 70%,transparent);
-}
-.hero__people figcaption{
-  position:absolute;
-  left:0;right:0;bottom:16px;
-  font-size:13px;
-  line-height:1.3;
-  text-align:center;
-  color:var(--text-soft);
 }
 .hero__col,.hero__card{position:relative;z-index:1}
 
@@ -288,8 +281,8 @@ main{position:relative;isolation:isolate;overflow-x:clip}
 
 /* =========================================================================
    UMA VEZ POR ANO
-   Título à esquerda, lista editorial à direita: o "12 meses" repetido é o
-   desenho (número grande em dourado, frase ao lado, fio fino entre itens).
+   Título à esquerda. À direita, "12 meses" uma vez só, grande e em dourado,
+   e as três frases (o que muda) em branco, com fio fino entre elas.
    ========================================================================= */
 .reasons{
   display:grid;
@@ -299,13 +292,13 @@ main{position:relative;isolation:isolate;overflow-x:clip}
   width:100%;
   max-width:1440px;
   margin:0 auto;
-  padding:184px 48px 120px;
+  padding:184px 48px 96px;
 }
 .reasons__head{display:flex;flex-direction:column;gap:20px}
 .reasons__title{
-  font-size:52px;
+  font-size:44px;
   font-weight:500;
-  line-height:1.08;
+  line-height:1.1;
   letter-spacing:-.04em;
   color:var(--white);
 }
@@ -314,59 +307,48 @@ main{position:relative;isolation:isolate;overflow-x:clip}
   line-height:1.5;
   color:var(--text-soft);
 }
-.reasons__list{list-style:none;padding:0;border-top:1px solid var(--line)}
-.reason{
-  display:grid;
-  grid-template-columns:minmax(0,300px) minmax(0,1fr);
-  align-items:baseline;
-  gap:6px 36px;
-  padding:30px 0;
-  border-bottom:1px solid var(--line);
-}
-.reason__num{
-  font-size:56px;
+.reasons__body{display:flex;flex-direction:column;gap:16px}
+.reasons__num{
+  font-size:96px;
   font-weight:500;
   line-height:1;
   letter-spacing:-.04em;
   color:var(--gold);
-  white-space:nowrap;
+  font-variant-numeric:tabular-nums;
+  /* Alinhamento óptico: em 96px o "1" tem ~15px de respiro à esquerda e o
+     número parecia recuado em relação à lista. */
+  margin-left:-.06em;
 }
-.reason p{
-  max-width:30ch;
-  font-size:20px;
-  line-height:1.4;
-  color:var(--text-soft);
+.reasons__list{list-style:none;padding:0;border-top:1px solid var(--line)}
+.reason{
+  padding:22px 0;
+  border-bottom:1px solid var(--line);
+  font-size:24px;
+  line-height:1.35;
+  letter-spacing:-.01em;
+  color:#fff;
 }
 
 /* =========================================================================
    VITALÍCIA NÃO É FORÇA DE EXPRESSÃO
+   Desktop: a frase desce em escada e a foto da Dra. Camila com os bilhetes
+   ocupa o vão abaixo de "Vitalícia não é", ao lado do texto. Tablet e
+   celular: uma coluna (frase, foto, texto).
    ========================================================================= */
-.vital{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  width:100%;
-}
 .vital__inner{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 680px;
+  grid-template-areas:
+    "a    a"
+    "foto b"
+    "foto copy";
+  column-gap:56px;
+  align-items:start;
   width:100%;
-  max-width:1200px;
-  padding:96px 48px 104px;
+  max-width:1440px;
+  margin:0 auto;
+  padding:80px 48px 96px;
 }
-.vital__stack{
-  display:flex;
-  flex-direction:column;
-  align-items:flex-start;
-  justify-content:space-between;
-  width:100%;
-}
-.vital__row{display:flex;align-items:center;gap:8px;width:100%;min-height:240px}
-.vital__row .vital__display{width:3.96em}
-.vital__end{display:flex;flex-direction:column;align-items:flex-end;width:100%}
-.vital__endinner{display:flex;flex-direction:column;align-items:flex-start;gap:20px;width:5.97em;font-size:112px}
-.vital__endinner .vital__display{font-size:1em}
 .vital__display{
   font-size:112px;
   font-weight:500;
@@ -374,15 +356,36 @@ main{position:relative;isolation:isolate;overflow-x:clip}
   letter-spacing:-.02em;
   color:var(--white);
 }
-.vital__copy{max-width:447px}
+.vital__display--a{grid-area:a;max-width:3.96em}
+.vital__display--b{grid-area:b}
+.vital__photo{grid-area:foto;margin:20px 0 0}
+/* A foto some no fundo pelas bordas, sem moldura. */
+.vital__photo img{
+  width:100%;
+  height:auto;
+  -webkit-mask-image:linear-gradient(to right,transparent,#000 12%,#000 88%,transparent),linear-gradient(to bottom,transparent,#000 12%,#000 84%,transparent);
+  -webkit-mask-composite:source-in;
+  mask-image:linear-gradient(to right,transparent,#000 12%,#000 88%,transparent),linear-gradient(to bottom,transparent,#000 12%,#000 84%,transparent);
+  mask-composite:intersect;
+}
+.vital__copy{grid-area:copy;max-width:540px;margin-top:32px}
 .vital__copy p{
-  font-size:17px;
+  font-size:18px;
   font-weight:400;
   line-height:1.5;
   color:var(--text-soft);
 }
 .vital__copy p + p{margin-top:20px}
-.vital__copy .is-medium{font-weight:500;color:#fff}
+/* A resposta à frase grande: o que você aprende fica. */
+.vital__copy .vital__payoff{
+  margin-top:28px;
+  font-size:40px;
+  font-weight:500;
+  line-height:1.1;
+  letter-spacing:-.03em;
+  color:#fff;
+}
+.vital__copy .vital__payoff + p{margin-top:28px}
 
 /* =========================================================================
    A SESSÃO
@@ -397,7 +400,7 @@ main{position:relative;isolation:isolate;overflow-x:clip}
   width:100%;
   max-width:1440px;
   margin:0 auto;
-  padding:112px 48px 120px;
+  padding:104px 48px;
 }
 .session__photo img{
   width:100%;
@@ -437,19 +440,19 @@ main{position:relative;isolation:isolate;overflow-x:clip}
 }
 
 /* =========================================================================
-   PRA SEMPRE COM VOCÊ (fechamento)
-   Texto à esquerda e o bilhete dourado à direita. O veludo preto da foto
-   some no fundo pelas bordas: o bilhete aparece sob um foco de luz.
+   BILHETE DOURADO (fechamento)
+   Texto à esquerda e o bilhete recortado à direita, com sombra, sob a luz
+   dourada da seção. No celular o bilhete vem primeiro.
    ========================================================================= */
 .closing{
   display:grid;
-  grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr);
   align-items:center;
   gap:56px;
   width:100%;
-  max-width:1200px;
+  max-width:1440px;
   margin:0 auto;
-  padding:112px 48px 144px;
+  padding:96px 48px 128px;
 }
 .closing__text{display:flex;flex-direction:column;align-items:flex-start;gap:28px}
 .closing__title{
@@ -459,7 +462,7 @@ main{position:relative;isolation:isolate;overflow-x:clip}
   letter-spacing:-.04em;
   color:var(--white);
 }
-.closing__copy{max-width:34em}
+.closing__copy{max-width:30em}
 .closing__copy p{
   font-size:18px;
   font-weight:400;
@@ -467,15 +470,12 @@ main{position:relative;isolation:isolate;overflow-x:clip}
   letter-spacing:-.01em;
   color:var(--text-soft);
 }
-.closing__copy p + p{margin-top:16px}
-.closing__ticket{margin:0}
+.closing__ticket{margin:0;display:flex;justify-content:center}
 .closing__ticket img{
   width:100%;
+  max-width:540px;
   height:auto;
-  -webkit-mask-image:linear-gradient(to right,transparent,#000 12%,#000 88%,transparent),linear-gradient(to bottom,transparent,#000 16%,#000 84%,transparent);
-  -webkit-mask-composite:source-in;
-  mask-image:linear-gradient(to right,transparent,#000 12%,#000 88%,transparent),linear-gradient(to bottom,transparent,#000 16%,#000 84%,transparent);
-  mask-composite:intersect;
+  filter:drop-shadow(0 30px 40px rgba(0,0,0,.55));
 }
 
 /* ---------- Botão ----------
@@ -537,7 +537,6 @@ main{position:relative;isolation:isolate;overflow-x:clip}
   line-height:1;
   color:#f2f2f2;
 }
-.fa-field label span{margin-left:2px;color:var(--purple)}
 .fa-control{position:relative}
 .fa-icon{
   position:absolute;
@@ -563,7 +562,8 @@ main{position:relative;isolation:isolate;overflow-x:clip}
   outline:none;
   transition:border-color .2s var(--ease);
 }
-.fa-input::placeholder{color:rgba(255,255,255,.45)}
+/* 60%: com 45% o placeholder ficava em 4,29:1 e reprovava. */
+.fa-input::placeholder{color:rgba(255,255,255,.6)}
 .fa-input:focus{border-color:var(--purple)}
 .fa-input.is-invalid{border-color:#e2555d}
 
@@ -593,15 +593,11 @@ main{position:relative;isolation:isolate;overflow-x:clip}
 .carregada .fa-submit{
   animation:pulsarEnvio 2.2s ease-in-out infinite;
 }
+/* Só o halo pulsa: o botão não cresce (crescendo, ficava mais largo que os
+   campos a cada ciclo). */
 @keyframes pulsarEnvio{
-  0%,100%{
-    transform:scale(1);
-    box-shadow:0 10px 26px rgba(18,140,70,.4), 0 0 0 0 rgba(37,211,102,.5);
-  }
-  50%{
-    transform:scale(1.025);
-    box-shadow:0 12px 30px rgba(18,140,70,.5), 0 0 0 14px rgba(37,211,102,0);
-  }
+  0%,100%{box-shadow:0 10px 26px rgba(18,140,70,.4), 0 0 0 0 rgba(37,211,102,.45)}
+  50%{box-shadow:0 12px 30px rgba(18,140,70,.5), 0 0 0 12px rgba(37,211,102,0)}
 }
 /* Ao interagir a pulsação para, e durante o envio também: o botão fica
    desabilitado e não faz sentido continuar chamando atenção. */
@@ -698,7 +694,7 @@ main{position:relative;isolation:isolate;overflow-x:clip}
   color:rgba(255,255,255,.8);
 }
 
-.footer__bottom{padding:40px 0 112px}
+.footer__bottom{padding:40px 0 calc(48px + env(safe-area-inset-bottom))}
 .footer__bottom p{
   font-size:15px;
   font-weight:400;
@@ -783,26 +779,28 @@ main{position:relative;isolation:isolate;overflow-x:clip}
   .hero__lead{font-size:16px}
   .card__title{font-size:24px}
 
-  .reasons{grid-template-columns:1fr;gap:48px;padding:152px 40px 136px}
-  .reasons__title{font-size:44px}
-  .reason{grid-template-columns:minmax(0,260px) minmax(0,1fr);gap:6px 32px}
-  .reason__num{font-size:46px}
-  .reason p{font-size:18px}
+  .reasons{grid-template-columns:1fr;gap:40px;padding:152px 40px 88px}
+  .reasons__title{font-size:38px}
+  .reasons__num{font-size:80px}
+  .reason{font-size:21px}
 
-  .vital__inner{padding:104px 48px 120px}
-  .vital__stack{height:363px}
-  .vital__display,.vital__endinner{font-size:56px}
-  .vital__row{min-height:0}
-  .vital__row .vital__display,.vital__endinner{width:7.18em}
-  .vital__copy{max-width:388px}
-  .vital__copy p{font-size:16px}
+  /* Uma coluna: frase, foto, texto (a escada só funciona com largura). */
+  .vital__inner{
+    grid-template-columns:1fr;
+    grid-template-areas:"a" "b" "foto" "copy";
+    padding:72px 40px 88px;
+  }
+  .vital__display{font-size:80px}
+  .vital__display--a{max-width:none}
+  .vital__photo{max-width:640px;margin-top:32px}
 
-  .session{grid-template-columns:1fr;gap:28px;padding:104px 40px}
-  .session__photo{max-width:760px}
+  /* Duas colunas também no tablet: em uma, o texto acabava na metade da
+     tela e sobravam ~480px vazios à direita (monitor vertical de 1080px). */
+  .session{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px;padding:96px 40px}
   .session__title{font-size:38px}
 
-  .closing{padding:104px 40px 128px;gap:40px}
-  .closing__title{font-size:36px}
+  .closing{padding:88px 40px 120px;gap:40px}
+  .closing__title{font-size:38px}
   .closing__copy p{font-size:17px}
 
   .footer{padding:96px 32px 0}
@@ -812,7 +810,6 @@ main{position:relative;isolation:isolate;overflow-x:clip}
   .footer__legal{align-items:flex-start;width:100%}
   .footer__legal > *{width:auto}
   .footer__mid{gap:48px}
-  .footer__bottom{padding:40px 0 144px}
 }
 
 /* =========================================================================
@@ -837,54 +834,53 @@ main{position:relative;isolation:isolate;overflow-x:clip}
     align-items:center;text-align:center;width:100%;gap:10px;
   }
   .hero__logo img{width:160px;height:94px}
-  .hero__title{font-size:30px;text-align:center;line-height:1.1}
+  /* O H1 é o maior texto da tela (era 30px, menor que os títulos das seções). */
+  .hero__title{font-size:36px;text-align:center;line-height:1.08}
   .hero__date{font-size:14px;text-align:center}
-  .hero__lead{font-size:13px;text-align:center;line-height:1.4;max-width:36ch}
+  .hero__lead{font-size:15px;text-align:center;line-height:1.4;max-width:34ch}
   .eyebrow{font-size:15px}
 
   .hero__card{width:100%;padding:16px;gap:12px;border-radius:16px}
-  .card__title{font-size:18px}
-  .card__next{font-size:12px;text-align:center}
+  .card__title{font-size:20px}
+  .card__next{font-size:13px}
   .hero__people{
     order:3;
     width:min(92vw,420px);
     margin:6px auto -12px;
   }
-  .hero__people figcaption{font-size:12px;bottom:24px}
 
-  .fa-form{padding:12px;border-radius:8px}
+  /* Sem recuo próprio: título, rótulos, campos e nota no mesmo alinhamento. */
+  .fa-form{padding:0}
   .fa-field{margin-bottom:10px}
-  .fa-field label{font-size:12px;margin-bottom:5px}
+  .fa-field label{font-size:13px;margin-bottom:5px}
   .fa-input{height:44px;font-size:16px;padding:10px 12px 10px 40px}
   .fa-icon{left:12px}
   .fa-submit{padding:13px 20px;font-size:16px;margin-top:6px}
 
-  .reasons{padding:104px 16px 88px;gap:36px}
-  .reasons__head{gap:16px}
-  .reasons__title{font-size:32px;line-height:1.1}
+  .reasons{padding:96px 16px 64px;gap:28px}
+  .reasons__head{gap:14px}
+  .reasons__title{font-size:30px;line-height:1.1}
   .reasons__sub{font-size:16px}
-  .reason{grid-template-columns:1fr;gap:6px;padding:22px 0}
-  .reason__num{font-size:40px}
-  .reason p{font-size:16px}
+  .reasons__body{gap:10px}
+  .reasons__num{font-size:64px}
+  .reason{font-size:18px;padding:16px 0}
 
-  .vital__inner{padding:80px 16px 88px}
-  /* No celular a frase é um bloco só: mesma entrelinha nas três linhas. */
-  .vital__stack{height:auto;justify-content:flex-start}
-  .vital__row{min-height:0}
-  .vital__display,.vital__endinner{font-size:48px}
-  .vital__row .vital__display,.vital__endinner{width:100%}
-  .vital__end{align-items:flex-start}
-  .vital__copy{max-width:none}
+  .vital__inner{padding:64px 16px 72px}
+  .vital__display{font-size:48px}
+  .vital__photo{margin:28px -16px 0;max-width:none}
+  .vital__copy{max-width:none;margin-top:24px}
+  .vital__copy p{font-size:16px}
+  .vital__copy .vital__payoff{font-size:30px}
 
-  .session{padding:88px 16px;gap:24px}
+  .session{grid-template-columns:1fr;gap:24px;padding:72px 16px 64px}
   .session__photo{margin:0 -16px}
   .session__title{font-size:30px;line-height:1.12}
   .step{grid-template-columns:1fr;gap:2px;padding:16px 0}
   .step p{font-size:16px}
 
   /* Bilhete primeiro (é o gancho visual), texto e botão depois. */
-  .closing{grid-template-columns:1fr;gap:20px;padding:64px 16px 96px}
-  .closing__ticket{order:-1;margin:0 -16px}
+  .closing{grid-template-columns:1fr;gap:24px;padding:48px 16px 80px}
+  .closing__ticket{order:-1}
   .closing__text{gap:22px}
   .closing__title{font-size:30px;line-height:1.12}
   .closing__copy p{font-size:16px}
@@ -902,7 +898,6 @@ main{position:relative;isolation:isolate;overflow-x:clip}
   .footer__inner > *{width:100%}
   .footer__mid{flex-direction:column;gap:48px}
   .footer__block{max-width:none}
-  .footer__bottom{padding:40px 0 144px}
 }
 
 /* =========================================================================
@@ -914,10 +909,10 @@ main{position:relative;isolation:isolate;overflow-x:clip}
   .hero__inner{gap:12px;padding:10px 16px}
   .hero__col{gap:8px}
   .hero__logo img{width:128px;height:75px}
-  .hero__title{font-size:27px}
-  .hero__lead{font-size:12px}
+  .hero__title{font-size:30px}
+  .hero__lead{font-size:13px}
   .hero__card{padding:14px;gap:10px}
-  .card__title{font-size:17px}
-  .card__next{font-size:11px}
+  .card__title{font-size:18px}
+  .card__next{font-size:12px}
   .fa-field{margin-bottom:8px}
 }
