@@ -117,11 +117,11 @@ Cabe em uma dobra sem rolagem (conferido em 360x640, 375x667, 390x844 e 1440x900
 ## Primeira dobra no celular
 
 No celular o hero ocupa ao menos a altura da tela (`100svh`) e o formulário
-inteiro (data, três campos e botão) cabe sem rolagem. Marca com 110px de altura
-(88px em telas de até 680px de altura), título 30px, campos de 44px.
+inteiro (data, três campos e botão) cabe sem rolagem. Marca com 94px de altura
+(75px em telas de até 680px de altura), título 30px, campos de 44px.
 
-Conferido em 05/10/2026 (página reformulada): o botão termina em 544px em
-360x640, 595px em 390x844 e 524px em 1440x900. Abaixo dele, no celular, aparecem
+Conferido em 05/10/2026 (página reformulada, marca menor): o botão termina em
+531px em 360x640, 579px em 390x844 e 524px em 1440x900. Abaixo dele, no celular, aparecem
 os professores.
 
 ## Cache e nomes de arquivo
