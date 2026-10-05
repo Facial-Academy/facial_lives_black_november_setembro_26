@@ -7,6 +7,14 @@
 @font-face{font-family:'Silka';font-style:normal;font-weight:500;font-display:swap;src:url("../fonts/SilkaMedium.woff2") format("woff2")}
 @font-face{font-family:'Silka';font-style:normal;font-weight:600;font-display:swap;src:url("../fonts/SilkaSemiBold.woff2") format("woff2")}
 @font-face{font-family:'Silka';font-style:normal;font-weight:700;font-display:swap;src:url("../fonts/SilkaBold.woff2") format("woff2")}
+/* POPPINS: reserva da Silka, como no design system (Silka, Poppins, system-ui).
+   Arquivos locais (latin, ~8 KB cada) para valer mesmo onde a Poppins não está
+   instalada. O navegador só baixa se a Silka não carregar. */
+@font-face{font-family:'Poppins';font-style:normal;font-weight:300;font-display:swap;src:url("../fonts/PoppinsLight.woff2") format("woff2")}
+@font-face{font-family:'Poppins';font-style:normal;font-weight:400;font-display:swap;src:url("../fonts/PoppinsRegular.woff2") format("woff2")}
+@font-face{font-family:'Poppins';font-style:normal;font-weight:500;font-display:swap;src:url("../fonts/PoppinsMedium.woff2") format("woff2")}
+@font-face{font-family:'Poppins';font-style:normal;font-weight:600;font-display:swap;src:url("../fonts/PoppinsSemiBold.woff2") format("woff2")}
+@font-face{font-family:'Poppins';font-style:normal;font-weight:700;font-display:swap;src:url("../fonts/PoppinsBold.woff2") format("woff2")}
 
 
 /* ============================================================================
@@ -32,7 +40,7 @@
      7,71:1 no fim. No #25D366 puro o branco ficava em 1,98:1. */
   --verde-1:#178540;         /* início do gradiente do botão */
   --verde-2:#11602E;         /* fim do gradiente             */
-  --font:'Silka',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  --font:'Silka','Poppins',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
 }
 *{box-sizing:border-box}
 body{
