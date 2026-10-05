@@ -51,7 +51,8 @@
   --verde-1:#178540;
   --verde-2:#11602E;
 
-  --ease:cubic-bezier(.44,0,.56,1);
+  /* ease-out: tudo que entra desacelera no fim, nada de vai-e-vem. */
+  --ease:cubic-bezier(.22,1,.36,1);
 }
 
 /* ---------- Reset ---------- */
@@ -597,7 +598,7 @@ html.lenis,html.lenis body{height:auto}
 /* =========================================================================
    ANIMAÇÕES
    ========================================================================= */
-.js .anim{opacity:.001;transform:translateY(20px);will-change:transform,opacity}
+.js .anim,.js .anim-words{opacity:.001;transform:translateY(20px)}
 
 /* O hero entra por CSS, sem depender do JS.
    Antes ele era revelado no evento load — que só dispara depois de todo o
@@ -618,29 +619,37 @@ html.lenis,html.lenis body{height:auto}
 .hero .anim[data-delay="160"]{animation-delay:160ms}
 .hero .anim[data-delay="200"]{animation-delay:200ms}
 .hero .anim[data-delay="240"]{animation-delay:240ms}
-.js .anim.is-in{
+.js .anim.is-in,.js .anim-words.is-in{
   opacity:1;
   transform:none;
   transition:opacity .7s var(--ease),transform .7s var(--ease);
 }
 
-/* Revelação palavra a palavra (blur-in) */
-.js .anim-words .word{
-  display:inline-block;
-  opacity:.001;
-  filter:blur(10px);
-  transform:translateY(10px);
-  will-change:transform,opacity,filter;
+/* Revelação ligada à rolagem: cada bloco termina de entrar quando chega ao
+   centro da tela (cover 50%), e volta se a pessoa rolar para cima. Só onde o
+   navegador suporta; nos outros vale a entrada acima, disparada pelo JS. */
+@supports (animation-timeline:view()){
+  @media (prefers-reduced-motion:no-preference){
+    .js :is(.band,.vital) :is(.anim,.anim-words){
+      opacity:1;
+      transform:none;
+      transition:none;
+      /* Linear de propósito: aqui a curva mapeia a posição da rolagem, não o
+         tempo. Com ease-out o bloco ficava 98% visível ainda no terço de
+         baixo da tela; linear termina de fato no centro. */
+      animation:revela linear both;
+      animation-timeline:view();
+      animation-range:entry 0% cover 50%;
+    }
+  }
 }
-.js .anim-words.is-in .word{
-  opacity:1;
-  filter:blur(0px);
-  transform:none;
-  transition:opacity .6s var(--ease),filter .6s var(--ease),transform .6s var(--ease);
+@keyframes revela{
+  from{opacity:0;transform:translateY(24px)}
+  to{opacity:1;transform:none}
 }
 
 @media (prefers-reduced-motion:reduce){
-  .anim,.anim-words .word,.js .anim,.js .anim-words .word,.hero .anim{opacity:1!important;transform:none!important;filter:none!important;transition:none!important;animation:none!important}
+  .anim,.anim-words,.js .anim,.js .anim-words,.hero .anim{opacity:1!important;transform:none!important;transition:none!important;animation:none!important}
   .fa-submit{animation:none!important;transform:none!important}
 }
 

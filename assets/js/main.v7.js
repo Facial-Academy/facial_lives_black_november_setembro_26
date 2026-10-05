@@ -1,6 +1,6 @@
 /* =========================================================================
    Facial Academy — Black Vitalícia
-   Scroll suave (Lenis) + revelação por palavra + formulário
+   Scroll suave (Lenis) + revelação por bloco + formulário
    ========================================================================= */
 (function () {
   'use strict';
@@ -38,41 +38,9 @@
   }
 
   /* ---------------------------------------------------------------------
-     2. Quebra de texto em palavras (efeito blur-in escalonado)
-     --------------------------------------------------------------------- */
-  var STAGGER = 40; // ms entre palavras
-
-  function splitWords(el) {
-    var walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, null);
-    var nodes = [];
-    while (walker.nextNode()) nodes.push(walker.currentNode);
-
-    nodes.forEach(function (node) {
-      if (!node.nodeValue.trim()) return;
-      var frag = document.createDocumentFragment();
-      node.nodeValue.split(/(\s+)/).forEach(function (chunk) {
-        if (!chunk) return;
-        if (/^\s+$/.test(chunk)) {
-          frag.appendChild(document.createTextNode(chunk));
-        } else {
-          var span = document.createElement('span');
-          span.className = 'word';
-          span.textContent = chunk;
-          frag.appendChild(span);
-        }
-      });
-      node.parentNode.replaceChild(frag, node);
-    });
-
-    el.querySelectorAll('.word').forEach(function (w, i) {
-      w.style.transitionDelay = (i * STAGGER) + 'ms';
-    });
-  }
-
-  document.querySelectorAll('.anim-words').forEach(splitWords);
-
-  /* ---------------------------------------------------------------------
-     3. Revelação ao entrar na viewport
+     2. Revelação ao entrar na viewport
+     Onde o navegador suporta animation-timeline, o CSS faz a revelação pela
+     rolagem e este bloco só adiciona .is-in, sem efeito visual.
      --------------------------------------------------------------------- */
   function reveal(el) {
     if (el.classList.contains('is-in')) return;
@@ -151,7 +119,7 @@
   };
 
   /* ---------------------------------------------------------------------
-     4. Campo de telefone internacional (padrão Brasil +55)
+     3. Campo de telefone internacional (padrão Brasil +55)
      --------------------------------------------------------------------- */
   var phone = document.querySelector('#fa-phone');
   var iti = null;
@@ -174,7 +142,7 @@
   }
 
   /* ---------------------------------------------------------------------
-     5. Envio do formulário
+     4. Envio do formulário
      --------------------------------------------------------------------- */
   var form = document.querySelector('#fa-form');
   if (!form) return;
