@@ -42,6 +42,7 @@
   --purple-deep:#3e1968;    /* borda / gradiente      */
   --purple-ink:#190141;     /* fundo dos inputs       */
   --peach:#ffca9b;          /* ícones da seção 2      */
+  --gold:#ecc485;           /* dourado do selo da marca fa-bfriday26 */
   --card-bg:rgba(99,19,191,.16);
 
   /* Matiz e saturação do verde do WhatsApp, com a luminosidade baixada até o
@@ -140,26 +141,21 @@ html.lenis,html.lenis body{height:auto}
   color:#fff;
 }
 
-/* ---------- Pílula (badge) ---------- */
+/* ---------- Rótulo de seção ----------
+   Era uma pílula de vidro com roxo sobre roxo (3,6:1, reprovava no
+   contraste). Agora é texto no dourado do selo da marca, sem cápsula. */
 .pill{
   display:inline-flex;
   align-items:center;
   gap:8px;
-  padding:8px 16px;
-  border-radius:100px;
-  background:rgba(255,255,255,.05);
-  -webkit-backdrop-filter:blur(10px);
-  backdrop-filter:blur(10px);
 }
 .pill__label{
   font-size:16px;
-  font-weight:400;
+  font-weight:500;
   line-height:1.4;
-  letter-spacing:.05em;
-  color:var(--purple);
+  color:var(--gold);
   white-space:nowrap;
 }
-.pill__label--upper{text-transform:uppercase}
 
 /* =========================================================================
    CARD DO FORMULÁRIO
@@ -668,7 +664,6 @@ html.lenis,html.lenis body{height:auto}
   .hero__logo img{width:154px;height:90px}
   .hero__title{font-size:30px;text-align:center;line-height:1.1}
   .hero__lead{font-size:13px;text-align:center;line-height:1.4;max-width:34ch}
-  .pill{padding:6px 14px}
   .pill__label{font-size:14px}
 
   .hero__card{width:100%;padding:16px;gap:12px;border-radius:16px}
