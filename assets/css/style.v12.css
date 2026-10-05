@@ -677,7 +677,7 @@ html.lenis,html.lenis body{height:auto}
   .vital__row{min-height:0}
   .vital__row .vital__display,.vital__endinner{width:7.18em}
   .vital__copy{max-width:388px}
-  .vital__copy p{font-size:14px}
+  .vital__copy p{font-size:16px}
 
   .cta{padding:96px 32px;gap:40px}
   .cta__title{font-size:36px}
@@ -748,7 +748,9 @@ html.lenis,html.lenis body{height:auto}
   .reason p{font-size:16px}
 
   .vital__inner{padding:64px 16px}
-  .vital__stack{height:313px}
+  /* No celular a frase é um bloco só: mesma entrelinha nas três linhas
+     (a altura fixa abria 31px a mais entre a 1ª e a 2ª). */
+  .vital__stack{height:auto;justify-content:flex-start}
   .vital__row{min-height:0}
   .vital__display,.vital__endinner{font-size:48px}
   .vital__row .vital__display,.vital__endinner{width:100%}
