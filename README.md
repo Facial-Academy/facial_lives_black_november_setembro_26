@@ -30,12 +30,15 @@ index.html                         captura: hero, 3 seções e rodapé
 obrigado.html                      página de obrigado (entrada no grupo de WhatsApp)
 captura-google.html                cópia da captura para o Google Ads (/captura-google)
 obrigado-google.html               cópia do obrigado para o Google Ads (/obrigado-google)
+v2.html                            captura B do teste A/B por anúncio (/v2, ver abaixo)
 _headers                           política de cache (ver "Cache e nomes de arquivo")
 assets/css/style.v12.css           estilos da captura, @font-face (Silka e Poppins),
                                    intl-tel-input e breakpoints (≥1200 / 810-1199 / ≤809)
 assets/css/obrigado.v7.css         estilos da página de obrigado
 assets/js/main.v7.js               scroll suave, revelação de fallback e formulário
 assets/js/main-google.v7-1.js      main.v7.js da captura-google: manda para /obrigado-google
+assets/css/style-b.v1.css          estilos da v2 (base da A + layout próprio)
+assets/js/main-b.v1.js             main da v2: pop-up do formulário e pagina_captura B
 assets/js/conversao-google.v1.js   Lead e CompleteRegistration nas páginas do Google (ver abaixo)
 assets/js/lh-rastreio.v2.js        IP, localização, pixel e id do visitante no cadastro
 assets/js/lh-interacoes.v2-1.js    formulário começado/enviado/abandonado e cliques
@@ -257,6 +260,39 @@ domínio e o `black26.event_id`, não o caminho. O registro da sessão é o mesm
 tag (`fa_black26_accepted_v1`): se um dia ela também rodar nessas páginas, na
 captura ela intercepta o envio antes do `main-google`, e no obrigado o primeiro a
 tratar o clique marca o evento como enviado e o outro não repete.
+
+## Captura B (/v2)
+
+Teste A/B de captura, dividido por anúncio (08/10/2026). Mesmo formulário, mesmo
+LeadHero e mesmo `/obrigado` da página A; muda o conteúdo (copy dos slides) e o
+layout. Fica fora do índice (`noindex`).
+
+- O corpo enviado ao LeadHero leva `pagina_captura: "B"`; o campo `URL` (do
+  `lh-rastreio`) também traz o `/v2`.
+- A conversão `fa_black_lead` sai pelo `conversao-google.v1.js` (a tag 268 não
+  roda em `/v2`). O registro de sessão é o mesmo da tag, então no `/obrigado` a
+  tag 268 conta o clique no grupo como em qualquer cadastro da A.
+- Cronômetro até 19/10/2026, 19h de Brasília (22h UTC), só horas, minutos e
+  segundos; o script fica inline logo depois dele.
+- Os botões "Garantir acesso vitalício" fora do hero têm `data-abre-cadastro`:
+  o `main-b` move o card do hero para um `<dialog>` e devolve ao fechar (um
+  formulário só). Sem JS, o link leva ao `#cadastro`.
+- A lista de países do telefone abre dentro do card (`useFullscreenPopup:
+  false`): no padrão do celular ela abriria presa ao `<body>`, atrás do pop-up.
+- Fotos: originais da pasta `Design - Eddie/Framer/Pagina Facial Academy/assets`,
+  só recortadas no procedimento e convertidas para WebP: IMG-65 no fundo do
+  hero (`aplicacao-fundo-*`), IMG-106 na Vitalícia, IMG-62 nos cursos, IMG-11
+  na sessão. Capas: as 13 de `Black Vitalicia - Framer/assets/capas`, em 360x480.
+- Movimento: entrada do hero por tempo (só deslocamento, por causa do LCP);
+  o resto ligado à rolagem (`animation-timeline`), terminando no meio da
+  tela. A foto do hero tem parallax (rolagem e mouse); a "esteira" de capas
+  logo abaixo do hero anda sozinha só na tela e depois do load. Mouse/trackpad:
+  luz nos grupos de cursos, capas e bilhete inclinam. Tudo para com
+  `prefers-reduced-motion`; no Firefox, a revelação é por bloco (main-b).
+- Luzes de fundo: cada degradê apaga antes da borda da própria caixa (72% do
+  raio). Se a luz encostar na borda, aparece uma linha seca entre seções.
+
+Mudança no formulário ou no rastreio da A precisa ser repetida aqui.
 
 ## Observações
 

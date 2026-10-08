@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="pt-BR" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Black Vitalícia | Facial Academy</title>
+<!-- Página B da captura (teste A/B por anúncio). Mesmo formulário, mesmo
+     LeadHero e mesmo /obrigado da página A; muda o conteúdo e o layout.
+     Fora do índice: na busca vale a página A. -->
+<meta name="robots" content="noindex">
+<meta name="description" content="A Black Vitalícia da Facial Academy vai ser revelada ao vivo no dia 19 de outubro, às 19h. Entre na lista e receba o link da transmissão pelo WhatsApp.">
+<link rel="preload" as="image"
+      href="/assets/img/fa-bfriday26-320.webp"
+      imagesrcset="/assets/img/fa-bfriday26-320.webp 320w, /assets/img/fa-bfriday26-480.webp 480w"
+      imagesizes="(max-width:809px) 112px, 180px"
+      fetchpriority="high">
+<!-- No desktop, a foto do fundo do hero ocupa a maior área da primeira tela. -->
+<link rel="preload" as="image" media="(min-width:960px)"
+      href="/assets/img/aplicacao-fundo-1600.webp"
+      imagesrcset="/assets/img/aplicacao-fundo-960.webp 960w, /assets/img/aplicacao-fundo-1600.webp 1600w"
+      imagesizes="75vw">
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s);j.async=true;j.src="https://load.tracker.jornada.facialacademy.com.br/3lowpxeupapq.js?"+i;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','ebz98l2r=GBRcNyEoVSQzPVU%2BLScpVgdNU15EQxweTBYAExwEFBESEQUVGBxWEx4dTxIH');</script>
+<!-- End Google Tag Manager -->
+
+<link rel="icon" href="/assets/img/logo-facialacademy.svg">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Black Vitalícia | Facial Academy">
+<meta property="og:description" content="A Black Vitalícia da Facial Academy vai ser revelada ao vivo no dia 19 de outubro, às 19h. Entre na lista e receba o link da transmissão pelo WhatsApp.">
+
+<link rel="preconnect" href="https://tracker.jornada.facialacademy.com.br" crossorigin>
+<link rel="preconnect" href="https://ilzpqehbbxvmogorpfma.supabase.co" crossorigin>
+<link rel="preconnect" href="https://capi-automation.s3.us-east-2.amazonaws.com" crossorigin>
+
+<link rel="preload" as="font" type="font/woff2" href="/assets/fonts/SilkaMedium.woff2" crossorigin>
+<link rel="preload" as="font" type="font/woff2" href="/assets/fonts/SilkaRegular.woff2" crossorigin>
+<link rel="stylesheet" href="/assets/css/style-b.v1.css">
+</head>
+<body>
+<script>document.body.classList.add("js");</script>
+
+<main>
+
+  <!-- ============ HERO ============
+       Dois níveis: no alto, a marca e o cronômetro; embaixo, título e texto
+       à esquerda e o formulário à direita. Ao fundo, a foto da aplicação
+       (IMG-65), apagada do lado do texto e no pé, com parallax na rolagem e
+       no mouse. -->
+  <section id="hero-section" class="hero">
+    <div class="hero__fundo" aria-hidden="true">
+      <img src="/assets/img/aplicacao-fundo-1600.webp"
+           srcset="/assets/img/aplicacao-fundo-960.webp 960w, /assets/img/aplicacao-fundo-1600.webp 1600w"
+           sizes="(max-width:959px) 100vw, 75vw"
+           alt="" width="1600" height="1632" decoding="async">
+    </div>
+    <div class="hero__luz" aria-hidden="true"></div>
+
+    <div class="hero__top">
+      <div class="hero__logo anim" data-delay="0">
+        <img src="/assets/img/fa-bfriday26-480.webp"
+             srcset="/assets/img/fa-bfriday26-320.webp 320w, /assets/img/fa-bfriday26-480.webp 480w"
+             sizes="(max-width:809px) 112px, 180px"
+             alt="Facial Academy Black Vitalícia" width="180" height="105"
+             fetchpriority="high" decoding="async">
+      </div>
+
+      <!-- Só horas, minutos e segundos (as horas passam de 24). A data vai
+           no texto logo abaixo. -->
+      <div class="timer anim" data-delay="80">
+        <p class="timer__label" id="timer-label">A live começa em</p>
+        <p class="timer__clock" role="timer" aria-labelledby="timer-label">
+          <span class="timer__unit"><span class="timer__num" data-cron="h">--</span><span class="timer__cap">horas</span></span><span class="timer__sep" aria-hidden="true">:</span><span class="timer__unit"><span class="timer__num" data-cron="m">--</span><span class="timer__cap">min</span></span><span class="timer__sep" aria-hidden="true">:</span><span class="timer__unit"><span class="timer__num" data-cron="s">--</span><span class="timer__cap">seg</span></span>
+        </p>
+        <p class="timer__date">A Fantástica Fábrica da HOF · <strong>19 de outubro, às 19h</strong></p>
+      </div>
+      <!-- Roda aqui, e não no main-b, para o primeiro quadro já sair com o
+           tempo certo (o main-b é defer). 19h de Brasília = 22h UTC; o
+           Brasil não tem horário de verão desde 2019. Cada dígito é um
+           <span>; o que muda entra rolando de baixo (sem movimento reduzido). -->
+      <script>(function(){var A=Date.UTC(2026,9,19,22,0,0),d=document,rm=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches,E={},V={};['h','m','s'].forEach(function(k){E[k]=d.querySelector('[data-cron="'+k+'"]')});function p(n){return n<10?'0'+n:''+n}function poe(k,v){var e=E[k],o=V[k]||'',i,x;if(o.length!==v.length){e.textContent='';for(i=0;i<v.length;i++){x=d.createElement('span');x.className='timer__d';x.textContent=v[i];e.appendChild(x)}}else{for(i=0;i<v.length;i++){if(o[i]!==v[i]){x=e.children[i];x.textContent=v[i];if(!rm&&x.animate)x.animate([{transform:'translateY(100%)'},{transform:'none'}],{duration:450,easing:'cubic-bezier(.22,1,.36,1)'})}}}V[k]=v}function t(){var r=Math.max(0,Math.floor((A-Date.now())/1000));poe('h',p(Math.floor(r/3600)));poe('m',p(Math.floor(r%3600/60)));poe('s',p(r%60));if(r>0){setTimeout(t,1000-Date.now()%1000)}else{d.getElementById('timer-label').textContent='A live começou'}}t()})();</script>
+    </div>
+
+    <div class="hero__text">
+      <h1 class="hero__title"><span class="w" style="--w:0">Você</span> <span class="w" style="--w:1">nunca</span> <span class="w" style="--w:2">mais</span> <span class="w" style="--w:3">vai</span> <span class="w" style="--w:4">precisar</span> <span class="w" style="--w:5">gastar</span> <em class="w" style="--w:6">nenhum centavo</em> <span class="w" style="--w:7">em</span> <span class="w" style="--w:8">cursos</span> <span class="w" style="--w:9">de</span> <span class="w" style="--w:10">HOF</span></h1>
+
+      <p class="hero__lead anim" data-delay="160">Você vai ter acesso a <strong>todos os nossos cursos online de harmonização facial</strong> pelo resto da vida, inclusive cursos que ainda nem criamos.</p>
+
+      <p class="hero__note anim" data-delay="200"><svg class="i" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true" focusable="false"><path d="M53.92,34.62A8,8,0,1,0,42.08,45.38L61.32,66.55C25,88.84,9.38,123.2,8.69,124.76a8,8,0,0,0,0,6.5c.35.79,8.82,19.57,27.65,38.4C61.43,194.74,93.12,208,128,208a127.11,127.11,0,0,0,52.07-10.83l22,24.21a8,8,0,1,0,11.84-10.76Zm47.33,75.84,41.67,45.85a32,32,0,0,1-41.67-45.85ZM128,192c-30.78,0-57.67-11.19-79.93-33.25A133.16,133.16,0,0,1,25,128c4.69-8.79,19.66-33.39,47.35-49.38l18,19.75a48,48,0,0,0,63.66,70l14.73,16.2A112,112,0,0,1,128,192Zm6-95.43a8,8,0,0,1,3-15.72,48.16,48.16,0,0,1,38.77,42.64,8,8,0,0,1-7.22,8.71,6.39,6.39,0,0,1-.75,0,8,8,0,0,1-8-7.26A32.09,32.09,0,0,0,134,96.57Zm113.28,34.69c-.42.94-10.55,23.37-33.36,43.8a8,8,0,1,1-10.67-11.92A132.77,132.77,0,0,0,231.05,128a133.15,133.15,0,0,0-23.12-30.77C185.67,75.19,158.78,64,128,64a118.37,118.37,0,0,0-19.36,1.57A8,8,0,1,1,106,49.79,134,134,0,0,1,128,48c34.88,0,66.57,13.26,91.66,38.35,18.83,18.83,27.3,37.62,27.65,38.41A8,8,0,0,1,247.31,131.26Z"/></svg><span>O que está aqui ainda não é tudo. O que entra, quanto custa e como funciona, você só vê ao vivo, no dia 19/10.</span></p>
+    </div>
+
+    <!-- A vaga segura a altura do card enquanto ele está no pop-up. -->
+    <div class="hero__slot">
+      <div class="hero__card anim" id="cadastro" data-delay="120">
+        <h2 class="card__title" id="card-titulo">Entre na lista</h2>
+
+        <form class="fa-form" id="fa-form" novalidate>
+          <div class="fa-field">
+            <label for="fa-name">Nome completo</label>
+            <div class="fa-control">
+              <span class="fa-icon"><svg viewBox="0 0 256 256" width="18" height="18" fill="var(--purple)" aria-hidden="true" focusable="false"><path d="M230.92,212c-15.23-26.33-38.7-45.21-66.09-54.16a72,72,0,1,0-73.66,0C63.78,166.78,40.31,185.66,25.08,212a8,8,0,1,0,13.85,8c18.84-32.56,52.14-52,89.07-52s70.23,19.44,89.07,52a8,8,0,1,0,13.85-8ZM72,96a56,56,0,1,1,56,56A56.06,56.06,0,0,1,72,96Z"/></svg></span>
+              <input type="text" id="fa-name" name="name" class="fa-input" placeholder="Digite seu nome" autocomplete="name">
+            </div>
+          </div>
+
+          <div class="fa-field">
+            <label for="fa-email">E-mail</label>
+            <div class="fa-control">
+              <span class="fa-icon"><svg viewBox="0 0 256 256" width="18" height="18" fill="var(--purple)" aria-hidden="true" focusable="false"><path d="M224,48H32a8,8,0,0,0-8,8V192a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A8,8,0,0,0,224,48Zm-96,85.15L52.57,64H203.43ZM98.71,128,40,181.81V74.19Zm11.84,10.85,12,11.05a8,8,0,0,0,10.82,0l12-11.05,58,53.15H52.57ZM157.29,128,216,74.18V181.82Z"/></svg></span>
+              <input type="email" id="fa-email" name="email" class="fa-input" placeholder="Digite seu e-mail" autocomplete="email">
+            </div>
+          </div>
+
+          <div class="fa-field">
+            <label for="fa-phone">WhatsApp</label>
+            <div class="fa-control">
+              <input type="tel" id="fa-phone" name="phone" class="fa-input" placeholder="Digite seu WhatsApp" autocomplete="tel">
+            </div>
+          </div>
+
+          <button type="submit" class="fa-submit">Garantir acesso vitalício</button>
+          <p class="fa-message" role="status" aria-live="polite"></p>
+        </form>
+
+        <p class="card__next">Depois do cadastro, você entra no grupo do WhatsApp onde o link da live é enviado. Grupo silencioso, só avisos.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ESTEIRA DA FÁBRICA ============
+       Faixa de transição: as capas dos cursos passando em perspectiva.
+       Decorativa (aria-hidden); só anda na tela e depois do load. -->
+  <div class="esteira" aria-hidden="true">
+    <div class="wall__plane">
+          <div class="wall__row" style="--dur:66s"><img src="/assets/img/capa-expert-labios-360.webp" alt="" width="360" height="480" decoding="async"><img src="/assets/img/capa-fa-11-bioestimuladores-360.webp" alt="" width="360" height="480" decoding="async"><img src="/assets/img/capa-fa-12-intercorrencias-360.webp" alt="" width="360" height="480" decoding="async"><img src="/assets/img/capa-fa-13-facial-ia-360.webp" alt="" width="360" height="480" decoding="async"><img src="/assets/img/capa-fa-3-facial-planning-360.webp" alt="" width="360" height="480" decoding="async"><img src="/assets/img/capa-fa-4-ultraformer-360.webp" alt="" width="360" height="480" decoding="async"><img src="/assets/img/capa-fa-5-profhilo-360.webp" alt="" width="360" height="480" decoding="async"><img src="/assets/img/capa-expert-labios-360.webp" alt="" width="360" height="480" decoding="async"><img src="/assets/img/capa-fa-11-bioestimuladores-360.webp" alt="" width="360" height="480" decoding="async"><img src="/assets/img/capa-fa-12-intercorrencias-360.webp" alt="" width="360" height="480" decoding="async"><img src="/assets/img/capa-fa-13-facial-ia-360.webp" alt="" width="360" height="480" decoding="async"><img src="/assets/img/capa-fa-3-facial-planning-360.webp" alt="" width="360" height="480" decoding="async"><img src="/assets/img/capa-fa-4-ultraformer-360.webp" alt="" width="360" height="480" decoding="async"><img src="/assets/img/capa-fa-5-profhilo-360.webp" alt="" width="360" height="480" decoding="async"><img src="/assets/img/capa-expert-labios-360.webp" alt="" width="360" height="480" decoding="async"><img src="/assets/img/capa-fa-11-bioestimuladores-360.webp" alt="" width="360" height="480" decoding="async"><img src="/assets/img/capa-fa-12-intercorrencias-360.webp" alt="" width="360" height="480" decoding="async"><img src="/assets/img/capa-fa-13-facial-ia-360.webp" alt="" width="360" height="480" decoding="async"><img src="/assets/img/capa-fa-3-facial-planning-360.webp" alt="" width="360" height="480" decoding="async"><img src="/assets/img/capa-fa-4-ultraformer-360.webp" alt="" width="360" height="480" decoding="async"><img src="/assets/img/capa-fa-5-profhilo-360.webp" alt="" width="360" height="480" decoding="async"><img src="/assets/img/capa-expert-labios-360.webp" alt="" width="360" height="480" decoding="async"><img src="/assets/img/capa-fa-11-bioestimuladores-360.webp" alt="" width="360" height="480" decoding="async"><img src="/assets/img/capa-fa-12-intercorrencias-360.webp" alt="" width="360" height="480" decoding="async"><img src="/assets/img/capa-fa-13-facial-ia-360.webp" alt="" width="360" height="480" decoding="async"><img src="/assets/img/capa-fa-3-facial-planning-360.webp" alt="" width="360" height="480" decoding="async"><img src="/assets/img/capa-fa-4-ultraformer-360.webp" alt="" width="360" height="480" decoding="async"><img src="/assets/img/capa-fa-5-profhilo-360.webp" alt="" width="360" height="480" decoding="async"></div>
+          <div class="wall__row wall__row--rev" style="--dur:80s"><img src="/assets/img/capa-ctd-destaque-360.webp" alt="" width="360" height="480" decoding="async"><img src="/assets/img/capa-fa-7-marketing-criativo-360.webp" alt="" width="360" height="480" decoding="async"><img src="/assets/img/capa-fa-8-como-atrair-seguidores-360.webp" alt="" width="360" height="480" decoding="async"><img src="/assets/img/capa-facial-class-360.webp" alt="" width="360" height="480" decoding="async"><img src="/assets/img/capa-hp-capa-2026-360.webp" alt="" width="360" height="480" decoding="async"><img src="/assets/img/capa-v10x-capa-2026-360.webp" alt="" width="360" height="480" decoding="async"><img src="/assets/img/capa-fa-13-facial-ia-360.webp" alt="" width="360" height="480" decoding="async"><img src="/assets/img/capa-ctd-destaque-360.webp" alt="" width="360" height="480" decoding="async"><img src="/assets/img/capa-fa-7-marketing-criativo-360.webp" alt="" width="360" height="480" decoding="async"><img src="/assets/img/capa-fa-8-como-atrair-seguidores-360.webp" alt="" width="360" height="480" decoding="async"><img src="/assets/img/capa-facial-class-360.webp" alt="" width="360" height="480" decoding="async"><img src="/assets/img/capa-hp-capa-2026-360.webp" alt="" width="360" height="480" decoding="async"><img src="/assets/img/capa-v10x-capa-2026-360.webp" alt="" width="360" height="480" decoding="async"><img src="/assets/img/capa-fa-13-facial-ia-360.webp" alt="" width="360" height="480" decoding="async"><img src="/assets/img/capa-ctd-destaque-360.webp" alt="" width="360" height="480" decoding="async"><img src="/assets/img/capa-fa-7-marketing-criativo-360.webp" alt="" width="360" height="480" decoding="async"><img src="/assets/img/capa-fa-8-como-atrair-seguidores-360.webp" alt="" width="360" height="480" decoding="async"><img src="/assets/img/capa-facial-class-360.webp" alt="" width="360" height="480" decoding="async"><img src="/assets/img/capa-hp-capa-2026-360.webp" alt="" width="360" height="480" decoding="async"><img src="/assets/img/capa-v10x-capa-2026-360.webp" alt="" width="360" height="480" decoding="async"><img src="/assets/img/capa-fa-13-facial-ia-360.webp" alt="" width="360" height="480" decoding="async"><img src="/assets/img/capa-ctd-destaque-360.webp" alt="" width="360" height="480" decoding="async"><img src="/assets/img/capa-fa-7-marketing-criativo-360.webp" alt="" width="360" height="480" decoding="async"><img src="/assets/img/capa-fa-8-como-atrair-seguidores-360.webp" alt="" width="360" height="480" decoding="async"><img src="/assets/img/capa-facial-class-360.webp" alt="" width="360" height="480" decoding="async"><img src="/assets/img/capa-hp-capa-2026-360.webp" alt="" width="360" height="480" decoding="async"><img src="/assets/img/capa-v10x-capa-2026-360.webp" alt="" width="360" height="480" decoding="async"><img src="/assets/img/capa-fa-13-facial-ia-360.webp" alt="" width="360" height="480" decoding="async"></div>
+          <div class="wall__row" style="--dur:60s"><img src="/assets/img/capa-v10x-capa-2026-360.webp" alt="" width="360" height="480" decoding="async"><img src="/assets/img/capa-fa-3-facial-planning-360.webp" alt="" width="360" height="480" decoding="async"><img src="/assets/img/capa-fa-11-bioestimuladores-360.webp" alt="" width="360" height="480" decoding="async"><img src="/assets/img/capa-expert-labios-360.webp" alt="" width="360" height="480" decoding="async"><img src="/assets/img/capa-fa-12-intercorrencias-360.webp" alt="" width="360" height="480" decoding="async"><img src="/assets/img/capa-fa-7-marketing-criativo-360.webp" alt="" width="360" height="480" decoding="async"><img src="/assets/img/capa-fa-4-ultraformer-360.webp" alt="" width="360" height="480" decoding="async"><img src="/assets/img/capa-v10x-capa-2026-360.webp" alt="" width="360" height="480" decoding="async"><img src="/assets/img/capa-fa-3-facial-planning-360.webp" alt="" width="360" height="480" decoding="async"><img src="/assets/img/capa-fa-11-bioestimuladores-360.webp" alt="" width="360" height="480" decoding="async"><img src="/assets/img/capa-expert-labios-360.webp" alt="" width="360" height="480" decoding="async"><img src="/assets/img/capa-fa-12-intercorrencias-360.webp" alt="" width="360" height="480" decoding="async"><img src="/assets/img/capa-fa-7-marketing-criativo-360.webp" alt="" width="360" height="480" decoding="async"><img src="/assets/img/capa-fa-4-ultraformer-360.webp" alt="" width="360" height="480" decoding="async"><img src="/assets/img/capa-v10x-capa-2026-360.webp" alt="" width="360" height="480" decoding="async"><img src="/assets/img/capa-fa-3-facial-planning-360.webp" alt="" width="360" height="480" decoding="async"><img src="/assets/img/capa-fa-11-bioestimuladores-360.webp" alt="" width="360" height="480" decoding="async"><img src="/assets/img/capa-expert-labios-360.webp" alt="" width="360" height="480" decoding="async"><img src="/assets/img/capa-fa-12-intercorrencias-360.webp" alt="" width="360" height="480" decoding="async"><img src="/assets/img/capa-fa-7-marketing-criativo-360.webp" alt="" width="360" height="480" decoding="async"><img src="/assets/img/capa-fa-4-ultraformer-360.webp" alt="" width="360" height="480" decoding="async"><img src="/assets/img/capa-v10x-capa-2026-360.webp" alt="" width="360" height="480" decoding="async"><img src="/assets/img/capa-fa-3-facial-planning-360.webp" alt="" width="360" height="480" decoding="async"><img src="/assets/img/capa-fa-11-bioestimuladores-360.webp" alt="" width="360" height="480" decoding="async"><img src="/assets/img/capa-expert-labios-360.webp" alt="" width="360" height="480" decoding="async"><img src="/assets/img/capa-fa-12-intercorrencias-360.webp" alt="" width="360" height="480" decoding="async"><img src="/assets/img/capa-fa-7-marketing-criativo-360.webp" alt="" width="360" height="480" decoding="async"><img src="/assets/img/capa-fa-4-ultraformer-360.webp" alt="" width="360" height="480" decoding="async"></div>
+    </div>
+  </div>
+
+  <!-- ============ VITALÍCIA NÃO É FORÇA DE EXPRESSÃO ============
+       Na rolagem, o que tem prazo entra em branco e apaga depois de passar
+       do meio da tela; o infinito se desenha e o que fica acende em dourado. -->
+  <section class="vital" id="vitalicia">
+    <figure class="vital__photo anim">
+      <img src="/assets/img/camila-aplicacao-1200.webp"
+           srcset="/assets/img/camila-aplicacao-720.webp 720w, /assets/img/camila-aplicacao-1200.webp 1200w"
+           sizes="(max-width:809px) 100vw, 42vw"
+           alt="Dra. Camila Dias aplicando um procedimento de harmonização facial com seringa"
+           width="1200" height="1584" loading="lazy" decoding="async">
+    </figure>
+
+    <div class="vital__text">
+      <h2 class="vital__title" data-palavras><span class="w" style="--w:0">Vitalícia</span> <span class="w" style="--w:1">não</span> <span class="w" style="--w:2">é</span> <span class="w" style="--w:3">força</span> <span class="w" style="--w:4">de</span> <span class="w" style="--w:5">expressão.</span></h2>
+      <p class="vital__intro anim">Na harmonização facial, quase nada é pra sempre.</p>
+
+      <ul class="prazo" role="list">
+        <li class="prazo__item"><svg class="i" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true" focusable="false"><path d="M200,75.64V40a16,16,0,0,0-16-16H72A16,16,0,0,0,56,40V76a16.07,16.07,0,0,0,6.4,12.8L114.67,128,62.4,167.2A16.07,16.07,0,0,0,56,180v36a16,16,0,0,0,16,16H184a16,16,0,0,0,16-16V180.36a16.09,16.09,0,0,0-6.35-12.77L141.27,128l52.38-39.6A16.05,16.05,0,0,0,200,75.64ZM72,40H184V75.64L178.23,80H77.33L72,76Zm56,78L98.67,96h58.4Zm56,98H72V180l48-36v24a8,8,0,0,0,16,0V144.08l48,36.28Z"/></svg><span>Toxina tem prazo.</span></li>
+        <li class="prazo__item"><svg class="i" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true" focusable="false"><path d="M174,47.75a254.19,254.19,0,0,0-41.45-38.3,8,8,0,0,0-9.18,0A254.19,254.19,0,0,0,82,47.75C54.51,79.32,40,112.6,40,144a88,88,0,0,0,176,0C216,112.6,201.49,79.32,174,47.75ZM128,216a72.08,72.08,0,0,1-72-72c0-57.23,55.47-105,72-118,16.53,13,72,60.75,72,118A72.08,72.08,0,0,1,128,216Zm55.89-62.66a57.6,57.6,0,0,1-46.56,46.55A8.75,8.75,0,0,1,136,200a8,8,0,0,1-1.32-15.89c16.57-2.79,30.63-16.85,33.44-33.45a8,8,0,0,1,15.78,2.68Z"/></svg><span>Preenchimento é reabsorvido.</span></li>
+        <li class="prazo__item"><svg class="i" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true" focusable="false"><path d="M208,32H184V24a8,8,0,0,0-16,0v8H88V24a8,8,0,0,0-16,0v8H48A16,16,0,0,0,32,48V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V48A16,16,0,0,0,208,32ZM72,48v8a8,8,0,0,0,16,0V48h80v8a8,8,0,0,0,16,0V48h24V80H48V48ZM208,208H48V96H208V208Zm-50.34-74.34L139.31,152l18.35,18.34a8,8,0,0,1-11.32,11.32L128,163.31l-18.34,18.35a8,8,0,0,1-11.32-11.32L116.69,152,98.34,133.66a8,8,0,0,1,11.32-11.32L128,140.69l18.34-18.35a8,8,0,0,1,11.32,11.32Z"/></svg><span>O resultado que você entrega hoje, um dia vai embora.</span></li>
+      </ul>
+
+      <p class="vital__payoff"><svg class="infinito" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path pathLength="1" d="M12 12c-2-2.67-4-4-6-4a4 4 0 1 0 0 8c2 0 4-1.33 6-4zm0 0c2 2.67 4 4 6 4a4 4 0 0 0 0-8c-2 0-4 1.33-6 4z"/></svg><span>O que você aprende, não.</span></p>
+
+      <p class="vital__copy anim">Vitalícia quer dizer que a Facial Academy continua ali:</p>
+      <ul class="fica" role="list">
+        <li class="fica__item"><svg class="i" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true" focusable="false"><path d="M232,48H160a40,40,0,0,0-32,16A40,40,0,0,0,96,48H24a8,8,0,0,0-8,8V200a8,8,0,0,0,8,8H96a24,24,0,0,1,24,24,8,8,0,0,0,16,0,24,24,0,0,1,24-24h72a8,8,0,0,0,8-8V56A8,8,0,0,0,232,48ZM96,192H32V64H96a24,24,0,0,1,24,24V200A39.81,39.81,0,0,0,96,192Zm128,0H160a39.81,39.81,0,0,0-24,8V88a24,24,0,0,1,24-24h64ZM160,88h40a8,8,0,0,1,0,16H160a8,8,0,0,1,0-16Zm48,40a8,8,0,0,1-8,8H160a8,8,0,0,1,0-16h40A8,8,0,0,1,208,128Zm0,32a8,8,0,0,1-8,8H160a8,8,0,0,1,0-16h40A8,8,0,0,1,208,160Z"/></svg><span>na véspera de um atendimento, quando você precisa revisar;</span></li>
+        <li class="fica__item"><svg class="i" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true" focusable="false"><path d="M224,48V96a8,8,0,0,1-8,8H168a8,8,0,0,1,0-16h28.69L182.06,73.37a79.56,79.56,0,0,0-56.13-23.43h-.45A79.52,79.52,0,0,0,69.59,72.71,8,8,0,0,1,58.41,61.27a96,96,0,0,1,135,.79L208,76.69V48a8,8,0,0,1,16,0ZM186.41,183.29a80,80,0,0,1-112.47-.66L59.31,168H88a8,8,0,0,0,0-16H40a8,8,0,0,0-8,8v48a8,8,0,0,0,16,0V179.31l14.63,14.63A95.43,95.43,0,0,0,130,222.06h.53a95.36,95.36,0,0,0,67.07-27.33,8,8,0,0,0-11.18-11.44Z"/></svg><span>daqui a alguns anos, quando o mercado tiver mudado.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ A FÁBRICA DE CONHECIMENTO ============ -->
+  <section class="fabrica" id="cursos">
+    <!-- Uma grade só: título e foto do procedimento em cima; Formações à
+         esquerda e os outros três grupos empilhados à direita. -->
+    <div class="fabrica__grid">
+      <h2 class="fabrica__title" data-palavras><span class="w" style="--w:0">Você</span> <span class="w" style="--w:1">terá</span> <span class="w" style="--w:2">acesso</span> <span class="w" style="--w:3">a</span> <span class="w" style="--w:4">toda</span> <span class="w" style="--w:5">fábrica</span> <span class="w" style="--w:6">de</span> <span class="w" style="--w:7">conhecimento:</span></h2>
+      <figure class="fabrica__photo anim">
+        <img src="/assets/img/wagner-aplicacao-1200.webp"
+             srcset="/assets/img/wagner-aplicacao-720.webp 720w, /assets/img/wagner-aplicacao-1200.webp 1200w"
+             sizes="(max-width:809px) 100vw, 46vw"
+             alt="Dr. Wagner Baseggio aplicando um procedimento de harmonização facial: a mão enluvada no queixo da paciente e a seringa"
+             width="1200" height="900" loading="lazy" decoding="async">
+      </figure>
+
+      <article class="grupo grupo--formacoes anim" style="--n:0">
+        <span class="grupo__icon"><svg class="i" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true" focusable="false"><path d="M251.76,88.94l-120-64a8,8,0,0,0-7.52,0l-120,64a8,8,0,0,0,0,14.12L32,117.87v48.42a15.91,15.91,0,0,0,4.06,10.65C49.16,191.53,78.51,216,128,216a130,130,0,0,0,48-8.76V240a8,8,0,0,0,16,0V199.51a115.63,115.63,0,0,0,27.94-22.57A15.91,15.91,0,0,0,224,166.29V117.87l27.76-14.81a8,8,0,0,0,0-14.12ZM128,200c-43.27,0-68.72-21.14-80-33.71V126.4l76.24,40.66a8,8,0,0,0,7.52,0L176,143.47v46.34C163.4,195.69,147.52,200,128,200Zm80-33.75a97.83,97.83,0,0,1-16,14.25V134.93l16-8.53ZM188,118.94l-.22-.13-56-29.87a8,8,0,0,0-7.52,14.12L171,128l-43,22.93L25,96,128,41.07,231,96Z"/></svg></span>
+        <h3 class="grupo__title">Formações completas</h3>
+        <ul class="cursos" role="list">
+          <li>Expert em Lábios 2.0</li>
+          <li>Bioestimuladores PRO</li>
+          <li>Como atrair seguidores</li>
+          <li>Como captar e converter pacientes todos os dias</li>
+          <li>Facial Planning</li>
+          <li>Intercorrências na HOF</li>
+          <li>Marketing Criativo</li>
+          <li>Profhilo</li>
+          <li>Ultraformer</li>
+          <li>Vendas 10x</li>
+        </ul>
+      </article>
+
+      <article class="grupo grupo--eventos anim" style="--n:1">
+        <span class="grupo__icon"><svg class="i" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true" focusable="false"><path d="M216,40H40A16,16,0,0,0,24,56V200a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A16,16,0,0,0,216,40ZM40,88h80v80H40Zm96-16V56h32V72Zm-16,0H88V56h32Zm0,112v16H88V184Zm16,0h32v16H136Zm0-16V88h80v80Zm80-96H184V56h32ZM72,56V72H40V56ZM40,184H72v16H40Zm176,16H184V184h32v16Z"/></svg></span>
+        <h3 class="grupo__title">Gravações dos nossos eventos</h3>
+        <ul class="chips" role="list">
+          <li>Facial Experience</li>
+          <li>Workshops</li>
+          <li>Jornadas Full Face</li>
+        </ul>
+      </article>
+
+      <article class="grupo grupo--ia anim" style="--n:2">
+        <span class="grupo__icon"><svg class="i" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true" focusable="false"><path d="M152,96H104a8,8,0,0,0-8,8v48a8,8,0,0,0,8,8h48a8,8,0,0,0,8-8V104A8,8,0,0,0,152,96Zm-8,48H112V112h32Zm88,0H216V112h16a8,8,0,0,0,0-16H216V56a16,16,0,0,0-16-16H160V24a8,8,0,0,0-16,0V40H112V24a8,8,0,0,0-16,0V40H56A16,16,0,0,0,40,56V96H24a8,8,0,0,0,0,16H40v32H24a8,8,0,0,0,0,16H40v40a16,16,0,0,0,16,16H96v16a8,8,0,0,0,16,0V216h32v16a8,8,0,0,0,16,0V216h40a16,16,0,0,0,16-16V160h16a8,8,0,0,0,0-16Zm-32,56H56V56H200v95.87s0,.09,0,.13,0,.09,0,.13V200Z"/></svg></span>
+        <h3 class="grupo__title">Ferramentas de IA para HOF</h3>
+      </article>
+
+      <article class="grupo grupo--materiais anim" style="--n:3">
+        <span class="grupo__icon"><svg class="i" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true" focusable="false"><path d="M215.79,118.17a8,8,0,0,0-5-5.66L153.18,90.9l14.66-73.33a8,8,0,0,0-13.69-7l-112,120a8,8,0,0,0,3,13l57.63,21.61L88.16,238.43a8,8,0,0,0,13.69,7l112-120A8,8,0,0,0,215.79,118.17ZM109.37,214l10.47-52.38a8,8,0,0,0-5-9.06L62,132.71l84.62-90.66L136.16,94.43a8,8,0,0,0,5,9.06l52.8,19.8Z"/></svg></span>
+        <h3 class="grupo__title">Materiais de consumo rápido</h3>
+      </article>
+    </div>
+
+    <p class="fabrica__mais anim"><svg class="i" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true" focusable="false"><path d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z"/></svg><span>e mais: os cursos que ainda vamos criar no futuro!</span></p>
+
+    <!-- 13 capas e uma vaga tracejada para os cursos que ainda não existem. -->
+    <ul class="mosaico" role="list">
+      <li style="--i:0"><img src="/assets/img/capa-expert-labios-360.webp" alt="Capa do curso Expert em Lábios 2.0" width="360" height="480" loading="lazy" decoding="async"></li>
+      <li style="--i:1"><img src="/assets/img/capa-fa-11-bioestimuladores-360.webp" alt="Capa do curso Bioestimuladores PRO" width="360" height="480" loading="lazy" decoding="async"></li>
+      <li style="--i:2"><img src="/assets/img/capa-fa-12-intercorrencias-360.webp" alt="Capa do curso Intercorrências na HOF" width="360" height="480" loading="lazy" decoding="async"></li>
+      <li style="--i:3"><img src="/assets/img/capa-fa-13-facial-ia-360.webp" alt="Capa do curso Facial I.A." width="360" height="480" loading="lazy" decoding="async"></li>
+      <li style="--i:4"><img src="/assets/img/capa-fa-3-facial-planning-360.webp" alt="Capa do curso Facial Planning" width="360" height="480" loading="lazy" decoding="async"></li>
+      <li style="--i:5"><img src="/assets/img/capa-fa-4-ultraformer-360.webp" alt="Capa do curso Ultraformer micro e macrofocado" width="360" height="480" loading="lazy" decoding="async"></li>
+      <li style="--i:6"><img src="/assets/img/capa-fa-5-profhilo-360.webp" alt="Capa do curso Profhilo" width="360" height="480" loading="lazy" decoding="async"></li>
+      <li style="--i:0"><img src="/assets/img/capa-ctd-destaque-360.webp" alt="Capa do curso Como captar e converter pacientes todos os dias" width="360" height="480" loading="lazy" decoding="async"></li>
+      <li style="--i:1"><img src="/assets/img/capa-fa-7-marketing-criativo-360.webp" alt="Capa do curso Marketing Criativo" width="360" height="480" loading="lazy" decoding="async"></li>
+      <li style="--i:2"><img src="/assets/img/capa-fa-8-como-atrair-seguidores-360.webp" alt="Capa do curso Como atrair seguidores e transformá-los em pacientes" width="360" height="480" loading="lazy" decoding="async"></li>
+      <li style="--i:3"><img src="/assets/img/capa-facial-class-360.webp" alt="Capa da Facial Class" width="360" height="480" loading="lazy" decoding="async"></li>
+      <li style="--i:4"><img src="/assets/img/capa-hp-capa-2026-360.webp" alt="Capa do curso HArmonyCa Performance" width="360" height="480" loading="lazy" decoding="async"></li>
+      <li style="--i:5"><img src="/assets/img/capa-v10x-capa-2026-360.webp" alt="Capa do curso Vendas 10x" width="360" height="480" loading="lazy" decoding="async"></li>
+      <li class="mosaico__vaga" style="--i:6"><svg class="i" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true" focusable="false"><path d="M224,128a8,8,0,0,1-8,8H136v80a8,8,0,0,1-16,0V136H40a8,8,0,0,1,0-16h80V40a8,8,0,0,1,16,0v80h80A8,8,0,0,1,224,128Z"/></svg><span>Cursos que ainda vamos criar</span></li>
+    </ul>
+
+    <a class="btn anim" href="#cadastro" data-abre-cadastro>
+      <span class="btn__label">Garantir acesso vitalício</span>
+      <span class="btn__icon"><svg class="ico ico--arrow" width="24" height="24" style="--ico-op:0;--ico-color:currentColor;--ico-sw:1.5" display="block" aria-hidden="true" focusable="false" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M 0 9 C 0 4.029 4.029 0 9 0 C 13.971 0 18 4.029 18 9 C 18 13.971 13.971 18 9 18 C 4.029 18 0 13.971 0 9 Z" fill-opacity="var(--ico-op, 0)" fill="var(--ico-color, rgb(0, 0, 0))" height="18px" transform="translate(3 3)" width="18px"/><path d="M 0 9 C 0 4.029 4.029 0 9 0 C 13.971 0 18 4.029 18 9 C 18 13.971 13.971 18 9 18 C 4.029 18 0 13.971 0 9 Z" fill="transparent" height="18px" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--ico-sw, 1.5)" stroke="var(--ico-color, rgb(0, 0, 0))" transform="translate(3 3)" width="18px"/><path d="M 0 0 L 7.5 0" fill="transparent" height="1px" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--ico-sw, 1.5)" stroke="var(--ico-color, rgb(0, 0, 0))" transform="translate(8.25 12)" width="7.5px"/><path d="M 0 0 L 3 3 L 0 6" fill="transparent" height="6px" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--ico-sw, 1.5)" stroke="var(--ico-color, rgb(0, 0, 0))" transform="translate(12.75 9)" width="3px"/></svg></span>
+    </a>
+  </section>
+
+  <!-- ============ A SESSÃO ============ -->
+  <section class="sessao" id="como-funciona">
+    <div class="sessao__text">
+      <p class="eyebrow anim">A sessão</p>
+      <h2 class="sessao__title" data-palavras><span class="w" style="--w:0">Segunda,</span> <span class="w" style="--w:1">19</span> <span class="w" style="--w:2">de</span> <span class="w" style="--w:3">outubro,</span> <span class="w" style="--w:4">às</span> <span class="w" style="--w:5">19h</span> <span class="w" style="--w:6">em</span> <span class="w" style="--w:7">ponto,</span> <span class="w" style="--w:8">ao</span> <span class="w" style="--w:9">vivo</span> <span class="w" style="--w:10">no</span> <span class="w" style="--w:11">YouTube.</span></h2>
+
+      <ol class="linha" role="list">
+        <li class="passo anim" style="--n:0"><span class="passo__icon"><svg class="i" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true" focusable="false"><path d="M229.66,58.34l-32-32a8,8,0,0,0-11.32,0l-96,96A8,8,0,0,0,88,128v32a8,8,0,0,0,8,8h32a8,8,0,0,0,5.66-2.34l96-96A8,8,0,0,0,229.66,58.34ZM124.69,152H104V131.31l64-64L188.69,88ZM200,76.69,179.31,56,192,43.31,212.69,64ZM224,128v80a16,16,0,0,1-16,16H48a16,16,0,0,1-16-16V48A16,16,0,0,1,48,32h80a8,8,0,0,1,0,16H48V208H208V128a8,8,0,0,1,16,0Z"/></svg></span><span class="passo__when">Agora</span><p>Você entra na lista pelo formulário desta página.</p></li>
+        <li class="passo anim" style="--n:1"><span class="passo__icon"><svg class="i" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true" focusable="false"><path d="M187.58,144.84l-32-16a8,8,0,0,0-8,.5l-14.69,9.8a40.55,40.55,0,0,1-16-16l9.8-14.69a8,8,0,0,0,.5-8l-16-32A8,8,0,0,0,104,64a40,40,0,0,0-40,40,88.1,88.1,0,0,0,88,88,40,40,0,0,0,40-40A8,8,0,0,0,187.58,144.84ZM152,176a72.08,72.08,0,0,1-72-72A24,24,0,0,1,99.29,80.46l11.48,23L101,118a8,8,0,0,0-.73,7.51,56.47,56.47,0,0,0,30.15,30.15A8,8,0,0,0,138,155l14.61-9.74,23,11.48A24,24,0,0,1,152,176ZM128,24A104,104,0,0,0,36.18,176.88L24.83,210.93a16,16,0,0,0,20.24,20.24l34.05-11.35A104,104,0,1,0,128,24Zm0,192a87.87,87.87,0,0,1-44.06-11.81,8,8,0,0,0-6.54-.67L40,216,52.47,178.6a8,8,0,0,0-.66-6.54A88,88,0,1,1,128,216Z"/></svg></span><span class="passo__when">Em seguida</span><p>Entra no grupo do WhatsApp. É por lá que o link da transmissão chega. Grupo silencioso, só avisos.</p></li>
+        <li class="passo anim" style="--n:2"><span class="passo__icon"><svg class="i" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true" focusable="false"><path d="M164.44,121.34l-48-32A8,8,0,0,0,104,96v64a8,8,0,0,0,12.44,6.66l48-32a8,8,0,0,0,0-13.32ZM120,145.05V111l25.58,17ZM234.33,69.52a24,24,0,0,0-14.49-16.4C185.56,39.88,131,40,128,40s-57.56-.12-91.84,13.12a24,24,0,0,0-14.49,16.4C19.08,79.5,16,97.74,16,128s3.08,48.5,5.67,58.48a24,24,0,0,0,14.49,16.41C69,215.56,120.4,216,127.34,216h1.32c6.94,0,58.37-.44,91.18-13.11a24,24,0,0,0,14.49-16.41c2.59-10,5.67-28.22,5.67-58.48S236.92,79.5,234.33,69.52Zm-15.49,113a8,8,0,0,1-4.77,5.49c-31.65,12.22-85.48,12-86,12H128c-.54,0-54.33.2-86-12a8,8,0,0,1-4.77-5.49C34.8,173.39,32,156.57,32,128s2.8-45.39,5.16-54.47A8,8,0,0,1,41.93,68c30.52-11.79,81.66-12,85.85-12h.27c.54,0,54.38-.18,86,12a8,8,0,0,1,4.77,5.49C221.2,82.61,224,99.43,224,128S221.2,173.39,218.84,182.47Z"/></svg></span><span class="passo__when">19/10, 19h</span><p>A Black Vitalícia é revelada: o que entra, quanto custa e como funciona.</p></li>
+      </ol>
+    </div>
+
+    <figure class="sessao__photo anim">
+      <img src="/assets/img/camila-wagner-1000.webp"
+           srcset="/assets/img/camila-wagner-640.webp 640w, /assets/img/camila-wagner-1000.webp 1000w"
+           sizes="(max-width:809px) 100vw, 36vw"
+           alt="Dra. Camila Dias e Dr. Wagner Baseggio lado a lado, sorrindo"
+           width="1000" height="1095" loading="lazy" decoding="async">
+    </figure>
+  </section>
+
+  <!-- ============ BILHETE DOURADO (fechamento) ============ -->
+  <section class="fecho" id="bilhete">
+    <h2 class="fecho__title" data-palavras><span class="w" style="--w:0">Seu</span> <span class="w" style="--w:1">bilhete</span> <span class="w" style="--w:2">dourado</span> <span class="w" style="--w:3">está</span> <span class="w" style="--w:4">aqui.</span></h2>
+
+    <!-- O bilhete inclina com o mouse; um brilho passa por ele na rolagem e
+         ao passar o mouse (recortado pelo próprio PNG do bilhete). -->
+    <figure class="fecho__bilhete">
+      <div class="bilhete">
+      <img src="/assets/img/bilhete-recorte-860.webp"
+           srcset="/assets/img/bilhete-recorte-480.webp 480w, /assets/img/bilhete-recorte-860.webp 860w"
+           sizes="(max-width:809px) 92vw, 600px"
+           alt="Bilhete dourado da Fantástica Fábrica da HOF: Black Vitalícia Facial Academy, 19/10/26, 19h em ponto, no YouTube"
+           width="860" height="561" loading="lazy" decoding="async">
+      </div>
+    </figure>
+
+    <p class="fecho__copy anim">Agora é só entrar na lista e acessar o grupo para participar do evento e receber tudo em primeira mão.</p>
+
+    <a class="btn anim" href="#cadastro" data-abre-cadastro>
+      <span class="btn__label">Garantir acesso vitalício</span>
+      <span class="btn__icon"><svg class="ico ico--arrow" width="24" height="24" style="--ico-op:0;--ico-color:currentColor;--ico-sw:1.5" display="block" aria-hidden="true" focusable="false" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M 0 9 C 0 4.029 4.029 0 9 0 C 13.971 0 18 4.029 18 9 C 18 13.971 13.971 18 9 18 C 4.029 18 0 13.971 0 9 Z" fill-opacity="var(--ico-op, 0)" fill="var(--ico-color, rgb(0, 0, 0))" height="18px" transform="translate(3 3)" width="18px"/><path d="M 0 9 C 0 4.029 4.029 0 9 0 C 13.971 0 18 4.029 18 9 C 18 13.971 13.971 18 9 18 C 4.029 18 0 13.971 0 9 Z" fill="transparent" height="18px" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--ico-sw, 1.5)" stroke="var(--ico-color, rgb(0, 0, 0))" transform="translate(3 3)" width="18px"/><path d="M 0 0 L 7.5 0" fill="transparent" height="1px" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--ico-sw, 1.5)" stroke="var(--ico-color, rgb(0, 0, 0))" transform="translate(8.25 12)" width="7.5px"/><path d="M 0 0 L 3 3 L 0 6" fill="transparent" height="6px" stroke-dasharray="" stroke-linecap="round" stroke-linejoin="round" stroke-width="var(--ico-sw, 1.5)" stroke="var(--ico-color, rgb(0, 0, 0))" transform="translate(12.75 9)" width="3px"/></svg></span>
+    </a>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="footer__inner">
+
+    <div class="footer__top">
+      <div class="footer__brand">
+        <img class="footer__logo" src="/assets/img/logo-facialacademy.svg" alt="Facial Academy" width="323" height="48">
+        <p class="footer__tagline">A assinatura mais completa da Harmonização Facial.</p>
+      </div>
+
+      <div class="footer__legal">
+        <p class="footer__legend">LEGAL</p>
+        <div class="footer__links">
+          <a href="https://drive.google.com/file/d/13rt3Kys2BFR-BAYi2iH648y9QrrYSueP/view" target="_blank" rel="noopener">Termos de Uso</a>
+          <a href="https://drive.google.com/file/d/1rzcGgiab3WB3KwzvUau7W_KnmO5_egRC/view" target="_blank" rel="noopener">Política de Privacidade</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer__divider"></div>
+
+    <div class="footer__mid">
+      <div class="footer__block">
+        <p class="footer__legend">AVISO LEGAL</p>
+        <p class="footer__note">“Este produto é um curso livre para capacitação profissional que tem como papel e função primordiais a preparação técnica e intelectual do indivíduo, portanto NÃO CONFERE HABILITAÇÃO profissional em Conselho de Classe, tampouco permite ou licencia o profissional e/ou estudante a exercer tais procedimentos no mercado de trabalho. O exercício de atividades regidas pelos conselhos profissionais de áreas da saúde sem a devida habilitação constitui uma atividade ilegal.”</p>
+      </div>
+
+      <div class="footer__block">
+        <p class="footer__legend">A equipe Facial Academy é composta por:</p>
+        <p class="footer__note">Dra. Camila Dias CRO PR 24954<br><br>Dr. Wagner Baseggio CRO PR 16109</p>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <p>© 2026 Facial Class · Todos os direitos reservados · CNPJ 34.348.093/0001-61</p>
+      <!-- email_off desliga a ofuscação de e-mail do Cloudflare só neste trecho -->
+      <p>Rua Visconde de Guarapuava, 2503 - Centro - Cascavel, PR - <!--email_off-->contato@facialacademy.com.br<!--/email_off--></p>
+    </div>
+
+  </div>
+</footer>
+
+<!-- Pop-up dos botões "Garantir acesso vitalício" fora do hero. O card do
+     hero (o mesmo formulário) é movido para cá enquanto ele está aberto e
+     volta ao fechar: um formulário só, sem ids repetidos. Sem JS, os botões
+     levam ao formulário do hero (#cadastro). -->
+<dialog class="popup" id="popup-cadastro" aria-labelledby="card-titulo">
+  <div class="popup__box">
+    <button type="button" class="popup__fechar" aria-label="Fechar"><svg class="i" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true" focusable="false"><path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"/></svg></button>
+    <div class="popup__vaga"></div>
+  </div>
+</dialog>
+
+<script defer src="/assets/js/lenis.min.js"></script>
+<script defer src="/assets/js/intlTelInput.min.js"></script>
+<script src="/assets/js/lh-rastreio.v2.js" data-porteiro="https://lh.facialacademy.com.br/__lh-visitante"></script><script src="/assets/js/lh-interacoes.v2-1.js" defer></script>
+<script defer src="/assets/js/conversao-google.v1.js"></script><script defer src="/assets/js/main-b.v1.js"></script>
+</body>
+</html>
