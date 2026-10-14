@@ -1,0 +1,179 @@
+/* ============================================================================
+   SILKA — fonte institucional do Facial Class Design System
+   Pesos: 300 / 400 / 500 / 600 / 700. Compartilhada entre a captura e o obrigado.
+   ============================================================================ */
+@font-face{font-family:'Silka';font-style:normal;font-weight:300;font-display:swap;src:url("../fonts/SilkaLight.woff2") format("woff2")}
+@font-face{font-family:'Silka';font-style:normal;font-weight:400;font-display:swap;src:url("../fonts/SilkaRegular.woff2") format("woff2")}
+@font-face{font-family:'Silka';font-style:normal;font-weight:500;font-display:swap;src:url("../fonts/SilkaMedium.woff2") format("woff2")}
+@font-face{font-family:'Silka';font-style:normal;font-weight:600;font-display:swap;src:url("../fonts/SilkaSemiBold.woff2") format("woff2")}
+@font-face{font-family:'Silka';font-style:normal;font-weight:700;font-display:swap;src:url("../fonts/SilkaBold.woff2") format("woff2")}
+/* POPPINS: reserva da Silka, como no design system (Silka, Poppins, system-ui).
+   Arquivos locais (latin, ~8 KB cada) para valer mesmo onde a Poppins não está
+   instalada. O navegador só baixa se a Silka não carregar. */
+@font-face{font-family:'Poppins';font-style:normal;font-weight:300;font-display:swap;src:url("../fonts/PoppinsLight.woff2") format("woff2")}
+@font-face{font-family:'Poppins';font-style:normal;font-weight:400;font-display:swap;src:url("../fonts/PoppinsRegular.woff2") format("woff2")}
+@font-face{font-family:'Poppins';font-style:normal;font-weight:500;font-display:swap;src:url("../fonts/PoppinsMedium.woff2") format("woff2")}
+@font-face{font-family:'Poppins';font-style:normal;font-weight:600;font-display:swap;src:url("../fonts/PoppinsSemiBold.woff2") format("woff2")}
+@font-face{font-family:'Poppins';font-style:normal;font-weight:700;font-display:swap;src:url("../fonts/PoppinsBold.woff2") format("woff2")}
+
+
+/* ============================================================================
+   BLACK VITALÍCIA — página de obrigado · Facial Academy
+   Uma dobra · objetivo único: entrar no grupo de WhatsApp
+   Design alinhado à página de captura (/black-friday-2026).
+   ============================================================================ */
+:root{
+  --bg:#06000D;
+  --roxo-1:#9F60EE;          /* início do gradiente do botão */
+  --roxo-2:#6313BF;          /* fim do gradiente do botão    */
+  --roxo-borda:rgba(159,96,238,.34);
+  --roxo-borda-forte:rgba(159,96,238,.55);
+  --card:rgba(20,6,38,.72);
+  --card-in:rgba(30,10,56,.55);
+  --txt:#FAFAFA;
+  --txt-mut:#C2BAD0;
+  --txt-legal:#8C82A3;
+  --lilas:#C9A9F7;
+  --sucesso:#45C08A;
+  /* Mesmo matiz e saturação do verde do WhatsApp, com a luminosidade baixada
+     até o texto branco passar em contraste: 4,71:1 no início do gradiente e
+     7,71:1 no fim. No #25D366 puro o branco ficava em 1,98:1. */
+  --verde-1:#178540;         /* início do gradiente do botão */
+  --verde-2:#11602E;         /* fim do gradiente             */
+  --font:'Silka','Poppins',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;min-height:100svh;background:var(--bg);color:var(--txt);
+  font-family:var(--font);line-height:1.5;
+  display:flex;align-items:center;justify-content:center;
+  padding:30px 20px 34px;position:relative;overflow-x:hidden;
+  font-variant-ligatures:none;font-feature-settings:"liga" 0,"frac" 0;
+}
+/* brilho roxo do topo, igual ao da captura */
+body::before{
+  content:"";position:absolute;inset:0 0 auto 0;height:72vh;pointer-events:none;
+  background:url("../img/hero-bg.webp") center top / cover no-repeat;
+  opacity:.85;
+  -webkit-mask-image:linear-gradient(#000 0%,#000 32%,transparent 92%);
+  mask-image:linear-gradient(#000 0%,#000 32%,transparent 92%);
+}
+main{position:relative;width:100%;max-width:560px;text-align:center}
+
+/* ===== LOCKUP ===== */
+/* Marca fa-bfriday26, mais larga que a anterior: a largura cresce 1,206x
+   para manter a mesma altura, e a página continua cabendo numa dobra. */
+.lockup{width:min(323px,74.8vw);height:auto;display:block;margin:0 auto 22px}
+
+h1{
+  font-size:clamp(34px,8.6vw,54px);line-height:1.08;letter-spacing:-.03em;font-weight:700;
+  margin:0 0 13px;
+}
+.sub{
+  font-size:clamp(15.5px,4.1vw,18px);line-height:1.55;color:var(--txt-mut);
+  margin:0 auto 24px;max-width:40ch;
+}
+.sub b{color:var(--txt);font-weight:700}
+
+/* ===== CARD ===== */
+.card{
+  background:var(--card);border:1px solid var(--roxo-borda);border-radius:24px;
+  padding:22px;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+  box-shadow:0 24px 60px rgba(0,0,0,.5);
+}
+.btn{
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  width:100%;text-decoration:none;border-radius:11px;padding:17px 20px;
+  font-size:clamp(15px,3.9vw,16.5px);font-weight:700;letter-spacing:.01em;color:#fff;
+  background:linear-gradient(135deg,var(--verde-1) 0%,var(--verde-2) 100%);
+  transition:filter .2s cubic-bezier(.2,.8,.2,1);
+  /* Pulsa em escala e solta um halo. Escala e sombra não entram no layout,
+     então a pulsação não desloca nada na página. */
+  /* Atraso para a pulsação não competir com a renderização inicial. */
+  animation:pulsar 2.2s ease-in-out 1.8s infinite;
+  will-change:transform;
+}
+@keyframes pulsar{
+  0%,100%{
+    transform:scale(1);
+    box-shadow:0 12px 30px rgba(18,140,70,.45), 0 0 0 0 rgba(37,211,102,.55);
+  }
+  50%{
+    transform:scale(1.025);
+    box-shadow:0 14px 34px rgba(18,140,70,.55), 0 0 0 16px rgba(37,211,102,0);
+  }
+}
+/* Ao interagir a pulsação para: quem já achou o botão não precisa mais ser
+   chamado, e o clique não briga com a animação. */
+.btn:hover,.btn:focus-visible{filter:brightness(1.1);animation-play-state:paused}
+.btn:focus-visible{outline:2px solid #ecc485;outline-offset:4px}
+.btn:active{filter:brightness(.94);animation-play-state:paused}
+.btn svg{width:20px;height:20px;flex:none}
+.sob-btn{margin:12px 0 0;font-size:13px;color:var(--txt-legal)}
+
+.motivos{
+  list-style:none;margin:20px 0 0;padding:18px 18px 18px 16px;text-align:left;
+  background:var(--card-in);border:1px solid rgba(159,96,238,.18);border-radius:16px;
+}
+.motivos li{
+  position:relative;padding-left:24px;
+  font-size:clamp(14px,3.7vw,15.5px);line-height:1.5;color:var(--txt-mut);
+}
+.motivos li + li{margin-top:12px}
+.motivos li::before{
+  content:"";position:absolute;left:0;top:7px;width:7px;height:7px;border-radius:50%;
+  background:linear-gradient(135deg,var(--roxo-1),var(--roxo-2));
+}
+.motivos b{color:var(--txt);font-weight:700}
+
+.nota{margin:19px 0 0;font-size:13.5px;color:var(--txt-legal);line-height:1.6}
+.nota b{color:var(--lilas);font-weight:700}
+/* Mesma cor da .nota: com 70% de opacidade ficava em 3,3:1 e reprovava. */
+.rodape{margin:18px 0 0;font-size:12px;color:var(--txt-legal)}
+
+/* ===== AVISO: sem abordagem no privado =====
+   Vermelho de alerta, fora da paleta da marca, para não passar por enfeite.
+   Branco sobre #DC1F26: 4,92:1; ícone #DC1F26 sobre branco: 4,92:1.
+   Texto em Light e só o "não envia" em Bold, a pedido do Eddie (o bold
+   corrido cansava a leitura). Sem contorno e sem animação: o botão já pulsa
+   e os dois não podem disputar o olhar. */
+.alerta{
+  display:flex;align-items:center;gap:14px;
+  margin:16px 0 0;padding:16px 18px;text-align:left;
+  background:#DC1F26;border-radius:14px;
+  color:#fff;font-size:clamp(15px,4vw,16.5px);font-weight:300;line-height:1.45;
+  box-shadow:0 10px 28px rgba(220,31,38,.32);
+}
+.alerta .ic{flex:none;display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:#fff;color:#DC1F26}
+.alerta .ic svg{width:24px;height:24px}
+.alerta .tit{display:block;margin-bottom:3px;font-size:12.5px;font-weight:300;letter-spacing:.12em;text-transform:uppercase}
+.alerta b{font-weight:700;text-transform:uppercase;letter-spacing:.02em}
+@media (max-height:740px){
+  .alerta{margin-top:12px;padding:13px 14px;gap:12px;font-size:14px}
+  .alerta .ic{width:34px;height:34px}
+  .alerta .ic svg{width:20px;height:20px}
+  .alerta .tit{font-size:11.5px;margin-bottom:2px}
+}
+@media (min-width:640px){.alerta{padding:18px 22px}}
+
+/* telas baixas: tudo precisa caber sem rolagem */
+@media (max-height:740px){
+  body{padding:18px 18px 22px}
+  .lockup{width:min(236px,57.9vw);margin-bottom:14px}
+  h1{font-size:clamp(30px,7.6vw,38px);margin-bottom:10px}
+  .sub{font-size:15px;margin-bottom:18px;line-height:1.45}
+  .card{padding:16px;border-radius:20px}
+  .btn{padding:15px 18px}
+  .sob-btn{margin-top:9px;font-size:12.5px}
+  .motivos{margin-top:14px;padding:14px 14px 14px 13px;border-radius:14px}
+  .motivos li{font-size:13.5px;line-height:1.45}
+  .motivos li + li{margin-top:9px}
+  .nota{margin-top:14px;font-size:12.5px}
+  .rodape{margin-top:10px;font-size:11px}
+}
+
+@media (min-width:640px){
+  .card{padding:28px}
+  .motivos{padding:22px 22px 22px 20px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}.btn{animation:none!important;transform:none!important}}
