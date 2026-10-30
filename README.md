@@ -1,8 +1,202 @@
-# Black Vitalícia · captura e obrigado
+# Facial Academy · captura das aulas ao vivo
 
-Landing de captura da Black Vitalícia da Facial Academy (revelação ao vivo em
-19/10/2026, 19h) e a página de obrigado, em HTML/CSS/JS puro, publicadas no
-Cloudflare Pages.
+Página de captura da campanha das **aulas ao vivo e gratuitas de fim de ano**
+(16 e 23 de novembro de 2026, 19h), em HTML/CSS/JS puro, publicada no
+Cloudflare Pages. Os leads entram na lista da Black (mesmo LeadHero) e vão para o
+grupo **Facial Ao Vivo** no WhatsApp.
+
+- Briefing: Google Doc "Página de captura 3_Campanha Lives".
+- Estrutura: a prévia do briefing (`LP_Captura_Aulas-Fim-de-Ano.html`, no Drive),
+  com a linguagem visual da captura B da Black Vitalícia (ver "Histórico").
+- No ar desde 30/10/2026.
+
+## Endereços
+
+Domínio: `https://www.lives.black.vitalicia.facialacademy.com.br` (sem `www` não
+resolve).
+
+| Caminho | O que mostra |
+|---|---|
+| `/` | a página (`index.html`) |
+| `/v2` | a mesma página (regra 200 no `_redirects`; a URL não muda) |
+| `/captura-google` | a mesma página (idem) |
+| `/obrigado`, `/obrigado-google` | redirecionam (302) para https://blackvitalicia.facialacademy.com.br/ |
+
+Os três links de captura existem porque já estavam nos anúncios (Meta A, Meta B
+e Google). O LeadHero recebe o caminho de cada cadastro no campo `URL`.
+
+## Como publicar
+
+O projeto do Cloudflare Pages (`facial-lives-black-november-setembro-26`) é ligado
+a este repositório:
+
+- **push na `main` publica sozinho** em produção, em cerca de 1 minuto;
+- push em outro branch gera uma prévia em
+  `https://<branch>.facial-lives-black-november-setembro-26.pages.dev`.
+
+Fluxo recomendado: branch, prévia, conferir, PR e merge na `main`. Não há build:
+a raiz do repositório é a pasta publicada (por isso `README.md` também sai no
+domínio; não coloque nada sigiloso aqui).
+
+**Cache.** A zona `facialacademy.com.br` entrega CSS e JS com 31 dias de cache,
+apesar do `_headers`. **Ao mudar um CSS, JS, imagem ou vídeo, troque o nome do
+arquivo** (`style-aulas.v1.css` vira `style-aulas.v2.css`) e atualize o
+`index.html`. Editar mantendo o nome faz quem já visitou ver a versão antiga.
+
+## Como rodar local
+
+```bash
+python3 -m http.server 4173
+```
+
+Abra `http://localhost:4173`. Precisa de servidor por causa das fontes e do
+vídeo. As regras do `_redirects` (o `/v2` e o `/captura-google`) só valem no
+Pages, não no servidor local.
+
+**Não envie o formulário na prévia local nem na prévia de branch.** Ele posta no
+LeadHero de verdade: um e-mail novo vindo de um host fora das origens oficiais
+cai na fila de aprovação e dispara WhatsApp para o aprovador. Para testar o
+fluxo, responda o LeadHero no próprio teste (ex.: `page.route` do Playwright).
+
+## Arquivos da página
+
+```
+index.html                       a página (as três capturas)
+_redirects                       /v2 e /captura-google mostram a página; obrigados → vendas
+_headers                         política de cache
+assets/css/style-aulas.v1.css    estilos (base da captura B + layout das aulas)
+assets/js/main-aulas.v1.js       rolagem, vídeo, pop-ups e envio do formulário
+assets/js/conversao.v2.js        eventos de conversão (Lead e CompleteRegistration)
+assets/js/lh-rastreio.v2.js      IP, localização, pixel e id do visitante no cadastro
+assets/js/lh-interacoes.v2-1.js  formulário começado/enviado/abandonado e cliques
+assets/js/lenis.min.js           scroll suave
+assets/js/intlTelInput.min.js    campo de telefone internacional
+assets/js/intlTelInputUtils.js   validação do número, carregada sob demanda
+assets/video/live-fundo.mp4      vídeo do fundo do hero (20 s, 960x800, sem som, 670 KB)
+assets/img/live-fundo-poster.webp primeiro quadro do vídeo (aparece antes dele carregar)
+assets/img/aula-labio-*.webp     foto do card da aula 1 (720/1200w)
+assets/img/aula-planejamento-*.webp foto do card da aula 2 (720/1200w)
+assets/img/logo-facialacademy.svg logo do topo e do rodapé
+assets/fonts/                    Silka (5 pesos) e Poppins de reserva
+```
+
+Os demais arquivos de `assets/` e as páginas `obrigado*.html` são da campanha
+anterior (ver "Histórico") e não aparecem nesta página.
+
+## Onde mudar cada coisa
+
+| O quê | Onde |
+|---|---|
+| Textos, títulos, itens das aulas | `index.html` |
+| Datas | `index.html`: tarja do topo, os dois cards e o cronômetro (script logo abaixo do `.timer`, lista `T` em UTC: 19h de Brasília = 22h UTC) |
+| Link do grupo | `index.html`, `href` do `#link-grupo` (hoje `https://sndflw.com/i/facialacademyaovivo`) |
+| Tempo até abrir o grupo | `main-aulas`, `SEGUNDOS` (hoje 6) |
+| Lista do LeadHero | `main-aulas`, `ENDPOINT` (hoje a mesma da Black) |
+| Marca da campanha no lead | `main-aulas`, `pagina_captura` (hoje `aulas-fim-de-ano`) |
+| Política de Privacidade e Termos | links no card do formulário e no rodapé |
+
+## O formulário e o que acontece depois
+
+1. A pessoa preenche nome completo, e-mail e WhatsApp. A validação é local: nome
+   com 2 ou mais letras, e-mail com formato válido e WhatsApp conferido pelo
+   intl-tel-input. Campo errado fica marcado e nada é enviado.
+2. `POST` para o LeadHero (`lead-capture-rapido`, lista da Black), com `nome`,
+   `sobrenome`, `email`, `telefone` (E.164), todos os `utm_*` da URL, os dados do
+   `lh-rastreio`, `pagina_captura: "aulas-fim-de-ano"` e `URL`.
+3. A resposta decide:
+   - `redirect` preenchido (triagem anti-spam): a pessoa vai direto para esse
+     endereço, sem pop-up;
+   - cadastro aceito: conta o lead (`fa_black_lead`) e abre o pop-up do grupo;
+   - erro 4xx: a pessoa fica na página, com mensagem, e pode tentar de novo;
+   - sem resposta em 4 s (`TETO_MS`): abre o pop-up mesmo assim, sem contar o
+     lead (o cadastro segue do lado do LeadHero).
+4. **Pop-up do grupo:** "Obrigado, <primeiro nome>!", o andamento ("Cadastro
+   recebido" e "Abrindo o grupo no WhatsApp" com a barra e os segundos), o aviso
+   vermelho de que a Facial Academy não envia ofertas por mensagem privada (o
+   mesmo do obrigado antigo) e o botão "Entrar no grupo agora". Em 6 s a pessoa
+   vai sozinha para o grupo; o botão leva na hora. O pop-up não fecha (é a
+   passagem para o grupo).
+5. Na ida ao grupo, conta `fa_black_complete_registration` (uma vez por pessoa).
+
+Não há mais página de obrigado nesta campanha.
+
+## Conversões e GTM
+
+- O GTM é o mesmo da Black (snippet no `<head>`, container GTM-TBM4NXBQ via
+  tracker da Jornada).
+- `conversao.v2.js` empurra `fa_black_lead` e `fa_black_complete_registration`
+  no formato da tag 268 do container. As tags de GA4 (`generate_lead`,
+  `complete_registration`) e Pixel (`Lead`, `CompleteRegistration`) que
+  respondem a esses eventos olham só o domínio e o `black26.event_id`, então
+  funcionam nos três caminhos sem mexer no GTM.
+- **O formulário se chama `aula-form`, nunca `fa-form`.** A tag 268 assume o
+  envio do formulário `fa-form` na raiz e manda a pessoa para o `/obrigado`
+  antigo, que hoje redireciona para a página de vendas.
+- O registro da sessão fica no `sessionStorage` (`fa_black26_accepted_v1`, 1 hora):
+  a mesma pessoa cadastrada de novo dentro da hora não conta outro lead.
+
+## Layout e movimento
+
+- **Tarja** com as datas; **hero** com a marca e o cronômetro até a próxima aula
+  (nas duas horas de cada aula mostra "A aula está ao vivo agora"), título,
+  texto, quem dá as aulas e o formulário em vidro; **as duas aulas** em cards
+  com foto em quadro arredondado, data, título e itens; botão que abre o
+  formulário num pop-up (o mesmo formulário do hero, movido para o `<dialog>`);
+  **rodapé**.
+- Fundo preto contínuo com luzes por seção, Silka, ícones Phosphor, dourado
+  (`--gold`) em datas e rótulos, verde só nas ações: a linguagem da captura B.
+- **Vídeo do hero** (sem som, em loop): três trechos das lives do Dr. Wagner,
+  com o chat do monitor desfocado (aparecem nomes de alunos). Só toca com o hero
+  na tela; com `prefers-reduced-motion` fica parado no pôster.
+- Hero entra por CSS (só deslocamento, por causa do LCP); o resto revela pela
+  rolagem (`animation-timeline: view()`), terminando no meio da tela. No
+  Firefox a revelação é por bloco (JS). Mouse/trackpad: o vídeo e a luz do hero
+  seguem o ponteiro, os cards acendem. `prefers-reduced-motion` desliga tudo.
+- No celular a tarja substitui o selo "Aulas ao vivo e gratuitas" do hero, para
+  o botão de envio caber na primeira tela (conferido em 360x640 e 390x844).
+
+## Origem das imagens e do vídeo
+
+Drive compartilhado `FA 004 - BANCO DE IMAGENS/Fotos`:
+
+- **Vídeo:** `4. LIVES/LIVE WAGNER/Vídeos`: `DD-5349.MP4` (3,4 a 9,5 s),
+  `DD-5367.MP4` (0,5 a 8 s) e `IMG_2130.MOV` (3 a 11 s, chat desfocado).
+  Gravações verticais em 4K recortadas na horizontal:
+
+  ```bash
+  ffmpeg -ss 3.4 -t 6.1 -i DD-5349.MP4 -ss 0.5 -t 7.5 -i DD-5367.MP4 -ss 3 -t 8 -i IMG_2130.MOV \
+    -filter_complex "[0:v]crop=2160:1800:0:1018,scale=960:800,fps=24,setsar=1,format=yuv420p[a];[1:v]crop=2160:1800:0:100,scale=960:800,fps=24,setsar=1,format=yuv420p[b];[2:v]split[c0][c1];[c1]crop=780:1240:820:1645,boxblur=22:2[cb];[c0][cb]overlay=820:1645,crop=2160:1800:0:1150,scale=960:800,fps=24,setsar=1,format=yuv420p[c];[a][b]xfade=transition=fade:duration=0.7:offset=5.4[ab];[ab][c]xfade=transition=fade:duration=0.7:offset=12.2,format=yuv420p[v]" \
+    -map "[v]" -an -c:v libx264 -preset slow -crf 31 -profile:v high -movflags +faststart live-fundo.mp4
+  ```
+
+- **Aula 1:** `4. LIVES/LIVE WAGNER/IMG_5079.JPG`, recorte 16:10.
+- **Aula 2:** `4. LIVES/LIVE WAGNER/.com.apple.Foundation.NSItemProvider.vTrlX7.JPG`,
+  recorte 16:10.
+
+## Testes feitos (30/10/2026)
+
+Sem rede, com o LeadHero respondido pelo próprio teste:
+- cadastro aceito: lead contado, pop-up com o nome e ida ao grupo novo depois da contagem;
+- clique no botão do pop-up: leva ao grupo na hora;
+- triagem com `redirect`: segue para o endereço da triagem;
+- LeadHero sem resposta: pop-up em 4 s, sem conversão;
+- erro 400: fica na página, com mensagem e botão liberado;
+- validação: nada é enviado.
+
+Capturas em 1920x1080, 1440x900, 1366x768, 390x844 e 360x640, sem rolagem
+lateral; movimento reduzido.
+
+---
+
+# Histórico: captura da Black Vitalícia (05/10 a 23/10/2026)
+
+Antes desta página, o domínio tinha a captura da Black Vitalícia (revelação ao
+vivo em 19/10/2026, 19h), suas cópias para o Google Ads e o teste A/B (`/v2`),
+mais as páginas de obrigado. Em 23/10 as capturas passaram a redirecionar para
+a página de vendas; em 26/10 os obrigados também; em 30/10 as capturas viraram
+esta página. `v2.html` e `captura-google.html` saíram do repositório (estão no
+histórico do git); o `index.html` antigo está no commit `b127e43`. O texto abaixo
+é o registro daquela campanha.
 
 Começou como réplica fiel da página `/black-friday-2026` feita no Framer (altura
 e posição das seções batiam com o original nos três breakpoints). Em 05/10/2026
@@ -10,20 +204,7 @@ ganhou layout próprio no tema da campanha, **A Fantástica Fábrica da HOF**: r
 dourado do Wonka, a Dra. Camila Dias e o Dr. Wagner Baseggio de cartola no hero e
 o bilhete dourado no fechamento. Ver "Layout" abaixo.
 
-## Como rodar
-
-```bash
-python3 -m http.server 4173
-```
-
-Depois abra `http://localhost:4173`. Precisa de servidor HTTP por causa das fontes
-`.woff2`: abrindo o `index.html` direto pelo `file://` a Silka não carrega.
-
-**Não envie o formulário na prévia local**: ele posta no LeadHero de verdade, e
-um e-mail novo vindo de um host fora das origens oficiais cai na fila de
-aprovação e dispara WhatsApp para o aprovador (ver "Formulário").
-
-## Estrutura
+## Estrutura (na época)
 
 ```
 index.html                         captura: hero, 3 seções e rodapé

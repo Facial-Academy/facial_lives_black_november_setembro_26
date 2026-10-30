@@ -1,0 +1,869 @@
+/* ============================================================================
+   Facial Academy · captura das aulas ao vivo (/, /v2 e /captura-google)
+   Arquivo único (cada CSS separado bloqueava a renderização). Fontes,
+   intl-tel-input, tokens, botão, card do formulário e rodapé são cópia do
+   style-b.v1.css (captura B); o layout e o movimento são próprios.
+   ============================================================================ */
+
+/* ============================================================================
+   SILKA — fonte institucional do Facial Class Design System
+   Pesos: 300 / 400 / 500 / 600 / 700. Compartilhada entre a captura e o obrigado.
+   ============================================================================ */
+@font-face{font-family:'Silka';font-style:normal;font-weight:300;font-display:swap;src:url("../fonts/SilkaLight.woff2") format("woff2")}
+@font-face{font-family:'Silka';font-style:normal;font-weight:400;font-display:swap;src:url("../fonts/SilkaRegular.woff2") format("woff2")}
+@font-face{font-family:'Silka';font-style:normal;font-weight:500;font-display:swap;src:url("../fonts/SilkaMedium.woff2") format("woff2")}
+@font-face{font-family:'Silka';font-style:normal;font-weight:600;font-display:swap;src:url("../fonts/SilkaSemiBold.woff2") format("woff2")}
+@font-face{font-family:'Silka';font-style:normal;font-weight:700;font-display:swap;src:url("../fonts/SilkaBold.woff2") format("woff2")}
+/* POPPINS: reserva da Silka, como no design system (Silka, Poppins, system-ui).
+   Arquivos locais (latin, ~8 KB cada) para valer mesmo onde a Poppins não está
+   instalada. O navegador só baixa se a Silka não carregar. */
+@font-face{font-family:'Poppins';font-style:normal;font-weight:300;font-display:swap;src:url("../fonts/PoppinsLight.woff2") format("woff2")}
+@font-face{font-family:'Poppins';font-style:normal;font-weight:400;font-display:swap;src:url("../fonts/PoppinsRegular.woff2") format("woff2")}
+@font-face{font-family:'Poppins';font-style:normal;font-weight:500;font-display:swap;src:url("../fonts/PoppinsMedium.woff2") format("woff2")}
+@font-face{font-family:'Poppins';font-style:normal;font-weight:600;font-display:swap;src:url("../fonts/PoppinsSemiBold.woff2") format("woff2")}
+@font-face{font-family:'Poppins';font-style:normal;font-weight:700;font-display:swap;src:url("../fonts/PoppinsBold.woff2") format("woff2")}
+
+
+/* ---- intl-tel-input ---- */
+:root{--iti-hover-color:rgba(0, 0, 0, 0.05);--iti-border-color:#ccc;--iti-dialcode-color:#999;--iti-dropdown-bg:white;--iti-search-icon-color:#999;--iti-spacer-horizontal:8px;--iti-flag-height:12px;--iti-flag-width:16px;--iti-border-width:1px;--iti-arrow-height:4px;--iti-arrow-width:6px;--iti-triangle-border:calc(var(--iti-arrow-width) / 2);--iti-arrow-padding:6px;--iti-arrow-color:#555;--iti-path-flags-1x:url("../img/flags.webp");--iti-path-flags-2x:url("../img/flags@2x.webp");--iti-path-globe-1x:url("../img/globe.webp");--iti-path-globe-2x:url("../img/globe@2x.webp");--iti-flag-sprite-width:3904px;--iti-flag-sprite-height:12px;--iti-mobile-popup-margin:30px}.iti{position:relative;display:inline-block}.iti *{box-sizing:border-box}.iti__a11y-text{width:1px;height:1px;clip:rect(1px,1px,1px,1px);overflow:hidden;position:absolute}.iti input.iti__tel-input,.iti input.iti__tel-input[type=tel],.iti input.iti__tel-input[type=text]{position:relative;z-index:0;margin:0!important}.iti__country-container{position:absolute;top:0;bottom:0;left:0;padding:var(--iti-border-width)}.iti__selected-country{z-index:1;position:relative;display:flex;align-items:center;height:100%;background:0 0;border:0;margin:0;padding:0;font-family:inherit;font-size:inherit;color:inherit;border-radius:0;font-weight:inherit;line-height:inherit;text-decoration:none}.iti__selected-country-primary{display:flex;align-items:center;height:100%;padding:0 var(--iti-arrow-padding) 0 var(--iti-spacer-horizontal)}.iti__arrow{margin-left:var(--iti-arrow-padding);width:0;height:0;border-left:var(--iti-triangle-border) solid transparent;border-right:var(--iti-triangle-border) solid transparent;border-top:var(--iti-arrow-height) solid var(--iti-arrow-color)}.iti__arrow--up{border-top:none;border-bottom:var(--iti-arrow-height) solid var(--iti-arrow-color)}.iti__dropdown-content{border-radius:3px;background-color:var(--iti-dropdown-bg)}.iti--inline-dropdown .iti__dropdown-content{position:absolute;z-index:2;margin-top:3px;margin-left:calc(var(--iti-border-width) * -1);border:var(--iti-border-width) solid var(--iti-border-color);box-shadow:1px 1px 4px rgba(0,0,0,.2)}.iti__search-input{width:100%;border-width:0;border-radius:3px;padding-left:30px;padding-right:28px}[dir=rtl] .iti__search-input{padding-left:inherit;padding-right:30px;background-position:right 8px center}.iti__search-input+.iti__country-list{border-top:1px solid var(--iti-border-color)}.iti__search-input::-webkit-search-cancel-button{appearance:none}.iti__search-input-wrapper{position:relative;display:flex;align-items:center}.iti__search-icon{position:absolute;left:8px;display:flex;pointer-events:none}[dir=rtl] .iti__search-icon{left:auto;right:8px}.iti__search-icon-svg{stroke:var(--iti-search-icon-color);fill:none;stroke-width:3}.iti__search-clear{position:absolute;right:4px;background:0 0;border:0;border-radius:3px;cursor:pointer;padding:4px;display:flex;align-items:center;justify-content:center;transition:background-color .15s ease;width:24px;height:24px}.iti__search-clear .iti__search-clear-x{stroke-width:2}.iti__search-clear .iti__search-clear-bg{fill:var(--iti-search-icon-color)}[dir=rtl] .iti__search-clear{right:auto;left:4px}.iti__search-clear:focus-visible,.iti__search-clear:hover{background:var(--iti-hover-color);outline:0}.iti__no-results{text-align:center;padding:30px 0}.iti__country-list{list-style:none;padding:0;margin:0;cursor:pointer;overflow-y:scroll;-webkit-overflow-scrolling:touch}.iti--inline-dropdown .iti__country-list{max-height:185px}.iti--flexible-dropdown-width .iti__country-list{white-space:nowrap}@media (max-width:500px){.iti--flexible-dropdown-width .iti__country-list{white-space:normal}}.iti__country{display:flex;align-items:center;padding:8px var(--iti-spacer-horizontal);outline:0}.iti__dial-code{color:var(--iti-dialcode-color)}.iti__country.iti__highlight{background-color:var(--iti-hover-color)}.iti__country-list .iti__flag,.iti__country-name{margin-right:var(--iti-spacer-horizontal)}[dir=rtl] .iti__country-list .iti__flag,[dir=rtl] .iti__country-name{margin-right:0;margin-left:var(--iti-spacer-horizontal)}.iti--allow-dropdown .iti__country-container:not(:has(+ input[disabled])):not(:has(+ input[readonly])) button.iti__selected-country{cursor:pointer}.iti--allow-dropdown .iti__country-container:not(:has(+ input[disabled])):not(:has(+ input[readonly])) .iti__selected-country-primary:hover,.iti--allow-dropdown .iti__country-container:not(:has(+ input[disabled])):not(:has(+ input[readonly])) .iti__selected-country:has(+ .iti__dropdown-content:hover) .iti__selected-country-primary{background-color:var(--iti-hover-color)}.iti .iti__selected-dial-code{margin-left:4px}.iti--container{position:fixed;top:-1000px;left:-1000px;z-index:1060;padding:var(--iti-border-width)}.iti--container:hover{cursor:pointer}.iti__hide{display:none}.iti__v-hide{visibility:hidden}.iti--fullscreen-popup.iti--container{background-color:rgba(0,0,0,.5);top:0;bottom:0;left:0;right:0;position:fixed;padding:var(--iti-mobile-popup-margin);display:flex;flex-direction:column;justify-content:flex-start}.iti--fullscreen-popup .iti__dropdown-content{display:flex;flex-direction:column;max-height:100%;position:relative}.iti--fullscreen-popup .iti__country{padding:10px 10px;line-height:1.5em}.iti__flag{--iti-flag-offset:100px;height:var(--iti-flag-height);width:var(--iti-flag-width);border-radius:1px;box-shadow:0 0 1px 0 #888;background-image:var(--iti-path-flags-1x);background-repeat:no-repeat;background-position:var(--iti-flag-offset) 0;background-size:var(--iti-flag-sprite-width) var(--iti-flag-sprite-height)}.iti__ac{--iti-flag-offset:0px}.iti__ad{--iti-flag-offset:-16px}.iti__ae{--iti-flag-offset:-32px}.iti__af{--iti-flag-offset:-48px}.iti__ag{--iti-flag-offset:-64px}.iti__ai{--iti-flag-offset:-80px}.iti__al{--iti-flag-offset:-96px}.iti__am{--iti-flag-offset:-112px}.iti__ao{--iti-flag-offset:-128px}.iti__ar{--iti-flag-offset:-144px}.iti__as{--iti-flag-offset:-160px}.iti__at{--iti-flag-offset:-176px}.iti__au{--iti-flag-offset:-192px}.iti__aw{--iti-flag-offset:-208px}.iti__ax{--iti-flag-offset:-224px}.iti__az{--iti-flag-offset:-240px}.iti__ba{--iti-flag-offset:-256px}.iti__bb{--iti-flag-offset:-272px}.iti__bd{--iti-flag-offset:-288px}.iti__be{--iti-flag-offset:-304px}.iti__bf{--iti-flag-offset:-320px}.iti__bg{--iti-flag-offset:-336px}.iti__bh{--iti-flag-offset:-352px}.iti__bi{--iti-flag-offset:-368px}.iti__bj{--iti-flag-offset:-384px}.iti__bl{--iti-flag-offset:-400px}.iti__bm{--iti-flag-offset:-416px}.iti__bn{--iti-flag-offset:-432px}.iti__bo{--iti-flag-offset:-448px}.iti__bq{--iti-flag-offset:-464px}.iti__br{--iti-flag-offset:-480px}.iti__bs{--iti-flag-offset:-496px}.iti__bt{--iti-flag-offset:-512px}.iti__bw{--iti-flag-offset:-528px}.iti__by{--iti-flag-offset:-544px}.iti__bz{--iti-flag-offset:-560px}.iti__ca{--iti-flag-offset:-576px}.iti__cc{--iti-flag-offset:-592px}.iti__cd{--iti-flag-offset:-608px}.iti__cf{--iti-flag-offset:-624px}.iti__cg{--iti-flag-offset:-640px}.iti__ch{--iti-flag-offset:-656px}.iti__ci{--iti-flag-offset:-672px}.iti__ck{--iti-flag-offset:-688px}.iti__cl{--iti-flag-offset:-704px}.iti__cm{--iti-flag-offset:-720px}.iti__cn{--iti-flag-offset:-736px}.iti__co{--iti-flag-offset:-752px}.iti__cr{--iti-flag-offset:-768px}.iti__cu{--iti-flag-offset:-784px}.iti__cv{--iti-flag-offset:-800px}.iti__cw{--iti-flag-offset:-816px}.iti__cx{--iti-flag-offset:-832px}.iti__cy{--iti-flag-offset:-848px}.iti__cz{--iti-flag-offset:-864px}.iti__de{--iti-flag-offset:-880px}.iti__dj{--iti-flag-offset:-896px}.iti__dk{--iti-flag-offset:-912px}.iti__dm{--iti-flag-offset:-928px}.iti__do{--iti-flag-offset:-944px}.iti__dz{--iti-flag-offset:-960px}.iti__ec{--iti-flag-offset:-976px}.iti__ee{--iti-flag-offset:-992px}.iti__eg{--iti-flag-offset:-1008px}.iti__eh{--iti-flag-offset:-1024px}.iti__er{--iti-flag-offset:-1040px}.iti__es{--iti-flag-offset:-1056px}.iti__et{--iti-flag-offset:-1072px}.iti__fi{--iti-flag-offset:-1088px}.iti__fj{--iti-flag-offset:-1104px}.iti__fk{--iti-flag-offset:-1120px}.iti__fm{--iti-flag-offset:-1136px}.iti__fo{--iti-flag-offset:-1152px}.iti__fr{--iti-flag-offset:-1168px}.iti__ga{--iti-flag-offset:-1184px}.iti__gb{--iti-flag-offset:-1200px}.iti__gd{--iti-flag-offset:-1216px}.iti__ge{--iti-flag-offset:-1232px}.iti__gf{--iti-flag-offset:-1248px}.iti__gg{--iti-flag-offset:-1264px}.iti__gh{--iti-flag-offset:-1280px}.iti__gi{--iti-flag-offset:-1296px}.iti__gl{--iti-flag-offset:-1312px}.iti__gm{--iti-flag-offset:-1328px}.iti__gn{--iti-flag-offset:-1344px}.iti__gp{--iti-flag-offset:-1360px}.iti__gq{--iti-flag-offset:-1376px}.iti__gr{--iti-flag-offset:-1392px}.iti__gt{--iti-flag-offset:-1408px}.iti__gu{--iti-flag-offset:-1424px}.iti__gw{--iti-flag-offset:-1440px}.iti__gy{--iti-flag-offset:-1456px}.iti__hk{--iti-flag-offset:-1472px}.iti__hn{--iti-flag-offset:-1488px}.iti__hr{--iti-flag-offset:-1504px}.iti__ht{--iti-flag-offset:-1520px}.iti__hu{--iti-flag-offset:-1536px}.iti__id{--iti-flag-offset:-1552px}.iti__ie{--iti-flag-offset:-1568px}.iti__il{--iti-flag-offset:-1584px}.iti__im{--iti-flag-offset:-1600px}.iti__in{--iti-flag-offset:-1616px}.iti__io{--iti-flag-offset:-1632px}.iti__iq{--iti-flag-offset:-1648px}.iti__ir{--iti-flag-offset:-1664px}.iti__is{--iti-flag-offset:-1680px}.iti__it{--iti-flag-offset:-1696px}.iti__je{--iti-flag-offset:-1712px}.iti__jm{--iti-flag-offset:-1728px}.iti__jo{--iti-flag-offset:-1744px}.iti__jp{--iti-flag-offset:-1760px}.iti__ke{--iti-flag-offset:-1776px}.iti__kg{--iti-flag-offset:-1792px}.iti__kh{--iti-flag-offset:-1808px}.iti__ki{--iti-flag-offset:-1824px}.iti__km{--iti-flag-offset:-1840px}.iti__kn{--iti-flag-offset:-1856px}.iti__kp{--iti-flag-offset:-1872px}.iti__kr{--iti-flag-offset:-1888px}.iti__kw{--iti-flag-offset:-1904px}.iti__ky{--iti-flag-offset:-1920px}.iti__kz{--iti-flag-offset:-1936px}.iti__la{--iti-flag-offset:-1952px}.iti__lb{--iti-flag-offset:-1968px}.iti__lc{--iti-flag-offset:-1984px}.iti__li{--iti-flag-offset:-2000px}.iti__lk{--iti-flag-offset:-2016px}.iti__lr{--iti-flag-offset:-2032px}.iti__ls{--iti-flag-offset:-2048px}.iti__lt{--iti-flag-offset:-2064px}.iti__lu{--iti-flag-offset:-2080px}.iti__lv{--iti-flag-offset:-2096px}.iti__ly{--iti-flag-offset:-2112px}.iti__ma{--iti-flag-offset:-2128px}.iti__mc{--iti-flag-offset:-2144px}.iti__md{--iti-flag-offset:-2160px}.iti__me{--iti-flag-offset:-2176px}.iti__mf{--iti-flag-offset:-2192px}.iti__mg{--iti-flag-offset:-2208px}.iti__mh{--iti-flag-offset:-2224px}.iti__mk{--iti-flag-offset:-2240px}.iti__ml{--iti-flag-offset:-2256px}.iti__mm{--iti-flag-offset:-2272px}.iti__mn{--iti-flag-offset:-2288px}.iti__mo{--iti-flag-offset:-2304px}.iti__mp{--iti-flag-offset:-2320px}.iti__mq{--iti-flag-offset:-2336px}.iti__mr{--iti-flag-offset:-2352px}.iti__ms{--iti-flag-offset:-2368px}.iti__mt{--iti-flag-offset:-2384px}.iti__mu{--iti-flag-offset:-2400px}.iti__mv{--iti-flag-offset:-2416px}.iti__mw{--iti-flag-offset:-2432px}.iti__mx{--iti-flag-offset:-2448px}.iti__my{--iti-flag-offset:-2464px}.iti__mz{--iti-flag-offset:-2480px}.iti__na{--iti-flag-offset:-2496px}.iti__nc{--iti-flag-offset:-2512px}.iti__ne{--iti-flag-offset:-2528px}.iti__nf{--iti-flag-offset:-2544px}.iti__ng{--iti-flag-offset:-2560px}.iti__ni{--iti-flag-offset:-2576px}.iti__nl{--iti-flag-offset:-2592px}.iti__no{--iti-flag-offset:-2608px}.iti__np{--iti-flag-offset:-2624px}.iti__nr{--iti-flag-offset:-2640px}.iti__nu{--iti-flag-offset:-2656px}.iti__nz{--iti-flag-offset:-2672px}.iti__om{--iti-flag-offset:-2688px}.iti__pa{--iti-flag-offset:-2704px}.iti__pe{--iti-flag-offset:-2720px}.iti__pf{--iti-flag-offset:-2736px}.iti__pg{--iti-flag-offset:-2752px}.iti__ph{--iti-flag-offset:-2768px}.iti__pk{--iti-flag-offset:-2784px}.iti__pl{--iti-flag-offset:-2800px}.iti__pm{--iti-flag-offset:-2816px}.iti__pr{--iti-flag-offset:-2832px}.iti__ps{--iti-flag-offset:-2848px}.iti__pt{--iti-flag-offset:-2864px}.iti__pw{--iti-flag-offset:-2880px}.iti__py{--iti-flag-offset:-2896px}.iti__qa{--iti-flag-offset:-2912px}.iti__re{--iti-flag-offset:-2928px}.iti__ro{--iti-flag-offset:-2944px}.iti__rs{--iti-flag-offset:-2960px}.iti__ru{--iti-flag-offset:-2976px}.iti__rw{--iti-flag-offset:-2992px}.iti__sa{--iti-flag-offset:-3008px}.iti__sb{--iti-flag-offset:-3024px}.iti__sc{--iti-flag-offset:-3040px}.iti__sd{--iti-flag-offset:-3056px}.iti__se{--iti-flag-offset:-3072px}.iti__sg{--iti-flag-offset:-3088px}.iti__sh{--iti-flag-offset:-3104px}.iti__si{--iti-flag-offset:-3120px}.iti__sj{--iti-flag-offset:-3136px}.iti__sk{--iti-flag-offset:-3152px}.iti__sl{--iti-flag-offset:-3168px}.iti__sm{--iti-flag-offset:-3184px}.iti__sn{--iti-flag-offset:-3200px}.iti__so{--iti-flag-offset:-3216px}.iti__sr{--iti-flag-offset:-3232px}.iti__ss{--iti-flag-offset:-3248px}.iti__st{--iti-flag-offset:-3264px}.iti__sv{--iti-flag-offset:-3280px}.iti__sx{--iti-flag-offset:-3296px}.iti__sy{--iti-flag-offset:-3312px}.iti__sz{--iti-flag-offset:-3328px}.iti__tc{--iti-flag-offset:-3344px}.iti__td{--iti-flag-offset:-3360px}.iti__tg{--iti-flag-offset:-3376px}.iti__th{--iti-flag-offset:-3392px}.iti__tj{--iti-flag-offset:-3408px}.iti__tk{--iti-flag-offset:-3424px}.iti__tl{--iti-flag-offset:-3440px}.iti__tm{--iti-flag-offset:-3456px}.iti__tn{--iti-flag-offset:-3472px}.iti__to{--iti-flag-offset:-3488px}.iti__tr{--iti-flag-offset:-3504px}.iti__tt{--iti-flag-offset:-3520px}.iti__tv{--iti-flag-offset:-3536px}.iti__tw{--iti-flag-offset:-3552px}.iti__tz{--iti-flag-offset:-3568px}.iti__ua{--iti-flag-offset:-3584px}.iti__ug{--iti-flag-offset:-3600px}.iti__us{--iti-flag-offset:-3616px}.iti__uy{--iti-flag-offset:-3632px}.iti__uz{--iti-flag-offset:-3648px}.iti__va{--iti-flag-offset:-3664px}.iti__vc{--iti-flag-offset:-3680px}.iti__ve{--iti-flag-offset:-3696px}.iti__vg{--iti-flag-offset:-3712px}.iti__vi{--iti-flag-offset:-3728px}.iti__vn{--iti-flag-offset:-3744px}.iti__vu{--iti-flag-offset:-3760px}.iti__wf{--iti-flag-offset:-3776px}.iti__ws{--iti-flag-offset:-3792px}.iti__xk{--iti-flag-offset:-3808px}.iti__ye{--iti-flag-offset:-3824px}.iti__yt{--iti-flag-offset:-3840px}.iti__za{--iti-flag-offset:-3856px}.iti__zm{--iti-flag-offset:-3872px}.iti__zw{--iti-flag-offset:-3888px}.iti__globe{background-image:var(--iti-path-globe-1x);background-size:contain;background-position:right;box-shadow:none;height:19px}@media (min-resolution:2x){.iti__flag{background-image:var(--iti-path-flags-2x)}.iti__globe{background-image:var(--iti-path-globe-2x)}}
+
+/* ---------- Tokens ---------- */
+:root{
+  --black:#06000d;          /* fundo único da página                  */
+  --white:#fafafa;
+  --text-soft:rgba(255,255,255,.84);
+  --text-mute:rgba(255,255,255,.68);
+  --line:rgba(255,255,255,.14);
+  --purple:#9f60ee;         /* roxo de destaque                       */
+  --purple-deep:#3e1968;    /* borda dos campos                       */
+  --purple-ink:#190141;     /* fundo dos campos                       */
+  --gold:#ecc485;           /* dourado do selo da marca fa-bfriday26  */
+  --card-bg:rgba(99,19,191,.16);
+
+  /* Luzes do fundo: roxo do Wonka, ameixa e o dourado do bilhete. */
+  --luz-roxa:rgba(112,38,206,.30);
+  --luz-ameixa:rgba(160,52,146,.26);
+  --luz-dourada:rgba(236,196,133,.18);
+
+  /* Matiz e saturação do verde do WhatsApp, com a luminosidade baixada até o
+     texto branco passar no contraste: 4,70:1 no início do gradiente, 7,67:1
+     no fim. Os mesmos da página de obrigado. */
+  --verde-1:#178540;
+  --verde-2:#11602E;
+
+  /* ease-out: tudo que entra desacelera no fim, nada de vai-e-vem. */
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+
+/* ---------- Reset ---------- */
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;background:var(--black)}
+body{
+  margin:0;
+  background:var(--black);
+  color:var(--white);
+  font-family:'Silka','Poppins',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  font-weight:400;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  overflow-x:hidden;
+}
+img{display:block;max-width:100%}
+h1,h2,h3,p,figure,ul,ol{margin:0}
+/* Títulos com linhas equilibradas e parágrafos sem palavra sozinha na última linha. */
+h1,h2,h3{text-wrap:balance}
+p{text-wrap:pretty}
+a{color:inherit;text-decoration:none}
+strong{font-weight:500}
+
+/* Lenis (scroll suave) */
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+.lenis.lenis-stopped{overflow:hidden}
+
+/* ---------- Ícones do sprite Framer ---------- */
+.ico{display:block;flex:none}
+
+/* ---------- Botão ----------
+   Mesmo verde do botão do formulário: as ações da página têm a mesma cara,
+   e o degradê fica só no que é ação. */
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  padding:16px 20px 16px 26px;
+  border-radius:12px;
+  background:linear-gradient(135deg,var(--verde-1) 0%,var(--verde-2) 100%);
+  color:#fff;
+  font-size:18px;
+  font-weight:500;
+  line-height:1;
+  transition:filter .25s var(--ease),transform .25s var(--ease);
+}
+.btn:hover{filter:brightness(1.08)}
+.btn:active{filter:brightness(.94);transform:translateY(1px)}
+.btn__icon{display:flex;width:24px;height:24px;color:#fff;transition:transform .3s var(--ease)}
+.btn:hover .btn__icon{transform:translateX(3px)}
+
+/* =========================================================================
+   CARD DO FORMULÁRIO
+   ========================================================================= */
+.hero__card{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:20px;
+  width:450px;
+  flex:none;
+  padding:40px;
+  border-radius:20px;
+  /* Vidro: com blur de 45px tudo atrás virava uma cor lisa e o card parecia
+     chapado. Com 18px as formas de trás (a luz roxa, o ombro do Dr. Wagner)
+     aparecem borradas; saturate realça a cor que passa pelo vidro, e a borda
+     clara de 1px com o brilho no topo marcam a placa. */
+  background:linear-gradient(160deg,rgba(255,255,255,.12),rgba(255,255,255,.03) 45%),var(--card-bg);
+  border:1px solid rgba(255,255,255,.16);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 24px 60px rgba(4,0,12,.45);
+  -webkit-backdrop-filter:blur(18px) saturate(150%);
+  backdrop-filter:blur(18px) saturate(150%);
+}
+.card__title{
+  width:100%;
+  font-size:28px;
+  font-weight:500;
+  line-height:1.2;
+  letter-spacing:-.02em;
+  color:var(--white);
+}
+
+.fa-form{width:100%}
+.card__next{width:100%;font-size:14px;line-height:1.5;color:var(--text-mute)}
+.fa-field{position:relative;margin-bottom:18px}
+.fa-field label{
+  display:block;
+  margin-bottom:8px;
+  font-size:14px;
+  font-weight:400;
+  line-height:1;
+  color:#f2f2f2;
+}
+.fa-control{position:relative}
+.fa-icon{
+  position:absolute;
+  left:14px;
+  top:50%;
+  transform:translateY(-50%);
+  display:flex;
+  pointer-events:none;
+  z-index:2;
+}
+.fa-input{
+  width:100%;
+  height:46px;
+  padding:12px 14px 12px 44px;
+  font-family:inherit;
+  font-size:16px;
+  font-weight:400;
+  line-height:1;
+  color:#fff;
+  background:var(--purple-ink);
+  border:1.5px solid var(--purple-deep);
+  border-radius:12px;
+  outline:none;
+  transition:border-color .2s var(--ease);
+}
+/* 60%: com 45% o placeholder ficava em 4,29:1 e reprovava. */
+.fa-input::placeholder{color:rgba(255,255,255,.6)}
+.fa-input:focus{border-color:var(--purple)}
+.fa-input.is-invalid{border-color:#e2555d}
+
+.fa-submit{
+  width:100%;
+  margin-top:8px;
+  padding:16px 24px;
+  font-family:inherit;
+  font-size:18px;
+  /* Peso 500 (SilkaMedium), que já é pré-carregado. O 600 exigia o
+     SilkaSemiBold — 29 KB a mais no caminho crítico por um único elemento. */
+  font-weight:500;
+  letter-spacing:-.01em;
+  line-height:1;
+  color:#fff;
+  background:linear-gradient(135deg,var(--verde-1) 0%,var(--verde-2) 100%);
+  border:none;
+  border-radius:12px;
+  cursor:pointer;
+  transition:filter .25s var(--ease);
+}
+/* A pulsação só começa depois que a página termina de carregar.
+   O botão fica dentro do .hero__card, que tem backdrop-filter (blur) —
+   animar ali durante o carregamento custa caro em celular fraco e foi o que
+   derrubou LCP e TBT no PageSpeed. Depois do load ela não disputa com nada e
+   a pessoa vê o efeito do mesmo jeito. */
+.carregada .fa-submit{
+  animation:pulsarEnvio 2.2s ease-in-out infinite;
+}
+/* Só o halo pulsa: o botão não cresce (crescendo, ficava mais largo que os
+   campos a cada ciclo). */
+@keyframes pulsarEnvio{
+  0%,100%{box-shadow:0 10px 26px rgba(18,140,70,.4), 0 0 0 0 rgba(37,211,102,.45)}
+  50%{box-shadow:0 12px 30px rgba(18,140,70,.5), 0 0 0 12px rgba(37,211,102,0)}
+}
+/* Ao interagir a pulsação para, e durante o envio também: o botão fica
+   desabilitado e não faz sentido continuar chamando atenção. */
+.fa-submit:hover,.fa-submit:focus-visible{filter:brightness(1.08);animation-play-state:paused}
+/* Anel de foco visível para quem navega pelo teclado (dourado da marca). */
+.fa-submit:focus-visible,.btn:focus-visible,.footer a:focus-visible{outline:2px solid var(--gold);outline-offset:4px}
+.fa-submit:active{filter:brightness(.94);animation-play-state:paused}
+.fa-submit:disabled{opacity:.6;cursor:default;animation:none;transform:none;box-shadow:none}
+
+.fa-message:empty{display:none}
+.fa-message{
+  margin-top:10px;
+  font-size:14px;
+  line-height:1.4;
+  color:var(--purple);
+  min-height:0;
+}
+.fa-message.is-error{color:#ff8b95}
+
+/* intl-tel-input — tema escuro */
+.iti{width:100%}
+.iti--inline-dropdown .iti__dropdown-content{
+  background:var(--purple-ink);
+  border:1px solid var(--purple-deep);
+  color:#fff;
+}
+.iti__country{color:#fff}
+.iti__country.iti__highlight,.iti__country:hover{background:rgba(159,96,238,.22)}
+.iti__dial-code{color:rgba(255,255,255,.6)}
+.iti__search-input{
+  background:var(--purple-ink);
+  color:#fff;
+  border-bottom:1px solid var(--purple-deep);
+}
+.iti__selected-dial-code{color:#fff}
+
+/* =========================================================================
+   RODAPÉ
+   ========================================================================= */
+/* Sem fundo próprio: o fundo da página segue até o fim, sem borda. */
+.footer{position:relative;padding:96px 40px 0}
+.footer__inner{display:flex;flex-direction:column;gap:32px;max-width:1345px;margin:0 auto}
+
+.footer__top{display:flex;align-items:flex-start;gap:32px}
+.footer__brand{flex:1 1 0;min-width:0;display:flex;flex-direction:column;gap:24px}
+.footer__logo{width:323px;height:48px;object-fit:contain}
+.footer__tagline{font-size:16px;font-weight:400;line-height:1.4;color:#fff}
+
+.footer__legal{
+  flex:1 1 0;
+  min-width:0;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-end;
+  gap:8px;
+}
+.footer__legal > *{width:170px}
+.footer__links{display:flex;flex-direction:column}
+.footer__legend{
+  font-size:14px;
+  font-weight:500;
+  line-height:1;
+  letter-spacing:-.02em;
+  color:#fff;
+}
+.footer__top .footer__legend{padding:10px 8px 10px 0}
+.footer__legal a,.footer__link-static{
+  display:block;
+  padding:10px 8px 10px 0;
+  font-size:14px;
+  font-weight:400;
+  line-height:1;
+  letter-spacing:-.02em;
+  color:rgba(255,255,255,.8);
+  transition:color .2s var(--ease);
+}
+.footer__legal a:hover{color:#fff}
+.footer__link-static{line-height:1.2}
+
+.footer__divider{
+  height:3px;
+  background:linear-gradient(transparent 0 1px,rgba(255,255,255,.1) 1px 2px,transparent 2px);
+}
+
+.footer__mid{display:flex;gap:64px}
+.footer__block{flex:1 1 0;min-width:0;display:flex;flex-direction:column;gap:8px;max-width:641px}
+.footer__mid .footer__legend{padding:10px 8px 10px 0}
+.footer__note{
+  padding:10px 8px 10px 0;
+  font-size:14px;
+  font-weight:400;
+  line-height:1.5;
+  letter-spacing:-.02em;
+  color:rgba(255,255,255,.8);
+}
+
+.footer__bottom{padding:40px 0 calc(48px + env(safe-area-inset-bottom))}
+.footer__bottom p{
+  font-size:15px;
+  font-weight:400;
+  line-height:1.6;
+  color:var(--white);
+}
+
+
+/* =========================================================================
+   CAPTURA DAS AULAS AO VIVO · layout e movimento próprios
+   Estrutura da prévia do briefing (tarja, hero com vídeo e formulário, as
+   duas aulas, rodapé) com a linguagem da captura B: fundo preto contínuo
+   com luzes por seção, vidro no formulário, ícones Phosphor, botão verde,
+   títulos palavra por palavra, revelação ligada à rolagem.
+
+   Movimento (tudo ease-out, nada de vai-e-vem):
+   - entrada do hero por tempo, só deslocamento (LCP);
+   - o resto ligado à rolagem (animation-timeline), terminando no meio da
+     tela; onde não há suporte (Firefox), o main revela por bloco;
+   - interações de ponteiro só com mouse/trackpad (hover + pointer fine);
+   - prefers-reduced-motion desliga tudo que se move, inclusive o vídeo.
+   ========================================================================= */
+:root{
+  --surface:rgba(255,255,255,.035);
+  --surface-line:rgba(255,255,255,.1);
+  --pad:48px;
+  --luz-roxa:rgba(112,38,206,.30);
+  --luz-ameixa:rgba(160,52,146,.22);
+}
+
+main{position:relative;isolation:isolate;overflow-x:clip}
+.hero,.aulas{position:relative}
+p,li{text-wrap:pretty}
+
+/* Ícones Phosphor inline: herdam a cor do texto. */
+.i{display:block;flex:none;width:24px;height:24px}
+
+/* ---------- Tarja do topo ----------
+   Faixa fina com as datas. Sem degradê (degradê só em ação). */
+.tarja{
+  position:relative;z-index:3;
+  display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:4px 14px;
+  padding:10px var(--pad);
+  background:rgba(159,96,238,.12);
+  border-bottom:1px solid rgba(159,96,238,.22);
+  font-size:13px;font-weight:500;line-height:1.35;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--text-soft);text-align:center;
+}
+.tarja strong{color:var(--gold);font-weight:500;font-variant-numeric:tabular-nums}
+.tarja__sep{color:rgba(255,255,255,.3)}
+
+/* ---------- Luzes do fundo ----------
+   Cada seção acende uma luz maior do que ela, atrás de tudo, na largura
+   inteira da tela; as luzes se sobrepõem na passagem. */
+.hero::before,.aulas::before{
+  content:"";position:absolute;z-index:-2;pointer-events:none;
+  left:50%;width:100vw;transform:translateX(-50%);
+}
+.hero::before{
+  top:0;bottom:-35%;
+  background:
+    radial-gradient(44% 56% at 74% 46%,var(--luz-roxa),transparent 72%),
+    radial-gradient(30% 40% at 14% 24%,rgba(160,52,146,.14),transparent 72%);
+}
+.aulas::before{
+  top:-15%;bottom:-15%;
+  background:
+    radial-gradient(40% 34% at 22% 30%,var(--luz-ameixa),transparent 72%),
+    radial-gradient(44% 36% at 80% 70%,rgba(112,38,206,.2),transparent 72%);
+}
+
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:16px;font-weight:500;line-height:1.4;color:var(--gold);
+}
+.eyebrow .i{width:20px;height:20px}
+/* Ponto de "ao vivo": vermelho com um anel que se abre e some (ease-out). */
+.aovivo{position:relative;flex:none;width:10px;height:10px;border-radius:50%;background:#ff4d5e;margin:0 4px}
+.aovivo::after{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid #ff4d5e;animation:aovivo 2s var(--ease) infinite}
+@keyframes aovivo{from{transform:scale(1);opacity:.8}to{transform:scale(2.6);opacity:0}}
+
+/* =========================================================================
+   HERO
+   No alto, a marca e o cronômetro; embaixo, título e texto | formulário.
+   Ao fundo, o vídeo da live, apagado do lado do texto e no pé.
+   ========================================================================= */
+.hero{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 440px;
+  grid-template-rows:auto 1fr;
+  grid-template-areas:"topo topo" "texto form";
+  column-gap:clamp(64px,8vw,128px);
+  row-gap:clamp(32px,5vh,64px);
+  min-height:min(calc(100svh - 40px),980px);
+  max-width:1440px;
+  margin:0 auto;
+  padding:32px var(--pad) 96px;
+  view-timeline-name:--hero;
+}
+/* Luz que segue o ponteiro (o main define --lx/--ly). */
+.hero__luz{
+  position:absolute;inset:0;z-index:0;pointer-events:none;
+  background:radial-gradient(520px circle at var(--lx,70%) var(--ly,40%),rgba(159,96,238,.14),transparent 65%);
+  opacity:0;transition:opacity .6s var(--ease);
+}
+.hero.com-ponteiro .hero__luz{opacity:1}
+
+.hero__top{grid-area:topo;position:relative;z-index:1;display:flex;align-items:center;justify-content:space-between;gap:20px 40px}
+.hero__logo img{width:215px;height:32px}
+.hero__text{grid-area:texto;align-self:center;position:relative;z-index:1;display:flex;flex-direction:column;align-items:flex-start;gap:28px;min-width:0}
+.hero__slot{grid-area:form;align-self:center}
+.hero__card{position:relative;z-index:2;width:440px;gap:18px}
+.hero__top .timer{align-items:flex-end;text-align:right}
+
+/* ---------- Cronômetro ----------
+   Números grandes sem caixinha por dígito; o dígito que muda entra rolando
+   de baixo (o recorte é do .timer__num). */
+.timer{display:flex;flex-direction:column;gap:6px}
+.timer__label{font-size:14px;font-weight:500;line-height:1.3;color:var(--text-mute)}
+.timer__clock{display:flex;align-items:flex-start;gap:6px;font-variant-numeric:tabular-nums}
+.timer__unit{display:flex;flex-direction:column;align-items:center;gap:4px}
+.timer__num{display:inline-flex;overflow:hidden;font-size:40px;font-weight:500;line-height:1.02;letter-spacing:-.02em;color:#fff}
+.timer__d{display:inline-block}
+.timer__sep{font-size:32px;font-weight:400;line-height:1.05;color:rgba(255,255,255,.4)}
+.timer__cap{font-size:12px;line-height:1;color:var(--text-mute)}
+
+.hero__title{
+  font-size:clamp(44px,4.1vw,62px);
+  font-weight:500;
+  line-height:1.05;
+  letter-spacing:-.04em;
+  color:#fff;
+}
+.hero__title .w{display:inline-block}
+/* A pergunta em dourado; um brilho passa uma vez depois da entrada e de
+   novo ao passar o mouse no título. */
+.hero__title em{font-style:normal;color:var(--gold)}
+@supports ((-webkit-background-clip:text) or (background-clip:text)){
+  .hero__title em{
+    background:linear-gradient(100deg,var(--gold) 0%,var(--gold) 38%,#fff6de 50%,var(--gold) 62%,var(--gold) 100%);
+    background-size:260% 100%;background-position:100% 0;
+    -webkit-background-clip:text;background-clip:text;
+    -webkit-text-fill-color:transparent;
+  }
+}
+.hero__lead{max-width:44ch;font-size:20px;line-height:1.55;color:var(--text-soft)}
+.hero__lead strong{color:#fff}
+
+/* Quem dá as aulas: fio dourado e ícone, como o aviso da B. */
+.hero__note{
+  display:flex;gap:12px;align-items:flex-start;
+  max-width:46ch;padding-left:16px;
+  border-left:2px solid rgba(236,196,133,.55);
+  font-size:15px;line-height:1.5;color:var(--text-soft);
+}
+.hero__note strong{color:#fff}
+.hero__note .i{width:20px;height:20px;margin-top:2px;color:var(--gold)}
+
+/* Título do card: a frase é longa, então menor que o "Entre na lista" da B. */
+.hero__card .card__title{font-size:23px;line-height:1.25}
+.fa-legal{width:100%;margin-top:14px;font-size:12.5px;line-height:1.5;color:var(--text-mute)}
+.fa-legal a{color:#fff;text-decoration:underline;text-underline-offset:2px;text-decoration-color:rgba(255,255,255,.4);transition:text-decoration-color .2s var(--ease)}
+.fa-legal a:hover{text-decoration-color:#fff}
+.fa-legal a:focus-visible{outline:2px solid var(--gold);outline-offset:2px;border-radius:2px}
+.fa-submit[aria-busy="true"]{opacity:.75;cursor:progress}
+
+/* ---------- Vídeo da live no fundo ----------
+   Vai do meio do texto até a borda da tela. Some do lado do texto (a
+   leitura fica no escuro) e no pé do hero. Desloca com o mouse (--px/--py)
+   e, na rolagem, sobe mais devagar que a página. */
+.hero__fundo{
+  position:absolute;z-index:-1;pointer-events:none;
+  top:0;bottom:0;
+  right:calc((100% - 100vw) / 2);
+  width:72vw;
+  overflow:hidden;
+  -webkit-mask-image:linear-gradient(to right,transparent,#000 50%),linear-gradient(to bottom,transparent,#000 8%,#000 66%,transparent);
+  -webkit-mask-composite:source-in;
+  mask-image:linear-gradient(to right,transparent,#000 50%),linear-gradient(to bottom,transparent,#000 8%,#000 66%,transparent);
+  mask-composite:intersect;
+}
+.hero__fundo video{
+  position:absolute;left:0;right:0;bottom:0;top:-12%;
+  width:100%;height:112%;object-fit:cover;object-position:50% 40%;
+  opacity:.7;
+  transform:translate3d(calc(var(--px,0) * -14px),calc(var(--py,0) * -10px),0) scale(1.05);
+  transition:transform 1.2s var(--ease);
+  animation:fundoEntra 2.6s var(--ease) both;
+}
+@keyframes fundoEntra{from{scale:1.08;opacity:0}to{scale:1}}
+
+/* =========================================================================
+   AS DUAS AULAS
+   ========================================================================= */
+.aulas{
+  display:flex;flex-direction:column;align-items:center;gap:56px;
+  max-width:1440px;margin:0 auto;
+  padding:136px var(--pad) 160px;
+}
+.aulas__head{width:100%;display:flex;flex-direction:column;align-items:flex-start;gap:20px}
+.aulas__title{max-width:18ch;font-size:56px;font-weight:500;line-height:1.06;letter-spacing:-.04em;color:#fff}
+.aulas__lead{max-width:46ch;font-size:20px;line-height:1.5;color:var(--text-soft)}
+/* Desktop: título à esquerda e o texto de apoio à direita, alinhados pela
+   base, para o título não ficar sozinho com um vazio do lado. */
+@media (min-width:960px){
+  .aulas__head{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);column-gap:64px;row-gap:20px;align-items:end}
+  .aulas__head .eyebrow{grid-column:1;grid-row:1}
+  .aulas__title{grid-column:1;grid-row:2}
+  .aulas__lead{grid-column:2;grid-row:2;justify-self:end;max-width:40ch;padding-bottom:6px}
+}
+
+.aulas__grid{width:100%;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+
+/* Card da aula: foto em quadro arredondado (sem fade) e texto embaixo. A
+   luz que segue o ponteiro (--x/--y do main) só aparece com mouse; o card
+   não sobe no hover porque não é clicável. */
+.aula{
+  position:relative;overflow:hidden;
+  display:flex;flex-direction:column;gap:24px;
+  padding:16px 16px 36px;border-radius:24px;
+  background:var(--surface);
+  border:1px solid var(--surface-line);
+  transition:border-color .35s var(--ease);
+}
+.aula::before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(420px circle at var(--x,50%) var(--y,0%),rgba(159,96,238,.16),transparent 65%);
+  opacity:0;transition:opacity .4s var(--ease);
+}
+.aula > *{position:relative}
+.aula__foto{margin:0;overflow:hidden;border-radius:14px;aspect-ratio:16/10;background:#0d0617}
+.aula__foto img{width:100%;height:100%;object-fit:cover;transition:transform .9s var(--ease)}
+@media (hover:hover) and (pointer:fine){
+  .aula:hover{border-color:rgba(159,96,238,.38)}
+  .aula:hover::before{opacity:1}
+  .aula:hover .aula__foto img{transform:scale(1.03)}
+}
+.aula__body{display:flex;flex-direction:column;align-items:flex-start;gap:14px;padding:0 20px}
+.aula__meta{display:flex;flex-wrap:wrap;align-items:center;gap:6px 16px}
+.aula__tipo{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:500;line-height:1.3;letter-spacing:.12em;text-transform:uppercase;color:var(--gold)}
+.aula__tipo .i{width:20px;height:20px}
+.aula__quando{display:inline-flex;align-items:center;gap:8px;font-size:15px;line-height:1.3;color:var(--text-soft);font-variant-numeric:tabular-nums}
+.aula__quando .i{width:18px;height:18px;color:var(--purple)}
+.aula__title{font-size:28px;font-weight:500;line-height:1.18;letter-spacing:-.025em;color:#fff}
+.aula__lista{list-style:none;padding:0;margin:4px 0 0;width:100%;display:flex;flex-direction:column}
+.aula__lista li{
+  display:flex;align-items:baseline;gap:12px;
+  padding:12px 0;border-top:1px solid var(--surface-line);
+  font-size:17px;line-height:1.5;color:var(--text-soft);
+}
+.aula__lista li::before{content:"";flex:none;width:6px;height:6px;border-radius:50%;background:var(--gold);transform:translateY(-3px)}
+
+/* ---------- Botões de ação (fora do formulário) ----------
+   Sobem um pouco no hover e um brilho atravessa o verde (degradê só em ação).
+   `translate` em vez de transform: o transform é da revelação na rolagem. */
+.btn{position:relative;overflow:hidden;transition:filter .25s var(--ease),translate .3s var(--ease),box-shadow .3s var(--ease)}
+.btn::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.24) 50%,transparent 70%);
+  translate:-120% 0;
+}
+@media (hover:hover) and (pointer:fine){
+  .btn:hover{translate:0 -2px;box-shadow:0 14px 30px rgba(18,140,70,.35)}
+  .btn:hover::after{translate:120% 0;transition:translate .8s var(--ease)}
+}
+.btn:active{translate:0 0}
+.btn__label,.btn__icon{position:relative}
+
+/* Campo em foco: anel suave em volta, além da borda roxa. */
+.fa-input{transition:border-color .2s var(--ease),box-shadow .3s var(--ease)}
+.fa-input:focus{box-shadow:0 0 0 4px rgba(159,96,238,.2)}
+
+/* =========================================================================
+   POP-UPS
+   O do formulário: o card do hero é movido para dentro do <dialog> pelo
+   main e volta ao fechar. O do grupo: abre depois do cadastro e leva ao
+   WhatsApp sozinho.
+   ========================================================================= */
+.popup{
+  position:fixed;inset:0;
+  width:100%;height:100%;max-width:none;max-height:none;
+  margin:0;padding:16px;border:0;
+  background:transparent;color:inherit;
+  overflow:auto;overscroll-behavior:contain;
+}
+.popup[open]{display:grid;place-items:center}
+.popup::backdrop{background:rgba(6,0,13,.74);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.popup__box{position:relative;width:100%;max-width:450px}
+.popup .hero__card{width:100%}
+/* O card já entrou no hero; no pop-up ele aparece sem a animação de entrada.
+   (.js .popup para vencer o .js .anim, que vem depois.) */
+.js .popup .anim{opacity:1;transform:none;animation:none}
+.popup .card__title{padding-right:44px}
+.popup__fechar{
+  position:absolute;top:12px;right:12px;z-index:3;
+  display:grid;place-items:center;width:44px;height:44px;
+  padding:0;border:0;border-radius:12px;
+  background:transparent;color:rgba(255,255,255,.8);cursor:pointer;
+  transition:background-color .2s var(--ease),color .2s var(--ease);
+}
+.popup__fechar:hover{background:rgba(255,255,255,.08);color:#fff}
+.popup__fechar:active{background:rgba(255,255,255,.12)}
+.popup__fechar:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.popup[open] .popup__box{animation:popIn .36s var(--ease)}
+.popup[open]::backdrop{animation:someEntra .3s var(--ease)}
+.popup.saindo .popup__box{animation:popOut .2s var(--ease) forwards}
+.popup.saindo::backdrop{animation:someSai .2s var(--ease) forwards}
+@keyframes popIn{from{opacity:0;transform:translateY(14px) scale(.97)}}
+@keyframes popOut{to{opacity:0;transform:translateY(8px) scale(.98)}}
+@keyframes someEntra{from{opacity:0}}
+@keyframes someSai{to{opacity:0}}
+/* Sem o Lenis (movimento reduzido), a página de trás não rola. */
+html:has(.popup[open]){overflow:hidden}
+
+/* ---------- Pop-up do grupo ---------- */
+.popup--grupo .popup__box{max-width:480px}
+.grupo{
+  display:flex;flex-direction:column;align-items:stretch;gap:20px;
+  padding:32px;border-radius:20px;
+  background:linear-gradient(160deg,rgba(255,255,255,.12),rgba(255,255,255,.03) 45%),var(--card-bg);
+  border:1px solid rgba(255,255,255,.16);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 24px 60px rgba(4,0,12,.45);
+  -webkit-backdrop-filter:blur(18px) saturate(150%);
+  backdrop-filter:blur(18px) saturate(150%);
+}
+.grupo__title{font-size:28px;font-weight:500;line-height:1.15;letter-spacing:-.02em;color:#fff}
+.grupo__texto{margin-top:-8px;font-size:16px;line-height:1.5;color:var(--text-soft)}
+.grupo__texto strong{color:#fff}
+
+/* Andamento: o cadastro já feito e a ida ao grupo, com a barra enchendo. */
+.andamento{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:14px}
+.andamento__passo{display:grid;grid-template-columns:28px minmax(0,1fr);column-gap:12px;align-items:center;font-size:15px;line-height:1.35;color:#fff}
+.andamento__marca{display:grid;place-items:center;width:28px;height:28px;border-radius:50%}
+.andamento__marca .i{width:16px;height:16px}
+.andamento__passo--feito .andamento__marca{background:var(--verde-1);color:#fff}
+.andamento__passo--agora .andamento__marca{border:1.5px solid rgba(255,255,255,.3)}
+.andamento__marca .gira{width:14px;height:14px;border-radius:50%;border:2px solid rgba(255,255,255,.25);border-top-color:#fff;animation:gira .9s linear infinite}
+@keyframes gira{to{rotate:1turn}}
+.andamento__linha{display:flex;justify-content:space-between;gap:12px}
+.andamento__seg{flex:none;white-space:nowrap;color:var(--text-mute);font-variant-numeric:tabular-nums}
+.barra{grid-column:2;margin-top:10px;height:6px;border-radius:99px;background:rgba(255,255,255,.12);overflow:hidden}
+.barra__fill{display:block;height:100%;width:100%;border-radius:inherit;background:linear-gradient(90deg,var(--verde-1),#25D366);transform-origin:left center;scale:0 1}
+/* Linear de propósito: a barra mostra o tempo que falta, segundo a segundo. */
+.grupo.contando .barra__fill{scale:1 1;transition:scale var(--dur,6s) linear}
+
+/* Aviso em vermelho, o mesmo do obrigado antigo. */
+.alerta{
+  display:flex;align-items:center;gap:14px;
+  margin:0;padding:16px 18px;text-align:left;
+  background:#DC1F26;border-radius:14px;
+  color:#fff;font-size:16px;font-weight:300;line-height:1.45;
+  box-shadow:0 10px 28px rgba(220,31,38,.32);
+}
+.alerta .ic{flex:none;display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:#fff;color:#DC1F26}
+.alerta .ic svg{width:24px;height:24px}
+.alerta .tit{display:block;margin-bottom:3px;font-size:12.5px;font-weight:300;letter-spacing:.12em;text-transform:uppercase}
+.alerta b{font-weight:700;text-transform:uppercase;letter-spacing:.02em}
+.grupo .btn{width:100%}
+
+/* =========================================================================
+   MOVIMENTO
+   ========================================================================= */
+.js .anim{opacity:.001;transform:translateY(20px)}
+
+/* O hero entra por CSS, sem esperar o JS (LCP). Só o deslocamento anima;
+   a opacidade fica em 1 desde o primeiro quadro. */
+.hero .anim{opacity:1;transform:translateY(16px);animation:heroIn .7s var(--ease) forwards}
+@keyframes heroIn{to{transform:none}}
+.hero .anim[data-delay="80"]{animation-delay:80ms}
+.hero .anim[data-delay="120"]{animation-delay:120ms}
+.hero .anim[data-delay="160"]{animation-delay:160ms}
+.hero .anim[data-delay="200"]{animation-delay:200ms}
+.hero .anim[data-delay="240"]{animation-delay:240ms}
+/* Título palavra por palavra. */
+.hero__title .w{transform:translateY(.32em);animation:heroIn .8s var(--ease) forwards;animation-delay:calc(160ms + var(--w) * 45ms)}
+.hero__title em.w{animation:heroIn .8s var(--ease) calc(160ms + var(--w) * 45ms) forwards,brilho 1.8s var(--ease) 1.2s both}
+@media (hover:hover) and (pointer:fine){
+  .hero__title:hover em.w{animation:heroIn 0s forwards,brilhoDeNovo 1.4s var(--ease) both}
+}
+@keyframes brilho{from{background-position:100% 0}to{background-position:0 0}}
+@keyframes brilhoDeNovo{from{background-position:100% 0}to{background-position:0 0}}
+
+/* Entrada por bloco pelo JS onde não há animação ligada à rolagem. */
+.js .anim.is-in{opacity:1;transform:none;transition:opacity .7s var(--ease),transform .7s var(--ease)}
+
+/* Ligado à rolagem: termina quando o bloco chega ao centro da tela (cover
+   50%). Linear de propósito: a curva aqui mapeia a posição da rolagem. */
+@supports (animation-timeline:view()){
+  @media (prefers-reduced-motion:no-preference){
+    .js .aulas .anim{
+      opacity:1;transform:none;transition:none;
+      animation:revela linear both;
+      animation-timeline:view();
+      animation-range:entry 0% cover 50%;
+    }
+    /* Títulos: palavras em cascata. */
+    [data-palavras] .w{
+      display:inline-block;
+      animation:palavra linear both;
+      animation-timeline:view();
+      animation-range:entry calc(var(--w) * 4%) cover calc(30% + var(--w) * 2.5%);
+    }
+    /* Cards em cascata. */
+    .js .aulas .aula.anim{animation-range:entry calc(var(--n) * 8%) cover calc(42% + var(--n) * 6%)}
+    /* Vídeo do fundo sobe mais devagar que a página. */
+    .hero__fundo video{
+      animation:fundoEntra 2.6s var(--ease) both,fundoSai linear both;
+      animation-timeline:auto,--hero;
+      animation-range:normal,exit 0% exit 100%;
+    }
+    /* Foto da aula: deriva vertical leve dentro do quadro. */
+    .aula__foto img{
+      scale:1.08;
+      animation:deriva linear both;
+      animation-timeline:view();
+      animation-range:cover 0% cover 100%;
+    }
+  }
+}
+@keyframes revela{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+@keyframes palavra{from{opacity:0;transform:translateY(.45em)}to{opacity:1;transform:none}}
+@keyframes fundoSai{to{translate:0 14%}}
+@keyframes deriva{from{translate:0 -3%}to{translate:0 3%}}
+
+@media (prefers-reduced-motion:reduce){
+  .anim,.js .anim,.hero .anim,.hero__title .w,.hero__title em.w{opacity:1!important;transform:none!important;transition:none!important;animation:none!important}
+  .hero__fundo video{animation:none!important;transition:none;transform:none}
+  .aula__foto img{transition:none}
+  .popup[open] .popup__box,.popup[open]::backdrop,.popup.saindo .popup__box{animation:none!important}
+  .fa-submit{animation:none!important;transform:none!important}
+  .andamento__marca .gira{animation:none}
+  .aovivo::after{animation:none;opacity:0}
+  .grupo.contando .barra__fill{transition:none}
+}
+
+/* =========================================================================
+   ABAIXO DE 1280px
+   ========================================================================= */
+@media (max-width:1279px){
+  :root{--pad:40px}
+  .hero{grid-template-columns:minmax(0,1fr) 400px;column-gap:48px}
+  .hero__card{width:400px}
+  .hero__title{font-size:42px}
+  .hero__lead{font-size:17px}
+  .timer__num{font-size:34px}
+  .timer__sep{font-size:28px}
+
+  .aulas{padding:112px var(--pad) 128px}
+  .aulas__title{font-size:46px}
+  .aula__title{font-size:24px}
+  .aula__lista li{font-size:16px}
+
+  .footer{padding:96px 32px 0}
+  .footer__top{flex-direction:column;align-items:flex-start;gap:32px}
+  .footer__brand{width:100%}
+  .footer__tagline{font-size:14px}
+  .footer__legal{align-items:flex-start;width:100%}
+  .footer__legal > *{width:auto}
+  .footer__mid{gap:48px}
+}
+
+/* =========================================================================
+   ABAIXO DE 960px: uma coluna. Marca e cronômetro, título, texto,
+   formulário e quem dá as aulas. O vídeo fica atrás do topo, mais apagado.
+   ========================================================================= */
+@media (max-width:959px){
+  .hero{display:flex;flex-direction:column;align-items:stretch;gap:20px;min-height:0;max-width:640px;padding:20px var(--pad) 0}
+  .hero__text{display:contents}
+  .hero__top{order:1;flex-wrap:nowrap;gap:12px}
+  .eyebrow{order:2}
+  .hero__title{order:3}
+  .hero__lead{order:4;max-width:none}
+  .hero__slot{order:5;margin-top:8px}
+  .hero__note{order:6;margin-top:8px;max-width:none}
+  .hero__card{width:100%}
+  .hero__fundo{
+    left:calc((100% - 100vw) / 2);right:calc((100% - 100vw) / 2);width:auto;
+    bottom:auto;height:min(130vw,700px);
+    -webkit-mask-image:linear-gradient(to bottom,#000 34%,transparent);
+    mask-image:linear-gradient(to bottom,#000 34%,transparent);
+  }
+  .hero__fundo video{opacity:.4;object-position:50% 30%}
+  .aulas__grid{grid-template-columns:1fr;max-width:640px}
+  .aulas__head{max-width:640px}
+}
+
+/* =========================================================================
+   CELULAR (≤809px)
+   ========================================================================= */
+@media (max-width:809px){
+  :root{--pad:16px}
+  .tarja{font-size:11px;letter-spacing:.08em;padding:8px var(--pad);gap:2px 10px}
+  .hero{gap:14px;padding:14px var(--pad) 0}
+  .hero__slot{margin-top:2px}
+  .hero__logo img{width:140px;height:21px}
+  .timer{gap:4px}
+  .timer__label{font-size:12px}
+  .timer__clock{gap:4px}
+  .timer__num{font-size:24px}
+  .timer__sep{font-size:19px}
+  .timer__cap{font-size:10px}
+  .eyebrow{font-size:14px}
+  .eyebrow .i{width:18px;height:18px}
+  /* A tarja logo acima já diz "Aulas ao vivo e gratuitas". */
+  .hero .eyebrow{display:none}
+  .hero__title{font-size:28px;line-height:1.1;letter-spacing:-.03em}
+  .hero__lead{font-size:15px;line-height:1.45}
+  .hero__note{font-size:14px;padding-left:12px}
+
+  .hero__card{padding:16px;gap:12px;border-radius:16px}
+  .hero__card .card__title{font-size:19px}
+  .fa-form{padding:0}
+  .fa-field{margin-bottom:10px}
+  .fa-field label{font-size:13px;margin-bottom:5px}
+  .fa-input{height:44px;font-size:16px;padding:10px 12px 10px 40px}
+  .fa-icon{left:12px}
+  .fa-submit{padding:13px 20px;font-size:16px;margin-top:6px}
+  .fa-legal{margin-top:10px;font-size:12px}
+
+  .aulas{gap:36px;padding:88px var(--pad) 104px}
+  .aulas__head{gap:14px}
+  .aulas__title{font-size:32px;line-height:1.1}
+  .aulas__lead{font-size:16px}
+  .aulas__grid{gap:16px}
+  .aula{gap:18px;padding:10px 10px 24px;border-radius:18px}
+  .aula__foto{border-radius:10px}
+  .aula__body{padding:0 10px;gap:12px}
+  .aula__title{font-size:21px}
+  .aula__quando{font-size:14px}
+  .aula__lista li{font-size:15px;padding:10px 0}
+  .btn{width:100%;padding:16px 20px;font-size:16px}
+
+  .grupo{padding:22px;gap:16px;border-radius:16px}
+  .grupo__title{font-size:23px}
+  .grupo__texto{font-size:15px}
+  .alerta{padding:13px 14px;gap:12px;font-size:14.5px}
+  .alerta .ic{width:34px;height:34px}
+  .alerta .ic svg{width:20px;height:20px}
+  .alerta .tit{font-size:11.5px;margin-bottom:2px}
+
+  .footer{padding:72px 24px 0}
+  .footer__logo{width:242px;height:36px}
+  .footer__inner > *{width:100%}
+  .footer__mid{flex-direction:column;gap:48px}
+  .footer__block{max-width:none}
+}
+
+/* Telas baixas (Android pequeno, navegador com barras): aperta o topo para
+   o formulário caber sem rolagem. */
+@media (max-width:809px) and (max-height:680px){
+  .hero{gap:10px;padding-top:10px}
+  .timer__num{font-size:21px}
+  .hero__title{font-size:25px}
+  .hero__lead{font-size:14px}
+  .hero__card{padding:14px;gap:10px}
+  .hero__card .card__title{font-size:17px}
+  .fa-field{margin-bottom:8px}
+  .fa-field label{margin-bottom:4px}
+  .fa-input{height:40px}
+}
