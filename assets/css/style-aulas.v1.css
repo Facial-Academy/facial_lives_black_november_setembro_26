@@ -120,14 +120,15 @@ html.lenis,html.lenis body{height:auto}
   padding:40px;
   border-radius:20px;
   /* Vidro: com blur de 45px tudo atrás virava uma cor lisa e o card parecia
-     chapado. Com 18px as formas de trás (a luz roxa, o ombro do Dr. Wagner)
-     aparecem borradas; saturate realça a cor que passa pelo vidro, e a borda
-     clara de 1px com o brilho no topo marcam a placa. */
+     chapado. Aqui 30px (na B eram 18px; o Eddie pediu mais desfoque em
+     30/10): o vídeo de trás vira mancha de cor e luz, sem detalhe que
+     dispute com os campos. saturate realça a cor que passa pelo vidro, e a
+     borda clara de 1px com o brilho no topo marcam a placa. */
   background:linear-gradient(160deg,rgba(255,255,255,.12),rgba(255,255,255,.03) 45%),var(--card-bg);
   border:1px solid rgba(255,255,255,.16);
   box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 24px 60px rgba(4,0,12,.45);
-  -webkit-backdrop-filter:blur(18px) saturate(150%);
-  backdrop-filter:blur(18px) saturate(150%);
+  -webkit-backdrop-filter:blur(30px) saturate(150%);
+  backdrop-filter:blur(30px) saturate(150%);
 }
 .card__title{
   width:100%;
