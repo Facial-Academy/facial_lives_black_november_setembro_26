@@ -14,27 +14,43 @@
 @font-face{font-family:'Silka';font-style:normal;font-weight:500;font-display:swap;src:url("../fonts/SilkaMedium.woff2") format("woff2")}
 @font-face{font-family:'Silka';font-style:normal;font-weight:600;font-display:swap;src:url("../fonts/SilkaSemiBold.woff2") format("woff2")}
 @font-face{font-family:'Silka';font-style:normal;font-weight:700;font-display:swap;src:url("../fonts/SilkaBold.woff2") format("woff2")}
+/* POPPINS: reserva da Silka, como no design system (Silka, Poppins, system-ui).
+   Arquivos locais (latin, ~8 KB cada) para valer mesmo onde a Poppins não está
+   instalada. O navegador só baixa se a Silka não carregar. */
+@font-face{font-family:'Poppins';font-style:normal;font-weight:300;font-display:swap;src:url("../fonts/PoppinsLight.woff2") format("woff2")}
+@font-face{font-family:'Poppins';font-style:normal;font-weight:400;font-display:swap;src:url("../fonts/PoppinsRegular.woff2") format("woff2")}
+@font-face{font-family:'Poppins';font-style:normal;font-weight:500;font-display:swap;src:url("../fonts/PoppinsMedium.woff2") format("woff2")}
+@font-face{font-family:'Poppins';font-style:normal;font-weight:600;font-display:swap;src:url("../fonts/PoppinsSemiBold.woff2") format("woff2")}
+@font-face{font-family:'Poppins';font-style:normal;font-weight:700;font-display:swap;src:url("../fonts/PoppinsBold.woff2") format("woff2")}
 
 
 /* ---- intl-tel-input ---- */
 :root{--iti-hover-color:rgba(0, 0, 0, 0.05);--iti-border-color:#ccc;--iti-dialcode-color:#999;--iti-dropdown-bg:white;--iti-search-icon-color:#999;--iti-spacer-horizontal:8px;--iti-flag-height:12px;--iti-flag-width:16px;--iti-border-width:1px;--iti-arrow-height:4px;--iti-arrow-width:6px;--iti-triangle-border:calc(var(--iti-arrow-width) / 2);--iti-arrow-padding:6px;--iti-arrow-color:#555;--iti-path-flags-1x:url("../img/flags.webp");--iti-path-flags-2x:url("../img/flags@2x.webp");--iti-path-globe-1x:url("../img/globe.webp");--iti-path-globe-2x:url("../img/globe@2x.webp");--iti-flag-sprite-width:3904px;--iti-flag-sprite-height:12px;--iti-mobile-popup-margin:30px}.iti{position:relative;display:inline-block}.iti *{box-sizing:border-box}.iti__a11y-text{width:1px;height:1px;clip:rect(1px,1px,1px,1px);overflow:hidden;position:absolute}.iti input.iti__tel-input,.iti input.iti__tel-input[type=tel],.iti input.iti__tel-input[type=text]{position:relative;z-index:0;margin:0!important}.iti__country-container{position:absolute;top:0;bottom:0;left:0;padding:var(--iti-border-width)}.iti__selected-country{z-index:1;position:relative;display:flex;align-items:center;height:100%;background:0 0;border:0;margin:0;padding:0;font-family:inherit;font-size:inherit;color:inherit;border-radius:0;font-weight:inherit;line-height:inherit;text-decoration:none}.iti__selected-country-primary{display:flex;align-items:center;height:100%;padding:0 var(--iti-arrow-padding) 0 var(--iti-spacer-horizontal)}.iti__arrow{margin-left:var(--iti-arrow-padding);width:0;height:0;border-left:var(--iti-triangle-border) solid transparent;border-right:var(--iti-triangle-border) solid transparent;border-top:var(--iti-arrow-height) solid var(--iti-arrow-color)}.iti__arrow--up{border-top:none;border-bottom:var(--iti-arrow-height) solid var(--iti-arrow-color)}.iti__dropdown-content{border-radius:3px;background-color:var(--iti-dropdown-bg)}.iti--inline-dropdown .iti__dropdown-content{position:absolute;z-index:2;margin-top:3px;margin-left:calc(var(--iti-border-width) * -1);border:var(--iti-border-width) solid var(--iti-border-color);box-shadow:1px 1px 4px rgba(0,0,0,.2)}.iti__search-input{width:100%;border-width:0;border-radius:3px;padding-left:30px;padding-right:28px}[dir=rtl] .iti__search-input{padding-left:inherit;padding-right:30px;background-position:right 8px center}.iti__search-input+.iti__country-list{border-top:1px solid var(--iti-border-color)}.iti__search-input::-webkit-search-cancel-button{appearance:none}.iti__search-input-wrapper{position:relative;display:flex;align-items:center}.iti__search-icon{position:absolute;left:8px;display:flex;pointer-events:none}[dir=rtl] .iti__search-icon{left:auto;right:8px}.iti__search-icon-svg{stroke:var(--iti-search-icon-color);fill:none;stroke-width:3}.iti__search-clear{position:absolute;right:4px;background:0 0;border:0;border-radius:3px;cursor:pointer;padding:4px;display:flex;align-items:center;justify-content:center;transition:background-color .15s ease;width:24px;height:24px}.iti__search-clear .iti__search-clear-x{stroke-width:2}.iti__search-clear .iti__search-clear-bg{fill:var(--iti-search-icon-color)}[dir=rtl] .iti__search-clear{right:auto;left:4px}.iti__search-clear:focus-visible,.iti__search-clear:hover{background:var(--iti-hover-color);outline:0}.iti__no-results{text-align:center;padding:30px 0}.iti__country-list{list-style:none;padding:0;margin:0;cursor:pointer;overflow-y:scroll;-webkit-overflow-scrolling:touch}.iti--inline-dropdown .iti__country-list{max-height:185px}.iti--flexible-dropdown-width .iti__country-list{white-space:nowrap}@media (max-width:500px){.iti--flexible-dropdown-width .iti__country-list{white-space:normal}}.iti__country{display:flex;align-items:center;padding:8px var(--iti-spacer-horizontal);outline:0}.iti__dial-code{color:var(--iti-dialcode-color)}.iti__country.iti__highlight{background-color:var(--iti-hover-color)}.iti__country-list .iti__flag,.iti__country-name{margin-right:var(--iti-spacer-horizontal)}[dir=rtl] .iti__country-list .iti__flag,[dir=rtl] .iti__country-name{margin-right:0;margin-left:var(--iti-spacer-horizontal)}.iti--allow-dropdown .iti__country-container:not(:has(+ input[disabled])):not(:has(+ input[readonly])) button.iti__selected-country{cursor:pointer}.iti--allow-dropdown .iti__country-container:not(:has(+ input[disabled])):not(:has(+ input[readonly])) .iti__selected-country-primary:hover,.iti--allow-dropdown .iti__country-container:not(:has(+ input[disabled])):not(:has(+ input[readonly])) .iti__selected-country:has(+ .iti__dropdown-content:hover) .iti__selected-country-primary{background-color:var(--iti-hover-color)}.iti .iti__selected-dial-code{margin-left:4px}.iti--container{position:fixed;top:-1000px;left:-1000px;z-index:1060;padding:var(--iti-border-width)}.iti--container:hover{cursor:pointer}.iti__hide{display:none}.iti__v-hide{visibility:hidden}.iti--fullscreen-popup.iti--container{background-color:rgba(0,0,0,.5);top:0;bottom:0;left:0;right:0;position:fixed;padding:var(--iti-mobile-popup-margin);display:flex;flex-direction:column;justify-content:flex-start}.iti--fullscreen-popup .iti__dropdown-content{display:flex;flex-direction:column;max-height:100%;position:relative}.iti--fullscreen-popup .iti__country{padding:10px 10px;line-height:1.5em}.iti__flag{--iti-flag-offset:100px;height:var(--iti-flag-height);width:var(--iti-flag-width);border-radius:1px;box-shadow:0 0 1px 0 #888;background-image:var(--iti-path-flags-1x);background-repeat:no-repeat;background-position:var(--iti-flag-offset) 0;background-size:var(--iti-flag-sprite-width) var(--iti-flag-sprite-height)}.iti__ac{--iti-flag-offset:0px}.iti__ad{--iti-flag-offset:-16px}.iti__ae{--iti-flag-offset:-32px}.iti__af{--iti-flag-offset:-48px}.iti__ag{--iti-flag-offset:-64px}.iti__ai{--iti-flag-offset:-80px}.iti__al{--iti-flag-offset:-96px}.iti__am{--iti-flag-offset:-112px}.iti__ao{--iti-flag-offset:-128px}.iti__ar{--iti-flag-offset:-144px}.iti__as{--iti-flag-offset:-160px}.iti__at{--iti-flag-offset:-176px}.iti__au{--iti-flag-offset:-192px}.iti__aw{--iti-flag-offset:-208px}.iti__ax{--iti-flag-offset:-224px}.iti__az{--iti-flag-offset:-240px}.iti__ba{--iti-flag-offset:-256px}.iti__bb{--iti-flag-offset:-272px}.iti__bd{--iti-flag-offset:-288px}.iti__be{--iti-flag-offset:-304px}.iti__bf{--iti-flag-offset:-320px}.iti__bg{--iti-flag-offset:-336px}.iti__bh{--iti-flag-offset:-352px}.iti__bi{--iti-flag-offset:-368px}.iti__bj{--iti-flag-offset:-384px}.iti__bl{--iti-flag-offset:-400px}.iti__bm{--iti-flag-offset:-416px}.iti__bn{--iti-flag-offset:-432px}.iti__bo{--iti-flag-offset:-448px}.iti__bq{--iti-flag-offset:-464px}.iti__br{--iti-flag-offset:-480px}.iti__bs{--iti-flag-offset:-496px}.iti__bt{--iti-flag-offset:-512px}.iti__bw{--iti-flag-offset:-528px}.iti__by{--iti-flag-offset:-544px}.iti__bz{--iti-flag-offset:-560px}.iti__ca{--iti-flag-offset:-576px}.iti__cc{--iti-flag-offset:-592px}.iti__cd{--iti-flag-offset:-608px}.iti__cf{--iti-flag-offset:-624px}.iti__cg{--iti-flag-offset:-640px}.iti__ch{--iti-flag-offset:-656px}.iti__ci{--iti-flag-offset:-672px}.iti__ck{--iti-flag-offset:-688px}.iti__cl{--iti-flag-offset:-704px}.iti__cm{--iti-flag-offset:-720px}.iti__cn{--iti-flag-offset:-736px}.iti__co{--iti-flag-offset:-752px}.iti__cr{--iti-flag-offset:-768px}.iti__cu{--iti-flag-offset:-784px}.iti__cv{--iti-flag-offset:-800px}.iti__cw{--iti-flag-offset:-816px}.iti__cx{--iti-flag-offset:-832px}.iti__cy{--iti-flag-offset:-848px}.iti__cz{--iti-flag-offset:-864px}.iti__de{--iti-flag-offset:-880px}.iti__dj{--iti-flag-offset:-896px}.iti__dk{--iti-flag-offset:-912px}.iti__dm{--iti-flag-offset:-928px}.iti__do{--iti-flag-offset:-944px}.iti__dz{--iti-flag-offset:-960px}.iti__ec{--iti-flag-offset:-976px}.iti__ee{--iti-flag-offset:-992px}.iti__eg{--iti-flag-offset:-1008px}.iti__eh{--iti-flag-offset:-1024px}.iti__er{--iti-flag-offset:-1040px}.iti__es{--iti-flag-offset:-1056px}.iti__et{--iti-flag-offset:-1072px}.iti__fi{--iti-flag-offset:-1088px}.iti__fj{--iti-flag-offset:-1104px}.iti__fk{--iti-flag-offset:-1120px}.iti__fm{--iti-flag-offset:-1136px}.iti__fo{--iti-flag-offset:-1152px}.iti__fr{--iti-flag-offset:-1168px}.iti__ga{--iti-flag-offset:-1184px}.iti__gb{--iti-flag-offset:-1200px}.iti__gd{--iti-flag-offset:-1216px}.iti__ge{--iti-flag-offset:-1232px}.iti__gf{--iti-flag-offset:-1248px}.iti__gg{--iti-flag-offset:-1264px}.iti__gh{--iti-flag-offset:-1280px}.iti__gi{--iti-flag-offset:-1296px}.iti__gl{--iti-flag-offset:-1312px}.iti__gm{--iti-flag-offset:-1328px}.iti__gn{--iti-flag-offset:-1344px}.iti__gp{--iti-flag-offset:-1360px}.iti__gq{--iti-flag-offset:-1376px}.iti__gr{--iti-flag-offset:-1392px}.iti__gt{--iti-flag-offset:-1408px}.iti__gu{--iti-flag-offset:-1424px}.iti__gw{--iti-flag-offset:-1440px}.iti__gy{--iti-flag-offset:-1456px}.iti__hk{--iti-flag-offset:-1472px}.iti__hn{--iti-flag-offset:-1488px}.iti__hr{--iti-flag-offset:-1504px}.iti__ht{--iti-flag-offset:-1520px}.iti__hu{--iti-flag-offset:-1536px}.iti__id{--iti-flag-offset:-1552px}.iti__ie{--iti-flag-offset:-1568px}.iti__il{--iti-flag-offset:-1584px}.iti__im{--iti-flag-offset:-1600px}.iti__in{--iti-flag-offset:-1616px}.iti__io{--iti-flag-offset:-1632px}.iti__iq{--iti-flag-offset:-1648px}.iti__ir{--iti-flag-offset:-1664px}.iti__is{--iti-flag-offset:-1680px}.iti__it{--iti-flag-offset:-1696px}.iti__je{--iti-flag-offset:-1712px}.iti__jm{--iti-flag-offset:-1728px}.iti__jo{--iti-flag-offset:-1744px}.iti__jp{--iti-flag-offset:-1760px}.iti__ke{--iti-flag-offset:-1776px}.iti__kg{--iti-flag-offset:-1792px}.iti__kh{--iti-flag-offset:-1808px}.iti__ki{--iti-flag-offset:-1824px}.iti__km{--iti-flag-offset:-1840px}.iti__kn{--iti-flag-offset:-1856px}.iti__kp{--iti-flag-offset:-1872px}.iti__kr{--iti-flag-offset:-1888px}.iti__kw{--iti-flag-offset:-1904px}.iti__ky{--iti-flag-offset:-1920px}.iti__kz{--iti-flag-offset:-1936px}.iti__la{--iti-flag-offset:-1952px}.iti__lb{--iti-flag-offset:-1968px}.iti__lc{--iti-flag-offset:-1984px}.iti__li{--iti-flag-offset:-2000px}.iti__lk{--iti-flag-offset:-2016px}.iti__lr{--iti-flag-offset:-2032px}.iti__ls{--iti-flag-offset:-2048px}.iti__lt{--iti-flag-offset:-2064px}.iti__lu{--iti-flag-offset:-2080px}.iti__lv{--iti-flag-offset:-2096px}.iti__ly{--iti-flag-offset:-2112px}.iti__ma{--iti-flag-offset:-2128px}.iti__mc{--iti-flag-offset:-2144px}.iti__md{--iti-flag-offset:-2160px}.iti__me{--iti-flag-offset:-2176px}.iti__mf{--iti-flag-offset:-2192px}.iti__mg{--iti-flag-offset:-2208px}.iti__mh{--iti-flag-offset:-2224px}.iti__mk{--iti-flag-offset:-2240px}.iti__ml{--iti-flag-offset:-2256px}.iti__mm{--iti-flag-offset:-2272px}.iti__mn{--iti-flag-offset:-2288px}.iti__mo{--iti-flag-offset:-2304px}.iti__mp{--iti-flag-offset:-2320px}.iti__mq{--iti-flag-offset:-2336px}.iti__mr{--iti-flag-offset:-2352px}.iti__ms{--iti-flag-offset:-2368px}.iti__mt{--iti-flag-offset:-2384px}.iti__mu{--iti-flag-offset:-2400px}.iti__mv{--iti-flag-offset:-2416px}.iti__mw{--iti-flag-offset:-2432px}.iti__mx{--iti-flag-offset:-2448px}.iti__my{--iti-flag-offset:-2464px}.iti__mz{--iti-flag-offset:-2480px}.iti__na{--iti-flag-offset:-2496px}.iti__nc{--iti-flag-offset:-2512px}.iti__ne{--iti-flag-offset:-2528px}.iti__nf{--iti-flag-offset:-2544px}.iti__ng{--iti-flag-offset:-2560px}.iti__ni{--iti-flag-offset:-2576px}.iti__nl{--iti-flag-offset:-2592px}.iti__no{--iti-flag-offset:-2608px}.iti__np{--iti-flag-offset:-2624px}.iti__nr{--iti-flag-offset:-2640px}.iti__nu{--iti-flag-offset:-2656px}.iti__nz{--iti-flag-offset:-2672px}.iti__om{--iti-flag-offset:-2688px}.iti__pa{--iti-flag-offset:-2704px}.iti__pe{--iti-flag-offset:-2720px}.iti__pf{--iti-flag-offset:-2736px}.iti__pg{--iti-flag-offset:-2752px}.iti__ph{--iti-flag-offset:-2768px}.iti__pk{--iti-flag-offset:-2784px}.iti__pl{--iti-flag-offset:-2800px}.iti__pm{--iti-flag-offset:-2816px}.iti__pr{--iti-flag-offset:-2832px}.iti__ps{--iti-flag-offset:-2848px}.iti__pt{--iti-flag-offset:-2864px}.iti__pw{--iti-flag-offset:-2880px}.iti__py{--iti-flag-offset:-2896px}.iti__qa{--iti-flag-offset:-2912px}.iti__re{--iti-flag-offset:-2928px}.iti__ro{--iti-flag-offset:-2944px}.iti__rs{--iti-flag-offset:-2960px}.iti__ru{--iti-flag-offset:-2976px}.iti__rw{--iti-flag-offset:-2992px}.iti__sa{--iti-flag-offset:-3008px}.iti__sb{--iti-flag-offset:-3024px}.iti__sc{--iti-flag-offset:-3040px}.iti__sd{--iti-flag-offset:-3056px}.iti__se{--iti-flag-offset:-3072px}.iti__sg{--iti-flag-offset:-3088px}.iti__sh{--iti-flag-offset:-3104px}.iti__si{--iti-flag-offset:-3120px}.iti__sj{--iti-flag-offset:-3136px}.iti__sk{--iti-flag-offset:-3152px}.iti__sl{--iti-flag-offset:-3168px}.iti__sm{--iti-flag-offset:-3184px}.iti__sn{--iti-flag-offset:-3200px}.iti__so{--iti-flag-offset:-3216px}.iti__sr{--iti-flag-offset:-3232px}.iti__ss{--iti-flag-offset:-3248px}.iti__st{--iti-flag-offset:-3264px}.iti__sv{--iti-flag-offset:-3280px}.iti__sx{--iti-flag-offset:-3296px}.iti__sy{--iti-flag-offset:-3312px}.iti__sz{--iti-flag-offset:-3328px}.iti__tc{--iti-flag-offset:-3344px}.iti__td{--iti-flag-offset:-3360px}.iti__tg{--iti-flag-offset:-3376px}.iti__th{--iti-flag-offset:-3392px}.iti__tj{--iti-flag-offset:-3408px}.iti__tk{--iti-flag-offset:-3424px}.iti__tl{--iti-flag-offset:-3440px}.iti__tm{--iti-flag-offset:-3456px}.iti__tn{--iti-flag-offset:-3472px}.iti__to{--iti-flag-offset:-3488px}.iti__tr{--iti-flag-offset:-3504px}.iti__tt{--iti-flag-offset:-3520px}.iti__tv{--iti-flag-offset:-3536px}.iti__tw{--iti-flag-offset:-3552px}.iti__tz{--iti-flag-offset:-3568px}.iti__ua{--iti-flag-offset:-3584px}.iti__ug{--iti-flag-offset:-3600px}.iti__us{--iti-flag-offset:-3616px}.iti__uy{--iti-flag-offset:-3632px}.iti__uz{--iti-flag-offset:-3648px}.iti__va{--iti-flag-offset:-3664px}.iti__vc{--iti-flag-offset:-3680px}.iti__ve{--iti-flag-offset:-3696px}.iti__vg{--iti-flag-offset:-3712px}.iti__vi{--iti-flag-offset:-3728px}.iti__vn{--iti-flag-offset:-3744px}.iti__vu{--iti-flag-offset:-3760px}.iti__wf{--iti-flag-offset:-3776px}.iti__ws{--iti-flag-offset:-3792px}.iti__xk{--iti-flag-offset:-3808px}.iti__ye{--iti-flag-offset:-3824px}.iti__yt{--iti-flag-offset:-3840px}.iti__za{--iti-flag-offset:-3856px}.iti__zm{--iti-flag-offset:-3872px}.iti__zw{--iti-flag-offset:-3888px}.iti__globe{background-image:var(--iti-path-globe-1x);background-size:contain;background-position:right;box-shadow:none;height:19px}@media (min-resolution:2x){.iti__flag{background-image:var(--iti-path-flags-2x)}.iti__globe{background-image:var(--iti-path-globe-2x)}}
 
 /* =========================================================================
-   Facial Academy — Black Vitalícia (Black Friday 2026)
-   Réplica fiel da página publicada em /black-friday-2026
+   Facial Academy · Black Vitalícia (Black Friday 2026)
+   Tema da campanha: A Fantástica Fábrica da HOF.
+   Um fundo só, quase preto. A cor vem de luzes radiais que se sobrepõem de
+   uma seção para a outra: não há faixas nem bordas retas entre as seções.
    ========================================================================= */
 
 /* ---------- Tokens ---------- */
 :root{
-  --black:#06000d;          /* fundo do site          */
-  --hero-black:#00030d;     /* fundo do hero          */
-  --footer-black:#0b0019;   /* fundo do rodapé        */
+  --black:#06000d;          /* fundo único da página                  */
   --white:#fafafa;
-  --purple:#9f60ee;         /* roxo de destaque       */
-  --purple-deep:#3e1968;    /* borda / gradiente      */
-  --purple-ink:#190141;     /* fundo dos inputs       */
-  --peach:#ffca9b;          /* ícones da seção 2      */
+  --text-soft:rgba(255,255,255,.84);
+  --text-mute:rgba(255,255,255,.68);
+  --line:rgba(255,255,255,.14);
+  --purple:#9f60ee;         /* roxo de destaque                       */
+  --purple-deep:#3e1968;    /* borda dos campos                       */
+  --purple-ink:#190141;     /* fundo dos campos                       */
+  --gold:#ecc485;           /* dourado do selo da marca fa-bfriday26  */
   --card-bg:rgba(99,19,191,.16);
+
+  /* Luzes do fundo: roxo do Wonka, ameixa e o dourado do bilhete. */
+  --luz-roxa:rgba(112,38,206,.30);
+  --luz-ameixa:rgba(160,52,146,.26);
+  --luz-dourada:rgba(236,196,133,.18);
 
   /* Matiz e saturação do verde do WhatsApp, com a luminosidade baixada até o
      texto branco passar no contraste: 4,70:1 no início do gradiente, 7,67:1
@@ -42,24 +58,28 @@
   --verde-1:#178540;
   --verde-2:#11602E;
 
-  --ease:cubic-bezier(.44,0,.56,1);
+  /* ease-out: tudo que entra desacelera no fim, nada de vai-e-vem. */
+  --ease:cubic-bezier(.22,1,.36,1);
 }
 
 /* ---------- Reset ---------- */
 *,*::before,*::after{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%}
+html{-webkit-text-size-adjust:100%;background:var(--black)}
 body{
   margin:0;
   background:var(--black);
   color:var(--white);
-  font-family:"Silka",-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+  font-family:'Silka','Poppins',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
   font-weight:400;
   -webkit-font-smoothing:antialiased;
   -moz-osx-font-smoothing:grayscale;
   overflow-x:hidden;
 }
 img{display:block;max-width:100%}
-h1,h2,h3,p{margin:0}
+h1,h2,h3,p,figure,ul,ol{margin:0}
+/* Títulos com linhas equilibradas e parágrafos sem palavra sozinha na última linha. */
+h1,h2,h3{text-wrap:balance}
+p{text-wrap:pretty}
 a{color:inherit;text-decoration:none}
 strong{font-weight:500}
 
@@ -72,26 +92,100 @@ html.lenis,html.lenis body{height:auto}
 .ico{display:block;flex:none}
 
 /* =========================================================================
+   FUNDO CONTÍNUO
+   Cada seção acende uma luz maior do que ela, atrás de todo o conteúdo
+   (z-index -1 no contexto do <main>, então nenhuma luz passa por cima de
+   texto). Elas se sobrepõem na passagem de uma seção para a outra.
+   ========================================================================= */
+/* overflow-x: clip corta as luzes nas laterais (nada de rolagem lateral) e
+   deixa o transbordo vertical, que é o que mistura uma seção com a outra. */
+main{position:relative;isolation:isolate;overflow-x:clip}
+.hero,.reasons,.vital,.session,.closing{position:relative}
+.hero::before,.hero::after,.reasons::before,.vital::before,.session::before,.closing::before{
+  content:"";
+  position:absolute;
+  z-index:-1;
+  pointer-events:none;
+}
+/* As seções do meio têm largura máxima (1440px): se a luz ficasse presa à
+   caixa da seção, a borda dela apareceria como corte vertical em tela larga
+   (visto em 2340 e 2560px). A luz ocupa sempre a largura inteira da tela. */
+.reasons::before,.vital::before,.session::before,.closing::before{
+  left:50%;
+  width:100vw;
+  transform:translateX(-50%);
+}
+/* Ponte entre o hero e a lista: a imagem de luz do hero acaba no pé dele e
+   a luz da lista começava mais abaixo, o que deixava um vale escuro de ~100px
+   (luminância caindo de 22 para 2 na lateral). Esta faixa roxa, sem borda,
+   cobre a passagem. */
+.hero::before{
+  left:0;right:0;top:55%;height:calc(45% + 55vh);
+  /* Platô longo (28% a 62%): a luz do hero termina de esmaecer dentro dele,
+     sem queda de luminosidade no pé do hero em nenhuma largura. */
+  background:linear-gradient(to bottom,rgba(76,22,150,0),rgba(76,22,150,.36) 28%,rgba(76,22,150,.32) 62%,rgba(76,22,150,.14) 82%,rgba(76,22,150,0));
+}
+/* O roxo do hero escorre para dentro da lista. */
+.hero::after{
+  left:-10%;right:-10%;top:45%;height:120vh;
+  background:radial-gradient(55% 45% at 50% 38%,var(--luz-roxa),transparent 72%);
+}
+.reasons::before{
+  top:-25%;bottom:-25%;
+  background:
+    radial-gradient(50% 48% at 80% 42%,var(--luz-ameixa),transparent 72%),
+    radial-gradient(40% 38% at 12% 35%,rgba(112,38,206,.20),transparent 72%);
+}
+/* A frase fica quase no escuro: é a respiração da página. */
+.vital::before{
+  top:-20%;bottom:-20%;
+  background:
+    radial-gradient(38% 36% at 72% 62%,rgba(236,196,133,.06),transparent 72%),
+    radial-gradient(34% 30% at 18% 28%,rgba(112,38,206,.10),transparent 72%);
+}
+.session::before{
+  top:-30%;bottom:-30%;
+  background:radial-gradient(48% 42% at 26% 50%,var(--luz-roxa),transparent 72%);
+}
+.closing::before{
+  top:-25%;bottom:-45%;
+  background:
+    radial-gradient(38% 38% at 74% 48%,var(--luz-dourada),transparent 72%),
+    radial-gradient(46% 44% at 22% 58%,rgba(112,38,206,.12),transparent 72%);
+}
+
+/* =========================================================================
    HERO
    ========================================================================= */
 .hero{
-  position:relative;
   display:flex;
   align-items:center;
   justify-content:center;
   width:100%;
-  background:var(--hero-black);
-  overflow:clip;
 }
-.hero__bg{position:absolute;inset:0;pointer-events:none}
+/* A luz roxa do hero se dissolve no fundo ao longo de 70% da altura dele. */
+.hero__bg{
+  position:absolute;inset:0;z-index:-1;pointer-events:none;
+  -webkit-mask-image:linear-gradient(to bottom,#000 30%,transparent);
+  mask-image:linear-gradient(to bottom,#000 30%,transparent);
+}
 .hero__bg img{width:100%;height:100%;object-fit:cover}
+/* A imagem de luz tem uma mancha cinza, sem cor, no canto superior direito
+   (aparece acima do formulário no desktop e destoa do roxo do tema). Este
+   gradiente escurece só aquele canto. */
+.hero__bg::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:radial-gradient(42% 62% at 88% 0%,rgba(6,0,13,.78),rgba(6,0,13,0) 72%);
+}
 
 .hero__inner{
   position:relative;
   display:flex;
   align-items:center;
   justify-content:center;
-  gap:10px;
+  gap:40px;
   width:100%;
   max-width:1440px;
   padding:48px;
@@ -106,8 +200,18 @@ html.lenis,html.lenis body{height:auto}
   flex:1 1 0;
   min-width:0;
 }
-.hero__logo img{width:306px;height:216px;object-fit:contain}
+/* Marca fa-bfriday26 (proporção 1,707). */
+.hero__logo img{width:300px;height:176px;object-fit:contain}
 
+/* A data é o motivo do cadastro: fica junto do título, em dourado. */
+.hero__date{
+  font-size:17px;
+  font-weight:400;
+  line-height:1.3;
+  color:var(--gold);
+  font-variant-numeric:tabular-nums;
+}
+.hero__date strong{font-weight:500}
 .hero__title{
   font-size:60px;
   font-weight:500;
@@ -116,33 +220,310 @@ html.lenis,html.lenis body{height:auto}
   color:#fff;
 }
 .hero__lead{
+  max-width:36ch;
   font-size:18px;
   font-weight:400;
-  line-height:1.4;
-  letter-spacing:-.02em;
-  color:#fff;
+  line-height:1.45;
+  letter-spacing:-.01em;
+  color:var(--text-soft);
+}
+.hero__lead strong{color:#fff}
+
+/* ---------- Professores (recorte com fundo transparente) ----------
+   Somem no fundo pelos últimos 30% (sem corte reto no pé). */
+.hero__people{position:relative;margin:0;pointer-events:none}
+.hero__people img{
+  width:100%;
+  height:auto;
+  -webkit-mask-image:linear-gradient(to bottom,#000 70%,transparent);
+  mask-image:linear-gradient(to bottom,#000 70%,transparent);
+}
+.hero__col,.hero__card{position:relative;z-index:1}
+
+/* Desktop largo: três zonas (texto, professores, formulário). A largura do
+   recorte vem do vão entre o texto (470px) e o card (450px): os dois rostos
+   ficam inteiros e o card cobre só o ombro do Dr. Wagner (o rosto dele está
+   a 90% da largura da imagem, daí o /0.9). */
+@media (min-width:1360px){
+  .hero__inner{min-height:740px;justify-content:space-between}
+  .hero__col{flex:0 0 470px}
+  .hero__title{white-space:nowrap}
+  .hero__lead{max-width:30ch}
+  .hero__people{
+    position:absolute;
+    bottom:0;
+    left:calc(48px + 470px + 10px);
+    width:calc((100% - 96px - 470px - 450px - 20px) / .9);
+    max-width:540px;
+  }
+}
+/* De 810 a 1359px não há largura para três zonas: os professores vêm
+   abaixo do texto e do formulário, centralizados e colados no pé do hero. */
+@media (min-width:810px) and (max-width:1359px){
+  .hero__inner{flex-wrap:wrap;row-gap:28px;padding-bottom:0}
+  /* A figura ocupa a linha inteira (força a quebra) e a imagem fica com
+     440px no centro. */
+  .hero__people{flex:0 0 100%}
+  .hero__people img{max-width:440px;margin:0 auto}
 }
 
-/* ---------- Pílula (badge) ---------- */
-.pill{
+/* ---------- Rótulo de seção ----------
+   Texto no dourado do selo da marca, sem cápsula. */
+.eyebrow{
   display:inline-flex;
   align-items:center;
   gap:8px;
-  padding:8px 16px;
-  border-radius:100px;
-  background:rgba(255,255,255,.05);
-  -webkit-backdrop-filter:blur(10px);
-  backdrop-filter:blur(10px);
-}
-.pill__label{
   font-size:16px;
-  font-weight:400;
+  font-weight:500;
   line-height:1.4;
-  letter-spacing:.05em;
-  color:var(--purple);
-  white-space:nowrap;
+  color:var(--gold);
 }
-.pill__label--upper{text-transform:uppercase}
+
+/* =========================================================================
+   UMA VEZ POR ANO
+   Título à esquerda. À direita, "12 meses" uma vez só, grande e em dourado,
+   e as três frases (o que muda) em branco, com fio fino entre elas.
+   ========================================================================= */
+.reasons{
+  display:grid;
+  grid-template-columns:minmax(0,5fr) minmax(0,7fr);
+  align-items:start;
+  gap:40px 72px;
+  width:100%;
+  max-width:1440px;
+  margin:0 auto;
+  padding:184px 48px 96px;
+}
+.reasons__head{display:flex;flex-direction:column;gap:20px}
+.reasons__title{
+  font-size:44px;
+  font-weight:500;
+  line-height:1.1;
+  letter-spacing:-.04em;
+  color:var(--white);
+}
+.reasons__sub{
+  font-size:18px;
+  line-height:1.5;
+  color:var(--text-soft);
+}
+.reasons__body{display:flex;flex-direction:column;gap:16px}
+.reasons__num{
+  font-size:96px;
+  font-weight:500;
+  line-height:1;
+  letter-spacing:-.04em;
+  color:var(--gold);
+  font-variant-numeric:tabular-nums;
+  /* Alinhamento óptico: em 96px o "1" tem ~15px de respiro à esquerda e o
+     número parecia recuado em relação à lista. */
+  margin-left:-.06em;
+}
+.reasons__list{list-style:none;padding:0;border-top:1px solid var(--line)}
+.reason{
+  padding:22px 0;
+  border-bottom:1px solid var(--line);
+  font-size:24px;
+  line-height:1.35;
+  letter-spacing:-.01em;
+  color:#fff;
+}
+
+/* =========================================================================
+   VITALÍCIA NÃO É FORÇA DE EXPRESSÃO
+   Camadas, como na referência do Eddie: a foto da Dra. Camila com os
+   bilhetes fica atrás, entre as duas metades da frase. A foto não tem caixa:
+   as bordas se dissolvem no fundo, e a frase cruza só essas bordas, onde o
+   fundo já é escuro. Os bilhetes, no centro, ficam inteiros e sem véu.
+   ========================================================================= */
+.vital__inner{
+  /* A frase acompanha a largura (104px em 1440) para "expressão." nunca
+     passar da coluna. */
+  --d:clamp(56px,7.2vw,104px);
+  display:grid;
+  grid-template-columns:repeat(12,minmax(0,1fr));
+  column-gap:24px;
+  align-items:start;
+  width:100%;
+  max-width:1440px;
+  margin:0 auto;
+  padding:80px 48px 96px;
+}
+.vital__display{
+  position:relative;
+  z-index:1;
+  font-size:var(--d);
+  font-weight:500;
+  line-height:1;
+  letter-spacing:-.02em;
+  color:var(--white);
+  /* Sombra larga e fraca: só ajuda a leitura onde a frase cruza a borda. */
+  text-shadow:0 2px 28px rgba(6,0,13,.5);
+}
+.vital__display--a{grid-column:1 / span 6;grid-row:1;max-width:3.96em}
+/* Começa na coluna 8: cruza só os ~14% finais da foto, já esmaecidos. */
+.vital__display--b{grid-column:8 / span 5;grid-row:2}
+.vital__photo{
+  grid-column:3 / span 6;
+  grid-row:1 / span 2;
+  margin:calc(var(--d) * .55) 0 0;
+}
+.vital__photo img{
+  width:100%;
+  height:auto;
+  -webkit-mask-image:linear-gradient(to right,transparent,#000 16%,#000 78%,transparent),linear-gradient(to bottom,transparent,#000 14%,#000 80%,transparent);
+  -webkit-mask-composite:source-in;
+  mask-image:linear-gradient(to right,transparent,#000 16%,#000 78%,transparent),linear-gradient(to bottom,transparent,#000 14%,#000 80%,transparent);
+  mask-composite:intersect;
+}
+.vital__copy{grid-column:8 / span 5;grid-row:3;position:relative;z-index:1;max-width:540px;margin-top:24px}
+.vital__copy p{
+  font-size:18px;
+  font-weight:400;
+  line-height:1.5;
+  color:var(--text-soft);
+}
+.vital__copy p + p{margin-top:20px}
+/* A resposta à frase grande: o que você aprende fica. */
+.vital__copy .vital__payoff{
+  margin-top:28px;
+  font-size:40px;
+  font-weight:500;
+  line-height:1.1;
+  letter-spacing:-.03em;
+  color:#fff;
+}
+.vital__copy .vital__payoff + p{margin-top:28px}
+
+/* Abaixo de 1024px: uma coluna, mantendo as camadas. "Vitalícia não é"
+   encosta na borda de cima da foto e "força de expressão." (à direita)
+   cruza a borda de baixo; as duas já esmaecidas. */
+@media (max-width:1023px){
+  .vital__inner{--d:clamp(44px,9vw,80px);grid-template-columns:1fr;padding:72px 40px 88px}
+  .vital__display--a{grid-column:1;grid-row:1;max-width:none}
+  .vital__photo{grid-column:1;grid-row:2;margin:calc(var(--d) * -.35) 0 0;max-width:720px;justify-self:center;width:100%}
+  .vital__display--b{grid-column:1;grid-row:3;margin-top:calc(var(--d) * -1.05);justify-self:end;text-align:right}
+  .vital__copy{grid-column:1;grid-row:4;max-width:560px;margin-top:28px}
+  /* Em uma coluna a frase cruza a borda de baixo: o esmaecimento começa em
+     60% da altura para ela cair sobre fundo escuro, não sobre o bilhete. */
+  .vital__photo img{
+    -webkit-mask-image:linear-gradient(to right,transparent,#000 10%,#000 90%,transparent),linear-gradient(to bottom,transparent,#000 12%,#000 60%,transparent);
+    mask-image:linear-gradient(to right,transparent,#000 10%,#000 90%,transparent),linear-gradient(to bottom,transparent,#000 12%,#000 60%,transparent);
+  }
+}
+
+/* =========================================================================
+   A SESSÃO
+   A foto do cinema some no fundo pelas quatro bordas, sem moldura; ao lado,
+   data, hora, onde e o passo a passo do cadastro até a live.
+   ========================================================================= */
+.session{
+  display:grid;
+  grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);
+  align-items:center;
+  gap:64px;
+  width:100%;
+  max-width:1440px;
+  margin:0 auto;
+  padding:104px 48px;
+}
+.session__photo img{
+  width:100%;
+  height:auto;
+  -webkit-mask-image:linear-gradient(to right,transparent,#000 14%,#000 86%,transparent),linear-gradient(to bottom,transparent,#000 14%,#000 80%,transparent);
+  -webkit-mask-composite:source-in;
+  mask-image:linear-gradient(to right,transparent,#000 14%,#000 86%,transparent),linear-gradient(to bottom,transparent,#000 14%,#000 80%,transparent);
+  mask-composite:intersect;
+}
+.session__text{display:flex;flex-direction:column;align-items:flex-start;gap:28px;max-width:560px}
+.session__title{
+  font-size:44px;
+  font-weight:500;
+  line-height:1.1;
+  letter-spacing:-.04em;
+  color:var(--white);
+}
+.steps{list-style:none;padding:0;width:100%;border-top:1px solid var(--line)}
+.step{
+  display:grid;
+  grid-template-columns:132px minmax(0,1fr);
+  gap:6px 20px;
+  padding:20px 0;
+  border-bottom:1px solid var(--line);
+}
+.step__when{
+  font-size:15px;
+  font-weight:500;
+  line-height:1.6;
+  color:var(--gold);
+  font-variant-numeric:tabular-nums;
+}
+.step p{
+  font-size:18px;
+  line-height:1.5;
+  color:var(--text-soft);
+}
+
+/* =========================================================================
+   BILHETE DOURADO (fechamento)
+   Texto à esquerda e o bilhete recortado à direita, com sombra, sob a luz
+   dourada da seção. No celular o bilhete vem primeiro.
+   ========================================================================= */
+.closing{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+  align-items:center;
+  gap:56px;
+  width:100%;
+  max-width:1440px;
+  margin:0 auto;
+  padding:96px 48px 128px;
+}
+.closing__text{display:flex;flex-direction:column;align-items:flex-start;gap:28px}
+.closing__title{
+  font-size:44px;
+  font-weight:500;
+  line-height:1.1;
+  letter-spacing:-.04em;
+  color:var(--white);
+}
+.closing__copy{max-width:30em}
+.closing__copy p{
+  font-size:18px;
+  font-weight:400;
+  line-height:1.5;
+  letter-spacing:-.01em;
+  color:var(--text-soft);
+}
+.closing__ticket{margin:0;display:flex;justify-content:center}
+.closing__ticket img{
+  width:100%;
+  max-width:540px;
+  height:auto;
+  filter:drop-shadow(0 30px 40px rgba(0,0,0,.55));
+}
+
+/* ---------- Botão ----------
+   Mesmo verde do botão do formulário: as ações da página têm a mesma cara,
+   e o degradê fica só no que é ação. */
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  padding:16px 20px 16px 26px;
+  border-radius:12px;
+  background:linear-gradient(135deg,var(--verde-1) 0%,var(--verde-2) 100%);
+  color:#fff;
+  font-size:18px;
+  font-weight:500;
+  line-height:1;
+  transition:filter .25s var(--ease),transform .25s var(--ease);
+}
+.btn:hover{filter:brightness(1.08)}
+.btn:active{filter:brightness(.94);transform:translateY(1px)}
+.btn__icon{display:flex;width:24px;height:24px;color:#fff;transition:transform .3s var(--ease)}
+.btn:hover .btn__icon{transform:translateX(3px)}
 
 /* =========================================================================
    CARD DO FORMULÁRIO
@@ -157,9 +538,15 @@ html.lenis,html.lenis body{height:auto}
   flex:none;
   padding:40px;
   border-radius:20px;
-  background:var(--card-bg);
-  -webkit-backdrop-filter:blur(45px);
-  backdrop-filter:blur(45px);
+  /* Vidro: com blur de 45px tudo atrás virava uma cor lisa e o card parecia
+     chapado. Com 18px as formas de trás (a luz roxa, o ombro do Dr. Wagner)
+     aparecem borradas; saturate realça a cor que passa pelo vidro, e a borda
+     clara de 1px com o brilho no topo marcam a placa. */
+  background:linear-gradient(160deg,rgba(255,255,255,.12),rgba(255,255,255,.03) 45%),var(--card-bg);
+  border:1px solid rgba(255,255,255,.16);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 24px 60px rgba(4,0,12,.45);
+  -webkit-backdrop-filter:blur(18px) saturate(150%);
+  backdrop-filter:blur(18px) saturate(150%);
 }
 .card__title{
   width:100%;
@@ -169,15 +556,9 @@ html.lenis,html.lenis body{height:auto}
   letter-spacing:-.02em;
   color:var(--white);
 }
-.card__note{width:100%;opacity:.8}
-.card__note p{
-  font-size:14px;
-  font-weight:300;
-  line-height:1.6;
-  color:var(--white);
-}
 
 .fa-form{width:100%}
+.card__next{width:100%;font-size:14px;line-height:1.5;color:var(--text-mute)}
 .fa-field{position:relative;margin-bottom:18px}
 .fa-field label{
   display:block;
@@ -187,7 +568,6 @@ html.lenis,html.lenis body{height:auto}
   line-height:1;
   color:#f2f2f2;
 }
-.fa-field label span{margin-left:2px;color:var(--purple)}
 .fa-control{position:relative}
 .fa-icon{
   position:absolute;
@@ -211,9 +591,10 @@ html.lenis,html.lenis body{height:auto}
   border:1.5px solid var(--purple-deep);
   border-radius:12px;
   outline:none;
-  transition:.2s;
+  transition:border-color .2s var(--ease);
 }
-.fa-input::placeholder{color:rgba(255,255,255,.45)}
+/* 60%: com 45% o placeholder ficava em 4,29:1 e reprovava. */
+.fa-input::placeholder{color:rgba(255,255,255,.6)}
 .fa-input:focus{border-color:var(--purple)}
 .fa-input.is-invalid{border-color:#e2555d}
 
@@ -226,7 +607,7 @@ html.lenis,html.lenis body{height:auto}
   /* Peso 500 (SilkaMedium), que já é pré-carregado. O 600 exigia o
      SilkaSemiBold — 29 KB a mais no caminho crítico por um único elemento. */
   font-weight:500;
-  letter-spacing:.06em;   /* caixa alta pede um respiro entre as letras */
+  letter-spacing:-.01em;
   line-height:1;
   color:#fff;
   background:linear-gradient(135deg,var(--verde-1) 0%,var(--verde-2) 100%);
@@ -236,26 +617,24 @@ html.lenis,html.lenis body{height:auto}
   transition:filter .25s var(--ease);
 }
 /* A pulsação só começa depois que a página termina de carregar.
-   O botão fica dentro do .hero__card, que tem backdrop-filter: blur(45px) —
+   O botão fica dentro do .hero__card, que tem backdrop-filter (blur) —
    animar ali durante o carregamento custa caro em celular fraco e foi o que
    derrubou LCP e TBT no PageSpeed. Depois do load ela não disputa com nada e
    a pessoa vê o efeito do mesmo jeito. */
 .carregada .fa-submit{
   animation:pulsarEnvio 2.2s ease-in-out infinite;
 }
+/* Só o halo pulsa: o botão não cresce (crescendo, ficava mais largo que os
+   campos a cada ciclo). */
 @keyframes pulsarEnvio{
-  0%,100%{
-    transform:scale(1);
-    box-shadow:0 10px 26px rgba(18,140,70,.4), 0 0 0 0 rgba(37,211,102,.5);
-  }
-  50%{
-    transform:scale(1.025);
-    box-shadow:0 12px 30px rgba(18,140,70,.5), 0 0 0 14px rgba(37,211,102,0);
-  }
+  0%,100%{box-shadow:0 10px 26px rgba(18,140,70,.4), 0 0 0 0 rgba(37,211,102,.45)}
+  50%{box-shadow:0 12px 30px rgba(18,140,70,.5), 0 0 0 12px rgba(37,211,102,0)}
 }
 /* Ao interagir a pulsação para, e durante o envio também: o botão fica
    desabilitado e não faz sentido continuar chamando atenção. */
 .fa-submit:hover,.fa-submit:focus-visible{filter:brightness(1.08);animation-play-state:paused}
+/* Anel de foco visível para quem navega pelo teclado (dourado da marca). */
+.fa-submit:focus-visible,.btn:focus-visible,.footer a:focus-visible{outline:2px solid var(--gold);outline-offset:4px}
 .fa-submit:active{filter:brightness(.94);animation-play-state:paused}
 .fa-submit:disabled{opacity:.6;cursor:default;animation:none;transform:none;box-shadow:none}
 
@@ -287,184 +666,10 @@ html.lenis,html.lenis body{height:auto}
 .iti__selected-dial-code{color:#fff}
 
 /* =========================================================================
-   FAIXAS COM IMAGEM DE FUNDO
-   ========================================================================= */
-.band{position:relative;overflow:clip}
-.band__bg{position:absolute;inset:0;pointer-events:none}
-.band__bg img{width:100%;height:100%;object-fit:cover}
-.band > section{position:relative}
-
-/* =========================================================================
-   SEÇÃO 2 — BLACK FRIDAY ACONTECE UMA VEZ POR ANO
-   ========================================================================= */
-.reasons{
-  display:flex;
-  flex-direction:column;
-  align-items:flex-start;
-  gap:64px;
-  width:100%;
-  max-width:1440px;
-  margin:0 auto;
-  padding:112px 48px;
-}
-.reasons__head{display:flex;flex-direction:column;gap:20px;width:100%}
-.reasons__title{
-  max-width:658px;
-  font-size:36px;
-  font-weight:500;
-  line-height:1.1;
-  letter-spacing:-.04em;
-  color:var(--white);
-}
-.reasons__sub{
-  font-size:16px;
-  font-weight:400;
-  line-height:1.5;
-  color:var(--white);
-}
-
-.reasons__row{display:flex;gap:16px;width:100%}
-.reason{position:relative;flex:1 1 0;min-width:0;padding:32px 24px}
-.reason:not(:last-child)::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  border-right:1px solid rgba(255,255,255,.1);
-  pointer-events:none;
-}
-.reason__inner{display:flex;flex-direction:column;gap:8px}
-.reason__icon{width:40px;height:40px}
-.reason h3{
-  font-size:28px;
-  font-weight:500;
-  line-height:1.2;
-  letter-spacing:-.02em;
-  color:#fff;
-}
-.reason p{
-  font-size:16px;
-  font-weight:400;
-  line-height:1.4;
-  color:rgba(255,255,255,.7);
-}
-
-/* =========================================================================
-   SEÇÃO 3 — VITALÍCIA NÃO É FORÇA DE EXPRESSÃO
-   ========================================================================= */
-.vital{
-  position:relative;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  width:100%;
-  background:var(--black);
-  overflow:clip;
-}
-.vital__inner{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  width:100%;
-  max-width:1200px;
-  padding:64px 48px;
-}
-.vital__stack{
-  display:flex;
-  flex-direction:column;
-  align-items:flex-start;
-  justify-content:space-between;
-  width:100%;
-}
-.vital__row{display:flex;align-items:center;gap:8px;width:100%;min-height:240px}
-.vital__row .vital__display{width:3.96em}
-.vital__end{display:flex;flex-direction:column;align-items:flex-end;width:100%}
-.vital__endinner{display:flex;flex-direction:column;align-items:flex-start;gap:20px;width:5.97em;font-size:112px}
-.vital__endinner .vital__display{font-size:1em}
-.vital__display{
-  font-size:112px;
-  font-weight:500;
-  line-height:1;
-  letter-spacing:-.02em;
-  color:var(--white);
-}
-.vital__copy{max-width:447px}
-.vital__copy p{
-  font-size:16px;
-  font-weight:400;
-  line-height:1.4;
-  color:var(--white);
-}
-.vital__copy p + p{margin-top:20px}
-.vital__copy .is-medium{font-weight:500}
-
-/* =========================================================================
-   SEÇÃO 4 — CTA
-   ========================================================================= */
-.cta{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:40px;
-  width:100%;
-  padding:80px 20px;
-}
-.cta__group{display:flex;flex-direction:column;align-items:center;gap:60px;width:100%}
-.cta__headwrap{max-width:717px}
-.cta__title{
-  font-size:36px;
-  font-weight:500;
-  line-height:1.1;
-  letter-spacing:-.04em;
-  text-align:center;
-  color:var(--white);
-}
-.cta__copy{max-width:695px;text-align:center}
-.cta__copy p{
-  font-size:18px;
-  font-weight:400;
-  line-height:1.4;
-  letter-spacing:-.02em;
-  color:var(--white);
-}
-.cta__copy p + p{margin-top:20px}
-.cta__copy strong{font-weight:500}
-
-/* ---------- Botão ---------- */
-.btn{
-  display:inline-flex;
-  align-items:center;
-  gap:4px;
-  padding:6px 15px 6px 21px;
-  border-radius:100px;
-  background:var(--white);
-  color:var(--purple-ink);
-  transition:transform .25s var(--ease),background .25s var(--ease);
-  will-change:transform;
-}
-.btn:hover{transform:scale(1.03);background:#fff}
-.btn__label{display:flex;align-items:center;padding-left:4px}
-.btn__label p{
-  font-size:16px;
-  font-weight:500;
-  line-height:1;
-  color:var(--purple-ink);
-}
-.btn__icon{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  width:48px;
-  height:48px;
-  border-radius:100px;
-  color:#000;
-  transition:transform .3s var(--ease);
-}
-.btn:hover .btn__icon{transform:translateX(3px)}
-
-/* =========================================================================
    RODAPÉ
    ========================================================================= */
-.footer{background:var(--footer-black);padding:80px 40px 0}
+/* Sem fundo próprio: o fundo da página segue até o fim, sem borda. */
+.footer{position:relative;padding:96px 40px 0}
 .footer__inner{display:flex;flex-direction:column;gap:32px;max-width:1345px;margin:0 auto}
 
 .footer__top{display:flex;align-items:flex-start;gap:32px}
@@ -520,7 +725,7 @@ html.lenis,html.lenis body{height:auto}
   color:rgba(255,255,255,.8);
 }
 
-.footer__bottom{padding:40px 0 112px}
+.footer__bottom{padding:40px 0 calc(48px + env(safe-area-inset-bottom))}
 .footer__bottom p{
   font-size:15px;
   font-weight:400;
@@ -529,19 +734,16 @@ html.lenis,html.lenis body{height:auto}
 }
 
 /* =========================================================================
-   ANIMAÇÕES
+   MOVIMENTO
    ========================================================================= */
-.js .anim{opacity:.001;transform:translateY(20px);will-change:transform,opacity}
+.js .anim,.js .anim-words{opacity:.001;transform:translateY(20px)}
 
 /* O hero entra por CSS, sem depender do JS.
-   Antes ele era revelado no evento load — que só dispara depois de todo o
-   rastreamento carregar — e isso empurrava o LCP junto (10,2s no PageSpeed).
-   Por CSS a entrada começa assim que a folha de estilo chega. */
-/* Só o deslocamento é animado — a opacidade fica em 1 desde o primeiro
-   quadro. Elemento com opacidade baixa não conta como pintado para o LCP:
-   com o fade, o parágrafo do hero (que é o elemento de LCP no celular)
-   ficava esperando a thread principal liberar para começar a animação, e o
-   PageSpeed registrava 2,4s de "atraso na renderização de elemento". */
+   Antes ele era revelado no evento load (que só dispara depois de todo o
+   rastreamento carregar) e isso empurrava o LCP junto (10,2s no PageSpeed).
+   Só o deslocamento é animado: a opacidade fica em 1 desde o primeiro
+   quadro, porque elemento com opacidade baixa não conta como pintado para
+   o LCP. */
 .hero .anim{
   opacity:1;
   transform:translateY(16px);
@@ -552,80 +754,93 @@ html.lenis,html.lenis body{height:auto}
 .hero .anim[data-delay="160"]{animation-delay:160ms}
 .hero .anim[data-delay="200"]{animation-delay:200ms}
 .hero .anim[data-delay="240"]{animation-delay:240ms}
-.js .anim.is-in{
+
+/* Entrada por bloco disparada pelo JS: vale onde o navegador não suporta
+   animação ligada à rolagem (Firefox, hoje). */
+.js .anim.is-in,.js .anim-words.is-in{
   opacity:1;
   transform:none;
   transition:opacity .7s var(--ease),transform .7s var(--ease);
 }
 
-/* Revelação palavra a palavra (blur-in) */
-.js .anim-words .word{
-  display:inline-block;
-  opacity:.001;
-  filter:blur(10px);
-  transform:translateY(10px);
-  will-change:transform,opacity,filter;
+/* Revelação ligada à rolagem: cada bloco termina de entrar quando chega ao
+   centro da tela (cover 50%) e volta se a pessoa rolar para cima. */
+@supports (animation-timeline:view()){
+  @media (prefers-reduced-motion:no-preference){
+    .js :is(.reasons,.vital,.session,.closing) :is(.anim,.anim-words){
+      opacity:1;
+      transform:none;
+      transition:none;
+      /* Linear de propósito: aqui a curva mapeia a posição da rolagem, não o
+         tempo. Com ease-out o bloco ficava 98% visível ainda no terço de
+         baixo da tela; linear termina de fato no centro. */
+      animation:revela linear both;
+      animation-timeline:view();
+      animation-range:entry 0% cover 50%;
+    }
+    /* O bilhete entra girando de leve e fica reto quando chega ao centro. */
+    .closing__ticket img{
+      animation:endireita linear both;
+      animation-timeline:view();
+      animation-range:entry 0% cover 50%;
+    }
+  }
 }
-.js .anim-words.is-in .word{
-  opacity:1;
-  filter:blur(0px);
-  transform:none;
-  transition:opacity .6s var(--ease),filter .6s var(--ease),transform .6s var(--ease);
+@keyframes revela{
+  from{opacity:0;transform:translateY(24px)}
+  to{opacity:1;transform:none}
+}
+@keyframes endireita{
+  from{opacity:0;transform:rotate(-7deg) translateY(40px) scale(.94)}
+  to{opacity:1;transform:none}
 }
 
 @media (prefers-reduced-motion:reduce){
-  .anim,.anim-words .word,.js .anim,.js .anim-words .word,.hero .anim{opacity:1!important;transform:none!important;filter:none!important;transition:none!important;animation:none!important}
+  .anim,.anim-words,.js .anim,.js .anim-words,.hero .anim{opacity:1!important;transform:none!important;transition:none!important;animation:none!important}
+  .closing__ticket img{animation:none!important}
   .fa-submit{animation:none!important;transform:none!important}
 }
 
 /* =========================================================================
-   BREAKPOINT — TABLET (≤1199px)
+   BREAKPOINT · TABLET (≤1199px)
    ========================================================================= */
 @media (max-width:1199px){
-  .hero__logo img{width:254px;height:179px}
+  .hero__logo img{width:256px;height:150px}
   .hero__title{font-size:48px}
   .hero__lead{font-size:16px}
   .card__title{font-size:24px}
 
-  .reasons{padding:64px 32px}
-  .reasons__title{font-size:32px}
-  /* 2 colunas em grade, com as duas linhas da mesma altura (igual ao original) */
-  .reasons__row{display:grid;grid-template-columns:repeat(2,1fr);grid-auto-rows:1fr;align-items:start;gap:16px}
-  .reason{flex:none;width:auto}
-  .reason:not(:last-child)::after{border-right:0;border-bottom:1px solid rgba(255,255,255,.1)}
-  .reason h3{font-size:24px}
-  .reason p{font-size:14px}
+  .reasons{grid-template-columns:1fr;gap:40px;padding:152px 40px 88px}
+  .reasons__title{font-size:38px}
+  .reasons__num{font-size:80px}
+  .reason{font-size:21px}
 
-  .vital__inner{padding:64px 48px}
-  .vital__stack{height:363px}
-  .vital__display,.vital__endinner{font-size:56px}
-  .vital__row{min-height:0}
-  .vital__row .vital__display,.vital__endinner{width:7.18em}
-  .vital__copy{max-width:388px}
-  .vital__copy p{font-size:14px}
 
-  .cta{padding:80px 32px}
-  .cta__title{font-size:32px}
-  .cta__copy{max-width:567px}
-  .cta__copy p{font-size:16px}
+  /* Duas colunas também no tablet: em uma, o texto acabava na metade da
+     tela e sobravam ~480px vazios à direita (monitor vertical de 1080px). */
+  .session{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px;padding:96px 40px}
+  .session__title{font-size:38px}
 
-  .footer{padding:80px 32px 0}
+  .closing{padding:88px 40px 120px;gap:40px}
+  .closing__title{font-size:38px}
+  .closing__copy p{font-size:17px}
+
+  .footer{padding:96px 32px 0}
   .footer__top{flex-direction:column;align-items:flex-start;gap:32px}
   .footer__brand{width:100%}
   .footer__tagline{font-size:14px}
   .footer__legal{align-items:flex-start;width:100%}
   .footer__legal > *{width:auto}
   .footer__mid{gap:48px}
-  .footer__bottom{padding:40px 0 144px}
 }
 
 /* =========================================================================
-   BREAKPOINT — MOBILE (≤809px)
+   BREAKPOINT · CELULAR (≤809px)
    ========================================================================= */
 @media (max-width:809px){
-  /* ---- HERO: tudo precisa caber na primeira dobra, sem rolagem ----
-     O hero ocupa a altura da tela e o conteúdo é centralizado: em telas
-     altas sobra respiro, em telas baixas encosta nas bordas mas cabe. */
+  /* ---- HERO: o formulário inteiro precisa caber na primeira dobra ----
+     O hero ocupa ao menos a altura da tela e o conteúdo é centralizado. Os
+     professores vêm logo abaixo do card, com as cartolas no fim da dobra. */
   .hero{min-height:100svh}
   .hero__inner{
     flex-direction:column;
@@ -640,75 +855,85 @@ html.lenis,html.lenis body{height:auto}
     flex:0 0 auto;
     align-items:center;text-align:center;width:100%;gap:10px;
   }
-  .hero__logo img{width:128px;height:90px}
-  .hero__title{font-size:30px;text-align:center;line-height:1.1}
-  .hero__lead{font-size:13px;text-align:center;line-height:1.4;max-width:34ch}
-  .pill{padding:6px 14px}
-  .pill__label{font-size:14px}
+  .hero__logo img{width:160px;height:94px}
+  /* O H1 é o maior texto da tela (era 30px, menor que os títulos das seções). */
+  .hero__title{font-size:36px;text-align:center;line-height:1.08}
+  .hero__date{font-size:14px;text-align:center}
+  .hero__lead{font-size:15px;text-align:center;line-height:1.4;max-width:34ch}
+  .eyebrow{font-size:15px}
 
   .hero__card{width:100%;padding:16px;gap:12px;border-radius:16px}
-  .card__title{font-size:18px}
-  .card__note p{font-size:12px;line-height:1.4}
+  .card__title{font-size:20px}
+  .card__next{font-size:13px}
+  .hero__people{
+    order:3;
+    width:min(92vw,420px);
+    margin:6px auto -12px;
+  }
 
-  .fa-form{padding:12px;border-radius:8px}
+  /* Sem recuo próprio: título, rótulos, campos e nota no mesmo alinhamento. */
+  .fa-form{padding:0}
   .fa-field{margin-bottom:10px}
-  .fa-field label{font-size:12px;margin-bottom:5px}
+  .fa-field label{font-size:13px;margin-bottom:5px}
   .fa-input{height:44px;font-size:16px;padding:10px 12px 10px 40px}
   .fa-icon{left:12px}
   .fa-submit{padding:13px 20px;font-size:16px;margin-top:6px}
 
-  .reasons{padding:60px 16px;gap:40px}
-  .reasons__head{gap:16px}
-  .reasons__title{font-size:24px;line-height:1.2}
-  .reasons__row{display:flex;flex-direction:column;flex-wrap:nowrap;gap:0}
-  .reason{flex:0 0 auto;width:100%;padding:16px 24px}
-  .reason h3{font-size:22px}
+  .reasons{padding:96px 16px 64px;gap:28px}
+  .reasons__head{gap:14px}
+  .reasons__title{font-size:30px;line-height:1.1}
+  .reasons__sub{font-size:16px}
+  .reasons__body{gap:10px}
+  .reasons__num{font-size:64px}
+  .reason{font-size:18px;padding:16px 0}
 
-  .vital__inner{padding:64px 16px}
-  .vital__stack{height:313px}
-  .vital__row{min-height:0}
-  .vital__display,.vital__endinner{font-size:48px}
-  .vital__row .vital__display,.vital__endinner{width:100%}
-  .vital__end{align-items:flex-start}
+  .vital__inner{padding:64px 16px 72px}
+  .vital__photo{margin-left:-16px;margin-right:-16px;width:calc(100% + 32px);max-width:none}
   .vital__copy{max-width:none}
+  .vital__copy p{font-size:16px}
+  .vital__copy .vital__payoff{font-size:30px}
 
-  .cta{padding:80px 16px}
-  .cta__headwrap{max-width:none}
-  .cta__title{font-size:24px;line-height:1.2}
-  .cta__copy{max-width:none}
-  .cta__copy p{font-size:14px}
-  .brk{display:none}
+  .session{grid-template-columns:1fr;gap:24px;padding:72px 16px 64px}
+  .session__photo{margin:0 -16px}
+  .session__title{font-size:30px;line-height:1.12}
+  .step{grid-template-columns:1fr;gap:2px;padding:16px 0}
+  .step p{font-size:16px}
 
-  .btn{height:48px}
-  .btn__label p{font-size:14px}
+  /* Bilhete primeiro (é o gancho visual), texto e botão depois. */
+  .closing{grid-template-columns:1fr;gap:24px;padding:48px 16px 80px}
+  .closing__ticket{order:-1}
+  .closing__text{gap:22px}
+  .closing__title{font-size:30px;line-height:1.12}
+  .closing__copy p{font-size:16px}
+  .btn{width:100%;padding:16px 20px;font-size:16px}
 
-  .footer{padding:64px 24px 0;text-align:center}
-  .footer__top{flex-direction:column;align-items:center;gap:32px}
-  .footer__brand{align-items:center;width:100%}
+  /* Rodapé todo à esquerda: centralizado, os links (de larguras diferentes)
+     pareciam desalinhados entre si. */
+  .footer{padding:72px 24px 0}
+  .footer__top{flex-direction:column;align-items:flex-start;gap:32px}
+  .footer__brand{align-items:flex-start;width:100%}
   .footer__logo{width:242px;height:36px}
   .footer__tagline{font-size:14px}
   .footer__legal{align-items:flex-start;width:100%}
   .footer__legal > *{width:auto}
-  .footer__inner{align-items:center}
   .footer__inner > *{width:100%}
-  .footer__mid{flex-direction:column;gap:48px;text-align:left}
+  .footer__mid{flex-direction:column;gap:48px}
   .footer__block{max-width:none}
-  .footer__bottom{padding:40px 0 144px;text-align:left}
 }
 
 /* =========================================================================
-   TELAS BAIXAS (Android pequeno, navegador com barras) — aperta o hero
-   mais um pouco para o formulário inteiro caber sem rolagem.
-   Área de toque dos campos preservada; o que encolhe é logo e espaçamento.
+   TELAS BAIXAS (Android pequeno, navegador com barras): aperta o hero mais
+   um pouco para o formulário inteiro caber sem rolagem. A área de toque dos
+   campos é preservada; o que encolhe é a marca e o espaçamento.
    ========================================================================= */
 @media (max-width:809px) and (max-height:680px){
   .hero__inner{gap:12px;padding:10px 16px}
   .hero__col{gap:8px}
-  .hero__logo img{width:104px;height:73px}
-  .hero__title{font-size:27px}
-  .hero__lead{font-size:12px}
+  .hero__logo img{width:128px;height:75px}
+  .hero__title{font-size:30px}
+  .hero__lead{font-size:13px}
   .hero__card{padding:14px;gap:10px}
-  .card__title{font-size:17px}
+  .card__title{font-size:18px}
+  .card__next{font-size:12px}
   .fa-field{margin-bottom:8px}
-  .card__note p{font-size:11px}
 }

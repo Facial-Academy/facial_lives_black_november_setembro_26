@@ -1,0 +1,18 @@
+# 30/10/2026, pedido do Eddie: os três links de captura (A /, B /v2 e Google
+# /captura-google) mostram a mesma página nova, a das aulas ao vivo de fim de
+# ano (index.html). 200 = a URL continua a mesma no navegador e as UTMs vão
+# junto; o LeadHero recebe o caminho no campo URL.
+/v2                   /  200
+/v2/                  /  200
+/v2.html              /  200
+/captura-google       /  200
+/captura-google/      /  200
+/captura-google.html  /  200
+
+# 26/10/2026, pedido do Eddie: os obrigados da Black saíram do ar e levam para
+# a página de vendas. 302 (temporário) para poder desfazer sem o navegador
+# guardar o desvio. /verificador continua.
+/obrigado             https://blackvitalicia.facialacademy.com.br/ 302
+/obrigado.html        https://blackvitalicia.facialacademy.com.br/ 302
+/obrigado-google      https://blackvitalicia.facialacademy.com.br/ 302
+/obrigado-google.html https://blackvitalicia.facialacademy.com.br/ 302

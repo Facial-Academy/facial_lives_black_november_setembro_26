@@ -1,6 +1,8 @@
 /* =========================================================================
    Facial Academy — Black Vitalícia
-   Scroll suave (Lenis) + revelação por palavra + formulário
+   Scroll suave (Lenis) + revelação por bloco + formulário
+   Cópia do main.v7.js para a captura-google.html: muda o REDIRECT e conta a
+   conversão pelo conversao-google.v1.js (a tag 268 do GTM não roda aqui).
    ========================================================================= */
 (function () {
   'use strict';
@@ -38,41 +40,9 @@
   }
 
   /* ---------------------------------------------------------------------
-     2. Quebra de texto em palavras (efeito blur-in escalonado)
-     --------------------------------------------------------------------- */
-  var STAGGER = 40; // ms entre palavras
-
-  function splitWords(el) {
-    var walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, null);
-    var nodes = [];
-    while (walker.nextNode()) nodes.push(walker.currentNode);
-
-    nodes.forEach(function (node) {
-      if (!node.nodeValue.trim()) return;
-      var frag = document.createDocumentFragment();
-      node.nodeValue.split(/(\s+)/).forEach(function (chunk) {
-        if (!chunk) return;
-        if (/^\s+$/.test(chunk)) {
-          frag.appendChild(document.createTextNode(chunk));
-        } else {
-          var span = document.createElement('span');
-          span.className = 'word';
-          span.textContent = chunk;
-          frag.appendChild(span);
-        }
-      });
-      node.parentNode.replaceChild(frag, node);
-    });
-
-    el.querySelectorAll('.word').forEach(function (w, i) {
-      w.style.transitionDelay = (i * STAGGER) + 'ms';
-    });
-  }
-
-  document.querySelectorAll('.anim-words').forEach(splitWords);
-
-  /* ---------------------------------------------------------------------
-     3. Revelação ao entrar na viewport
+     2. Revelação ao entrar na viewport
+     Onde o navegador suporta animation-timeline, o CSS faz a revelação pela
+     rolagem e este bloco só adiciona .is-in, sem efeito visual.
      --------------------------------------------------------------------- */
   function reveal(el) {
     if (el.classList.contains('is-in')) return;
@@ -151,7 +121,7 @@
   };
 
   /* ---------------------------------------------------------------------
-     4. Campo de telefone internacional (padrão Brasil +55)
+     3. Campo de telefone internacional (padrão Brasil +55)
      --------------------------------------------------------------------- */
   var phone = document.querySelector('#fa-phone');
   var iti = null;
@@ -174,7 +144,7 @@
   }
 
   /* ---------------------------------------------------------------------
-     5. Envio do formulário
+     4. Envio do formulário
      --------------------------------------------------------------------- */
   var form = document.querySelector('#fa-form');
   if (!form) return;
@@ -192,9 +162,11 @@
   // do LeadHero.
   var ENDPOINT = 'https://ilzpqehbbxvmogorpfma.supabase.co/functions/v1/lead-capture-rapido/db62a1f9-2a30-47ea-a78e-a4b97f6aad2f';
 
-  // Página de obrigado. Em produção o Cloudflare normaliza para /obrigado;
-  // com a extensão o caminho também funciona no preview local.
-  var REDIRECT = 'obrigado.html';
+  // Página de obrigado do Google Ads. Em produção o Cloudflare normaliza para
+  // /obrigado-google; com a extensão o caminho também funciona no preview
+  // local. A barra inicial mantém o destino certo mesmo se a captura for
+  // aberta como /captura-google/.
+  var REDIRECT = '/obrigado-google.html';
 
   // Teto de espera pela decisão. A pessoa não pode ficar olhando o botão por
   // causa de uma resposta que demora: estourou, vai pro obrigado de sempre (o
@@ -310,7 +282,20 @@
         var destino = corpo && typeof corpo.redirect === 'string' && /^https?:\/\//i.test(corpo.redirect)
           ? corpo.redirect
           : REDIRECT;
-        window.location.href = destino;
+        function vai() { window.location.href = destino; }
+        // Cadastro aceito pela triagem: conta a conversão antes de sair. Sem
+        // resposta dentro do teto, sai sem contar: a conversão só vale para
+        // cadastro confirmado, como na tag 268.
+        var aceito = corpo && !corpo.error && corpo.success !== false &&
+          typeof corpo.pagina === 'string' && corpo.pagina.trim();
+        if (aceito && window.faConversaoGoogle) {
+          window.faConversaoGoogle.lead({
+            email: payload.email, telefone: payload.telefone,
+            nome: payload.nome, sobrenome: payload.sobrenome
+          }, vai);
+        } else {
+          vai();
+        }
       })
       .catch(function (erro) {
         if (window.console && console.warn) console.warn('LeadHero:', erro && erro.message);
